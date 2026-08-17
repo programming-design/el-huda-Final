@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+// Instant theme + lang restore (before render)
+(function(){
+  var t=localStorage.getItem('elhuda_theme');
+  if(t&&t!=='dark') document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title>رمضان والأعياد والمناسبات الإسلامية | الهُدى</title>
+<meta name="description" content="كل ما يخص شهر رمضان المبارك، والأعياد والمناسبات الإسلامية على مدار العام.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elhida.online/ramadan.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://elhida.online/ramadan.html">
+<meta property="og:title" content="رمضان والأعياد والمناسبات الإسلامية | الهُدى">
+<meta property="og:description" content="كل ما يخص شهر رمضان المبارك، والأعياد والمناسبات الإسلامية على مدار العام.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="رمضان والأعياد والمناسبات الإسلامية | الهُدى">
+<meta name="twitter:description" content="كل ما يخص شهر رمضان المبارك، والأعياد والمناسبات الإسلامية على مدار العام.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://elhida.online/index.html"}, {"@type": "ListItem", "position": 2, "name": "رمضان والأعياد والمناسبات الإسلامية", "item": "https://elhida.online/ramadan.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Poppins:wght@300;400;600;800&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<style>
+/* ─── MOON HERO ─── */
+.ramadan-moon{display:flex;justify-content:center;margin-bottom:12px;animation:moonFloat 3s ease-in-out infinite;}
+.ramadan-moon svg{width:64px;height:64px;stroke:var(--gold-soft);fill:none;stroke-width:1.5;}
+@keyframes moonFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* ─── COUNTDOWN ─── */
+.countdown-box{background:var(--bg-soft);border:1px solid var(--line);border-radius:18px;padding:28px 20px;max-width:560px;margin:28px auto;text-align:center;}
+.countdown-title{font-size:.9rem;opacity:.65;margin-bottom:14px;}
+.countdown-nums{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+.cnum{background:var(--gold);border-radius:12px;padding:12px 18px;min-width:66px;}
+.cnum-n{font-size:1.9rem;font-weight:800;display:block;color:#1a1108;font-family:'Poppins',sans-serif;}
+.cnum-l{font-size:.68rem;color:#1a1108;opacity:.8;}
+
+/* ─── SECTION TITLE ─── */
+.sec-title{text-align:center;font-size:1.4rem;font-weight:800;margin:52px 0 22px;padding:0 clamp(6vw,8vw,120px);display:flex;align-items:center;justify-content:center;gap:10px;}
+.sec-title::before,.sec-title::after{content:'';flex:1;max-width:80px;height:1px;background:var(--line);}
+
+/* ─── SUHOOR / IFTAR ─── */
+.si-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:0 clamp(6vw,8vw,120px);}
+@media(max-width:480px){.si-row{grid-template-columns:1fr;}}
+.si-card{border-radius:14px;padding:22px;text-align:center;}
+.si-card.suhoor{background:rgba(20,40,100,.25);border:1px solid rgba(100,140,255,.2);}
+.si-card.iftar{background:rgba(100,45,0,.25);border:1px solid rgba(255,170,60,.25);}
+.si-card .si-icon{margin-bottom:10px;display:flex;justify-content:center;}
+.si-card .si-icon svg{width:30px;height:30px;stroke:var(--gold);fill:none;stroke-width:1.7;}
+.si-card h3{margin:0 0 6px;font-size:1rem;}
+.si-card p{font-size:.83rem;opacity:.75;margin:0;line-height:1.6;}
+
+/* ─── GUIDE CARDS ─── */
+.ram-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;padding:0 clamp(6vw,8vw,120px);}
+.ram-card{background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:22px 20px;}
+.ram-card .rc-icon{width:42px;height:42px;border-radius:12px;background:rgba(212,175,106,.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.ram-card .rc-icon svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.7;}
+.ram-card h3{font-size:1rem;margin:0 0 7px;}
+.ram-card p{font-size:.86rem;opacity:.75;line-height:1.7;margin:0;}
+
+/* ─── AYAHS ─── */
+.ayahs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;padding:0 clamp(6vw,8vw,120px);}
+.ayah-card{background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:22px;}
+.ayah-card .arabic{font-family:'Scheherazade New',serif;font-size:1.15rem;line-height:2;color:var(--gold-soft);margin-bottom:8px;}
+.ayah-card .ref{font-size:.75rem;opacity:.55;}
+
+/* ─── DEEDS ─── */
+.deeds-list{padding:0 clamp(6vw,8vw,120px);list-style:none;}
+.deeds-list li{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;display:flex;align-items:center;gap:14px;font-size:.92rem;}
+.deeds-list .di{width:36px;height:36px;border-radius:10px;background:rgba(212,175,106,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.deeds-list .di svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.8;}
+
+/* ─── ISLAMIC HOLIDAYS (ACCORDION) ─── */
+.holidays-list{padding:0 clamp(6vw,8vw,120px);}
+.holiday-item{background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;transition:border-color .25s;}
+.holiday-item.open{border-color:var(--gold);}
+.holiday-header{display:flex;align-items:center;gap:14px;padding:18px 20px;cursor:pointer;user-select:none;}
+.holiday-header:hover .h-name{color:var(--gold-soft);}
+.h-badge{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem;}
+.h-info{flex:1;}
+.h-name{font-size:1rem;font-weight:700;margin:0 0 3px;transition:color .2s;}
+.h-date{font-size:.78rem;opacity:.55;font-family:'Poppins',sans-serif;}
+.h-hijri{font-size:.75rem;color:var(--gold);opacity:.8;margin-top:2px;}
+.h-chevron{margin-right:auto;transition:transform .3s;flex-shrink:0;}
+.h-chevron svg{width:18px;height:18px;stroke:var(--gold-soft);fill:none;stroke-width:2;}
+.holiday-item.open .h-chevron{transform:rotate(180deg);}
+.holiday-body{display:none;padding:0 20px 20px;border-top:1px solid var(--line);}
+.holiday-item.open .holiday-body{display:block;}
+.holiday-body p{font-size:.88rem;line-height:1.8;opacity:.8;margin:14px 0 10px;}
+.holiday-body .hb-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.holiday-body .hb-tag{font-size:.73rem;padding:3px 10px;border-radius:20px;border:1px solid var(--line);opacity:.75;}
+.holiday-body .hb-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.holiday-body .hb-link{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:10px;font-size:.8rem;text-decoration:none;border:1px solid var(--line);color:var(--text-dim);transition:.2s;}
+.holiday-body .hb-link:hover{border-color:var(--gold);color:var(--gold-soft);}
+.holiday-body .hb-link svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;}
+.holiday-body .hb-dates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:12px 0;}
+.h-year-badge{background:rgba(212,175,106,.08);border:1px solid rgba(212,175,106,.2);border-radius:10px;padding:8px 12px;text-align:center;}
+.h-year-badge .yr{font-size:.68rem;opacity:.5;margin-bottom:2px;}
+.h-year-badge .dt{font-size:.82rem;font-weight:600;color:var(--gold-soft);}
+
+/* ─── TABS ─── */
+.page-tabs{display:flex;gap:0;padding:0 clamp(6vw,8vw,120px);border-bottom:1px solid var(--line);}
+.page-tab{padding:10px 20px;font-size:.9rem;cursor:pointer;background:none;border:none;color:var(--text-dim);font-family:inherit;border-bottom:2px solid transparent;margin-bottom:-1px;transition:.2s;display:inline-flex;align-items:center;gap:7px;}
+.page-tab i{width:15px;height:15px;}
+.h-badge i{width:20px;height:20px;stroke:currentColor;}
+.page-tab.active{color:var(--gold-soft);border-bottom-color:var(--gold);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+</style>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo"><img src="assets/logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='ه'"></div>
+    <div class="brand-text"><h1 data-i18n="brand">الهُدى</h1><small data-i18n="brand_sub">EL HUDA</small></div>
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" onclick="toggleThemePanel()"><i data-lucide="palette"></i></button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+    <button class="menu-toggle icon-btn" id="menuToggle" onclick="toggleNav()"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-badge">منصة إسلامية رقمية · 2026</div>
+  <h2>رمضان والأعياد الإسلامية</h2>
+  
+</section>
+
+<!-- TABS -->
+<div class="page-tabs reveal">
+  <button class="page-tab active" data-tab="ramadan"><i data-lucide="moon-star"></i> رمضان</button>
+  <button class="page-tab" data-tab="holidays"><i data-lucide="party-popper"></i> الأعياد والمناسبات</button>
+</div>
+
+<!-- ══════════════ TAB 1: RAMADAN ══════════════ -->
+<div class="tab-panel active" id="tab-ramadan">
+
+<!-- COUNTDOWN -->
+<div class="countdown-box reveal" id="ramadanCountdown">
+  <div class="countdown-title">الوقت المتبقي على رمضان القادم (فبراير 2027)</div>
+  <div class="countdown-nums">
+    <div class="cnum"><span class="cnum-n" id="cd-d">--</span><span class="cnum-l">يوم</span></div>
+    <div class="cnum"><span class="cnum-n" id="cd-h">--</span><span class="cnum-l">ساعة</span></div>
+    <div class="cnum"><span class="cnum-n" id="cd-m">--</span><span class="cnum-l">دقيقة</span></div>
+    <div class="cnum"><span class="cnum-n" id="cd-s">--</span><span class="cnum-l">ثانية</span></div>
+  </div>
+</div>
+
+<!-- SUHOOR / IFTAR -->
+<div class="sec-title reveal">أوقات السحور والإفطار</div>
+<div class="si-row reveal">
+  <div class="si-card suhoor">
+    <div class="si-icon"><i data-lucide="sunrise"></i></div>
+    <h3>السحور</h3>
+    <p>قبيل أذان الفجر — استيقظ مبكرًا وتسحّر فإن في السحور بركة.</p>
+  </div>
+  <div class="si-card iftar">
+    <div class="si-icon"><i data-lucide="sunset"></i></div>
+    <h3>الإفطار</h3>
+    <p>عند أذان المغرب — أفطر على تمر وماء واحرص على دعاء الإفطار.</p>
+  </div>
+</div>
+
+<!-- GUIDE CARDS -->
+<div class="sec-title reveal">دليل رمضان</div>
+<div class="ram-grid reveal">
+  <div class="ram-card anim-card">
+    <div class="rc-icon"><i data-lucide="clipboard-list"></i></div>
+    <h3>أركان الصيام</h3>
+    <p>الإمساك عن المفطرات من الفجر إلى المغرب بنية صادقة. الصيام ركن من أركان الإسلام الخمسة.</p>
+  </div>
+  <div class="ram-card anim-card">
+    <div class="rc-icon"><i data-lucide="x-circle"></i></div>
+    <h3>مفطرات الصيام</h3>
+    <p>الأكل والشرب والجماع عمدًا — أما النسيان فلا يفسد الصوم بإذن الله.</p>
+  </div>
+  <div class="ram-card anim-card">
+    <div class="rc-icon"><i data-lucide="check-circle"></i></div>
+    <h3>مستحبات رمضان</h3>
+    <p>تلاوة القرآن وختمه، قيام الليل والتراويح، الاعتكاف في العشر الأخيرة، والإكثار من الصدقة.</p>
+  </div>
+  <div class="ram-card anim-card">
+    <div class="rc-icon"><i data-lucide="star"></i></div>
+    <h3>ليلة القدر</h3>
+    <p>خير من ألف شهر، تُلتمس في الأوتار من العشر الأخيرة. أفضل دعاء: «اللهم إنك عفو تحب العفو فاعف عني».</p>
+  </div>
+  <div class="ram-card anim-card">
+    <div class="rc-icon"><i data-lucide="heart-handshake"></i></div>
+    <h3>دعاء الإفطار</h3>
+    <p>«اللَّهُمَّ لَكَ صُمْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ، ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الأَجْرُ إِنْ شَاءَ اللهُ»</p>
+  </div>
+  <div class="ram-card anim-card">
+    <div class="rc-icon"><i data-lucide="coins"></i></div>
+    <h3>زكاة الفطر</h3>
+    <p>تجب على كل مسلم قبيل صلاة العيد — مقدارها صاع من قوت البلد (نحو 3 كغ)، للفقراء والمساكين.</p>
+  </div>
+</div>
+
+<!-- AYAHS -->
+<div class="sec-title reveal">آيات عن الصيام</div>
+<div class="ayahs-grid reveal">
+  <div class="ayah-card anim-card">
+    <div class="arabic">«شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ هُدًى لِّلنَّاسِ»</div>
+    <div class="ref">البقرة · 185</div>
+  </div>
+  <div class="ayah-card anim-card">
+    <div class="arabic">«يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِن قَبْلِكُمْ»</div>
+    <div class="ref">البقرة · 183</div>
+  </div>
+  <div class="ayah-card anim-card">
+    <div class="arabic">«وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ»</div>
+    <div class="ref">البقرة · 186</div>
+  </div>
+</div>
+
+<!-- DEEDS -->
+<div class="sec-title reveal">برنامج يومي مقترح</div>
+<ul class="deeds-list reveal">
+  <li><span class="di"><i data-lucide="sunrise"></i></span>الاستيقاظ للسحور والصلاة — الفجر في وقته</li>
+  <li><span class="di"><i data-lucide="book-open"></i></span>قراءة جزء من القرآن بعد الفجر</li>
+  <li><span class="di"><i data-lucide="sun"></i></span>الإكثار من الاستغفار والذكر في النهار</li>
+  <li><span class="di"><i data-lucide="users"></i></span>حضور صلاة الجماعة والتراويح</li>
+  <li><span class="di"><i data-lucide="moon"></i></span>قيام الليل وإحياء الأوتار من العشر الأخيرة</li>
+  <li><span class="di"><i data-lucide="coins"></i></span>الصدقة اليومية ولو بالقليل</li>
+</ul>
+
+</div><!-- end tab-ramadan -->
+
+<!-- ══════════════ TAB 2: HOLIDAYS ══════════════ -->
+<div class="tab-panel" id="tab-holidays">
+
+<div class="sec-title reveal" style="margin-top:32px;">الأعياد والمناسبات الإسلامية</div>
+<p style="text-align:center;opacity:.6;font-size:.88rem;padding:0 clamp(6vw,8vw,120px);margin-bottom:28px;">اضغط على أي مناسبة لعرض التفاصيل والمعلومات الكاملة</p>
+
+<div class="holidays-list reveal">
+
+  <!-- EID AL-FITR -->
+  <div class="holiday-item anim-card">
+    <div class="holiday-header" onclick="toggleHoliday(this)">
+      <div class="h-badge" style="background:rgba(255,215,0,.12)"><i data-lucide="party-popper"></i></div>
+      <div class="h-info">
+        <div class="h-name">عيد الفطر المبارك</div>
+        <div class="h-date">1 شوال · نهاية رمضان</div>
+        <div class="h-hijri">2027: أبريل (تقريباً)</div>
+      </div>
+      <div class="h-chevron"><i data-lucide="chevron-down"></i></div>
+    </div>
+    <div class="holiday-body">
+      <p>عيد الفطر هو أحد أكبر أعياد المسلمين، يُحتفل به في اليوم الأول من شهر شوال عقب انتهاء رمضان. يجمع المسلمين على صلاة العيد والزيارات العائلية.</p>
+      <div class="hb-tags">
+        <span class="hb-tag">صلاة العيد صباحاً</span>
+        <span class="hb-tag">زكاة الفطر قبله</span>
+        <span class="hb-tag">التكبير</span>
+        <span class="hb-tag">صلة الرحم</span>
+        <span class="hb-tag">الصدقة</span>
+      </div>
+      <div class="hb-dates-grid">
+        <div class="h-year-badge"><div class="yr">2026</div><div class="dt">20 مارس</div></div>
+        <div class="h-year-badge"><div class="yr">2027</div><div class="dt">9 أبريل</div></div>
+        <div class="h-year-badge"><div class="yr">2028</div><div class="dt">28 مارس</div></div>
+      </div>
+      <div class="hb-links">
+        <a class="hb-link" href="https://www.instagram.com/explore/tags/عيدالفطر/" target="_blank" rel="noopener"><i data-lucide="instagram"></i> Instagram</a>
+        <a class="hb-link" href="https://twitter.com/search?q=%23عيد_الفطر" target="_blank" rel="noopener"><i data-lucide="twitter"></i> X/Twitter</a>
+        <a class="hb-link" href="https://www.youtube.com/results?search_query=عيد+الفطر" target="_blank" rel="noopener"><i data-lucide="youtube"></i> YouTube</a>
+        <a class="hb-link" href="https://ar.wikipedia.org/wiki/عيد_الفطر" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Wikipedia</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EID AL-ADHA -->
+  <div class="holiday-item anim-card">
+    <div class="holiday-header" onclick="toggleHoliday(this)">
+      <div class="h-badge" style="background:rgba(0,200,100,.1)"><i data-lucide="tent"></i></div>
+      <div class="h-info">
+        <div class="h-name">عيد الأضحى المبارك</div>
+        <div class="h-date">10 ذو الحجة · موسم الحج</div>
+        <div class="h-hijri">2027: يونيو (تقريباً)</div>
+      </div>
+      <div class="h-chevron"><i data-lucide="chevron-down"></i></div>
+    </div>
+    <div class="holiday-body">
+      <p>عيد الأضحى يُحيي ذكرى استعداد النبي إبراهيم عليه السلام لذبح ابنه طاعةً لله. يُحتفل به بالأضحية وصلاة العيد وتوزيع اللحم على الفقراء.</p>
+      <div class="hb-tags">
+        <span class="hb-tag">الأضحية</span>
+        <span class="hb-tag">صلاة العيد</span>
+        <span class="hb-tag">موسم الحج</span>
+        <span class="hb-tag">توزيع اللحم</span>
+        <span class="hb-tag">التكبير</span>
+      </div>
+      <div class="hb-dates-grid">
+        <div class="h-year-badge"><div class="yr">2026</div><div class="dt">27 يونيو</div></div>
+        <div class="h-year-badge"><div class="yr">2027</div><div class="dt">16 يونيو</div></div>
+        <div class="h-year-badge"><div class="yr">2028</div><div class="dt">5 يونيو</div></div>
+      </div>
+      <div class="hb-links">
+        <a class="hb-link" href="https://www.instagram.com/explore/tags/عيدالاضحى/" target="_blank" rel="noopener"><i data-lucide="instagram"></i> Instagram</a>
+        <a class="hb-link" href="https://twitter.com/search?q=%23عيد_الأضحى" target="_blank" rel="noopener"><i data-lucide="twitter"></i> X/Twitter</a>
+        <a class="hb-link" href="https://www.youtube.com/results?search_query=عيد+الأضحى" target="_blank" rel="noopener"><i data-lucide="youtube"></i> YouTube</a>
+        <a class="hb-link" href="https://ar.wikipedia.org/wiki/عيد_الأضحى" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Wikipedia</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- RAMADAN -->
+  <div class="holiday-item anim-card">
+    <div class="holiday-header" onclick="toggleHoliday(this)">
+      <div class="h-badge" style="background:rgba(180,130,255,.1)"><i data-lucide="moon-star"></i></div>
+      <div class="h-info">
+        <div class="h-name">شهر رمضان المبارك</div>
+        <div class="h-date">1 رمضان — 29/30 يوماً</div>
+        <div class="h-hijri">2027: 17 فبراير — 18 مارس (تقريباً)</div>
+      </div>
+      <div class="h-chevron"><i data-lucide="chevron-down"></i></div>
+    </div>
+    <div class="holiday-body">
+      <p>شهر الصيام والقرآن والعبادة. يمتنع المسلمون فيه عن الأكل والشرب من الفجر إلى المغرب، ويكثرون من العبادة وتلاوة القرآن وصلاة التراويح.</p>
+      <div class="hb-tags">
+        <span class="hb-tag">الصيام</span>
+        <span class="hb-tag">التراويح</span>
+        <span class="hb-tag">ليلة القدر</span>
+        <span class="hb-tag">الاعتكاف</span>
+        <span class="hb-tag">زكاة الفطر</span>
+      </div>
+      <div class="hb-dates-grid">
+        <div class="h-year-badge"><div class="yr">2026</div><div class="dt">18 مارس</div></div>
+        <div class="h-year-badge"><div class="yr">2027</div><div class="dt">17 فبراير</div></div>
+        <div class="h-year-badge"><div class="yr">2028</div><div class="dt">6 فبراير</div></div>
+      </div>
+      <div class="hb-links">
+        <a class="hb-link" href="https://www.instagram.com/explore/tags/رمضان/" target="_blank" rel="noopener"><i data-lucide="instagram"></i> Instagram</a>
+        <a class="hb-link" href="https://twitter.com/search?q=%23رمضان" target="_blank" rel="noopener"><i data-lucide="twitter"></i> X/Twitter</a>
+        <a class="hb-link" href="https://www.youtube.com/results?search_query=رمضان" target="_blank" rel="noopener"><i data-lucide="youtube"></i> YouTube</a>
+        <a class="hb-link" href="https://ar.wikipedia.org/wiki/رمضان" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Wikipedia</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYLAT AL-QADR -->
+  <div class="holiday-item anim-card">
+    <div class="holiday-header" onclick="toggleHoliday(this)">
+      <div class="h-badge" style="background:rgba(255,200,50,.12)">⭐</div>
+      <div class="h-info">
+        <div class="h-name">ليلة القدر</div>
+        <div class="h-date">الأوتار من العشر الأخيرة من رمضان</div>
+        <div class="h-hijri">21، 23، 25، 27، 29 رمضان</div>
+      </div>
+      <div class="h-chevron"><i data-lucide="chevron-down"></i></div>
+    </div>
+    <div class="holiday-body">
+      <p>ليلة القدر خير من ألف شهر. فيها نُزّل القرآن الكريم. يُستحب إحياؤها بالصلاة والدعاء والاستغفار، لا سيما الدعاء: «اللهم إنك عفو تحب العفو فاعف عني».</p>
+      <div class="hb-tags">
+        <span class="hb-tag">قيام الليل</span>
+        <span class="hb-tag">الدعاء</span>
+        <span class="hb-tag">الاستغفار</span>
+        <span class="hb-tag">تلاوة القرآن</span>
+      </div>
+      <div class="hb-links">
+        <a class="hb-link" href="https://www.instagram.com/explore/tags/ليلةالقدر/" target="_blank" rel="noopener"><i data-lucide="instagram"></i> Instagram</a>
+        <a class="hb-link" href="https://www.youtube.com/results?search_query=ليلة+القدر" target="_blank" rel="noopener"><i data-lucide="youtube"></i> YouTube</a>
+        <a class="hb-link" href="https://ar.wikipedia.org/wiki/ليلة_القدر" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Wikipedia</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAWLID -->
+  <div class="holiday-item anim-card">
+    <div class="holiday-header" onclick="toggleHoliday(this)">
+      <div class="h-badge" style="background:rgba(50,200,255,.1)"><i data-lucide="heart"></i></div>
+      <div class="h-info">
+        <div class="h-name">المولد النبوي الشريف</div>
+        <div class="h-date">12 ربيع الأول</div>
+        <div class="h-hijri">2026: 8 سبتمبر · 2027: 29 أغسطس</div>
+      </div>
+      <div class="h-chevron"><i data-lucide="chevron-down"></i></div>
+    </div>
+    <div class="holiday-body">
+      <p>ذكرى ميلاد النبي محمد ﷺ في 12 ربيع الأول. يحتفل به كثير من المسلمين بالصلاة على النبي ﷺ وقراءة سيرته والإكثار من الذكر. حكمه موضع خلاف فقهي بين العلماء.</p>
+      <div class="hb-tags">
+        <span class="hb-tag">الصلاة على النبي ﷺ</span>
+        <span class="hb-tag">قراءة السيرة</span>
+        <span class="hb-tag">المغرب والمشرق</span>
+      </div>
+      <div class="hb-dates-grid">
+        <div class="h-year-badge"><div class="yr">2026</div><div class="dt">8 سبتمبر</div></div>
+        <div class="h-year-badge"><div class="yr">2027</div><div class="dt">29 أغسطس</div></div>
+        <div class="h-year-badge"><div class="yr">2028</div><div class="dt">17 أغسطس</div></div>
+      </div>
+      <div class="hb-links">
+        <a class="hb-link" href="https://www.instagram.com/explore/tags/المولدالنبوي/" target="_blank" rel="noopener"><i data-lucide="instagram"></i> Instagram</a>
+        <a class="hb-link" href="https://ar.wikipedia.org/wiki/المولد_النبوي" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Wikipedia</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASHURA -->
+  <div class="holiday-item anim-card">
+    <div class="holiday-header" onclick="toggleHoliday(this)">
+      <div class="h-badge" style="background:rgba(255,100,100,.1)"><i data-lucide="circle-dot-dashed"></i></div>
+      <div class="h-info">
+        <div class="h-name">يوم عاشوراء</div>
+        <div class="h-date">10 محرم</div>
+        <div class="h-hijri">2026: 28 يونيو · 2027: 17 يونيو</div>
+      </div>
+      <div class="h-chevron"><i data-lucide="chevron-down"></i></div>
+    </div>
+    <div class="holiday-body">
+      <p>يوم عظيم من أيام الله، صام فيه موسى عليه السلام شكراً لله على نجاته من فرعون. يُستحب صيامه ومعه يوم قبله أو بعده. قال ﷺ: «يكفّر السنة الماضية».</p>
+      <div class="hb-tags">
+        <span class="hb-tag">صيام يوم عاشوراء</span>
+        <span class="hb-tag">صيام التاسع معه</span>
+        <span class="hb-tag">كفارة السنة الماضية</span>
+      </div>
+      <div class="hb-dates-grid">
+        <div class="h-year-badge"><div class="yr">2026</div><div class="dt">28 يونيو</div></div>
+        <div class="h-year-badge"><div class="yr">2027</div><div class="dt">17 يونيو</div></div>
+        <div class="h-year-badge"><div class="yr">2028</div><div class="dt">6 يونيو</div></div>
+      </div>
+      <div class="hb-links">
+        <a class="hb-link" href="https://ar.wikipedia.org/wiki/يوم_عاشوراء" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Wikipedia</a>
+        <a class="hb-link" href="https://www.youtube.com/results?search_query=فضل+يوم+عاشوراء" target="_blank" rel="noopener"><i data-lucide="youtube"></i> YouTube</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARAFA -->
+  <div class="holiday-item anim-card">
+    <div class="holiday-header" onclick="toggleHoliday(this)">
+      <div class="h-badge" style="background:rgba(100,255,150,.1)"><i data-lucide="landmark"></i></div>
+      <div class="h-info">
+        <div class="h-name">يوم عرفة</div>
+        <div class="h-date">9 ذو الحجة</div>
+        <div class="h-hijri">2026: 26 يونيو · 2027: 15 يونيو</div>
+      </div>
+      <div class="h-chevron"><i data-lucide="chevron-down"></i></div>
+    </div>
+    <div class="holiday-body">
+      <p>أفضل أيام السنة عند كثير من العلماء. يقف فيه الحجاج بجبل عرفة، وهو ركن الحج الأعظم. يُستحب صيامه لغير الحاج — قال ﷺ: «يكفّر السنة الماضية والباقية».</p>
+      <div class="hb-tags">
+        <span class="hb-tag">أفضل أيام السنة</span>
+        <span class="hb-tag">صيامه مستحب</span>
+        <span class="hb-tag">وقوف الحجاج بعرفة</span>
+        <span class="hb-tag">كفارة سنتين</span>
+      </div>
+      <div class="hb-dates-grid">
+        <div class="h-year-badge"><div class="yr">2026</div><div class="dt">26 يونيو</div></div>
+        <div class="h-year-badge"><div class="yr">2027</div><div class="dt">15 يونيو</div></div>
+        <div class="h-year-badge"><div class="yr">2028</div><div class="dt">4 يونيو</div></div>
+      </div>
+      <div class="hb-links">
+        <a class="hb-link" href="https://ar.wikipedia.org/wiki/يوم_عرفة" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Wikipedia</a>
+        <a class="hb-link" href="https://www.youtube.com/results?search_query=فضل+يوم+عرفة" target="_blank" rel="noopener"><i data-lucide="youtube"></i> YouTube</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIJRI NEW YEAR -->
+  <div class="holiday-item anim-card">
+    <div class="holiday-header" onclick="toggleHoliday(this)">
+      <div class="h-badge" style="background:rgba(200,150,255,.1)"><i data-lucide="calendar-days"></i></div>
+      <div class="h-info">
+        <div class="h-name">رأس السنة الهجرية</div>
+        <div class="h-date">1 محرم</div>
+        <div class="h-hijri">1447هـ: 20 يونيو 2026 · 1448هـ: 9 يونيو 2027</div>
+      </div>
+      <div class="h-chevron"><i data-lucide="chevron-down"></i></div>
+    </div>
+    <div class="holiday-body">
+      <p>أول أيام السنة الهجرية، التقويم الذي أسسه المسلمون ابتداءً من هجرة النبي ﷺ من مكة إلى المدينة. يُعدّ التقويم الرسمي للشعائر الإسلامية.</p>
+      <div class="hb-tags">
+        <span class="hb-tag">بداية السنة الهجرية</span>
+        <span class="hb-tag">شهر الله المحرم</span>
+        <span class="hb-tag">صيام أيام المحرم</span>
+      </div>
+      <div class="hb-dates-grid">
+        <div class="h-year-badge"><div class="yr">1447هـ</div><div class="dt">20 يونيو 2026</div></div>
+        <div class="h-year-badge"><div class="yr">1448هـ</div><div class="dt">9 يونيو 2027</div></div>
+        <div class="h-year-badge"><div class="yr">1449هـ</div><div class="dt">29 مايو 2028</div></div>
+      </div>
+      <div class="hb-links">
+        <a class="hb-link" href="https://ar.wikipedia.org/wiki/التقويم_الهجري" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Wikipedia</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ISRA WA MIRAJ -->
+  <div class="holiday-item anim-card">
+    <div class="holiday-header" onclick="toggleHoliday(this)">
+      <div class="h-badge" style="background:rgba(100,180,255,.1)"><i data-lucide="sparkles"></i></div>
+      <div class="h-info">
+        <div class="h-name">الإسراء والمعراج</div>
+        <div class="h-date">27 رجب</div>
+        <div class="h-hijri">2026: 14 فبراير · 2027: 3 فبراير</div>
+      </div>
+      <div class="h-chevron"><i data-lucide="chevron-down"></i></div>
+    </div>
+    <div class="holiday-body">
+      <p>ذكرى رحلة النبي ﷺ الليلية من المسجد الحرام إلى المسجد الأقصى (الإسراء) ثم إلى السماوات العلا (المعراج)، حيث فُرضت الصلوات الخمس.</p>
+      <div class="hb-tags">
+        <span class="hb-tag">الإسراء إلى المسجد الأقصى</span>
+        <span class="hb-tag">المعراج إلى السماوات</span>
+        <span class="hb-tag">فريضة الصلاة</span>
+      </div>
+      <div class="hb-dates-grid">
+        <div class="h-year-badge"><div class="yr">2026</div><div class="dt">14 فبراير</div></div>
+        <div class="h-year-badge"><div class="yr">2027</div><div class="dt">3 فبراير</div></div>
+        <div class="h-year-badge"><div class="yr">2028</div><div class="dt">23 يناير</div></div>
+      </div>
+      <div class="hb-links">
+        <a class="hb-link" href="https://www.instagram.com/explore/tags/الاسراءوالمعراج/" target="_blank" rel="noopener"><i data-lucide="instagram"></i> Instagram</a>
+        <a class="hb-link" href="https://ar.wikipedia.org/wiki/الإسراء_والمعراج" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Wikipedia</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end holidays-list -->
+</div><!-- end tab-holidays -->
+
+<div style="height:60px;"></div>
+
+<footer>
+    <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+
+  <p class="footer-tagline">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+  <nav class="footer-links">
+    <a class="footer-link" href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a class="footer-link" href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a class="footer-link" href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a class="footer-link" href="tools.html" data-i18n="nav_tools">الأدوات</a>
+    <a class="footer-link" href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="effects.js" defer></script>
+<script>
+// Tabs
+document.querySelectorAll('.page-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    if(typeof lucide !== 'undefined') lucide.createIcons();
+    if(typeof activateRevealElements !== 'undefined') activateRevealElements();
+  });
+});
+
+// Holiday accordion
+function toggleHoliday(header) {
+  const item = header.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.holiday-item.open').forEach(i => i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+  if(typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+// Countdown
+function updateCountdown() {
+  const target = new Date('2027-02-17T00:00:00');
+  const now = new Date();
+  const diff = target - now;
+  if(diff <= 0) { document.getElementById('cdNote') && (document.getElementById('cdNote').textContent = 'رمضان مبارك!'); return; }
+  const d = Math.floor(diff/86400000);
+  const h = Math.floor((diff%86400000)/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  const s = Math.floor((diff%60000)/1000);
+  ['cd-d','cd-h','cd-m','cd-s'].forEach((id,i) => {
+    const el = document.getElementById(id);
+    if(el) el.textContent = String([d,h,m,s][i]).padStart(2,'0');
+  });
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();document.addEventListener("DOMContentLoaded",function(){if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+</body>
+</html>

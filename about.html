@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+// Instant theme + lang restore (before render)
+(function(){
+  var t=localStorage.getItem('elhuda_theme');
+  if(t&&t!=='dark') document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title>من نحن | الهُدى</title>
+<meta name="description" content="تعرّف على منصة الهُدى الإسلامية، رسالتنا، وأهدافنا في خدمة المحتوى الإسلامي الرقمي.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elhida.online/about.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://elhida.online/about.html">
+<meta property="og:title" content="من نحن | الهُدى">
+<meta property="og:description" content="تعرّف على منصة الهُدى الإسلامية، رسالتنا، وأهدافنا في خدمة المحتوى الإسلامي الرقمي.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="من نحن | الهُدى">
+<meta name="twitter:description" content="تعرّف على منصة الهُدى الإسلامية، رسالتنا، وأهدافنا في خدمة المحتوى الإسلامي الرقمي.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://elhida.online/index.html"}, {"@type": "ListItem", "position": 2, "name": "من نحن", "item": "https://elhida.online/about.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Poppins:wght@300;400;600;800&family=Amiri+Quran&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<style>
+ /* =========================================================
+   EL HUDA — ABOUT PAGE
+   Uses global theme tokens
+   ========================================================= */
+
+.about-hero {
+    position: relative;
+    min-height: 620px;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 110px 30px 90px;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    align-items: center;
+    gap: 70px;
+    overflow: hidden;
+}
+
+.about-hero-glow {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    right: -180px;
+    top: 20px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        color-mix(in srgb, var(--gold) 14%, transparent),
+        transparent 70%
+    );
+    filter: blur(25px);
+    pointer-events: none;
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.about-badge {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 16px;
+    border: 1px solid var(--line);
+    background: var(--bg-soft);
+    backdrop-filter: blur(15px);
+    border-radius: 100px;
+    color: var(--text-3);
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 15px var(--gold);
+}
+
+.about-hero h2 {
+    margin: 0;
+    font-size: clamp(52px, 8vw, 92px);
+    line-height: .95;
+    font-weight: 900;
+    letter-spacing: -3px;
+
+    background: linear-gradient(
+        135deg,
+        var(--text) 10%,
+        var(--gold-2) 55%,
+        var(--gold) 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.about-hero-description {
+    max-width: 650px;
+    margin: 28px 0 0;
+    color: var(--text-2);
+    font-size: 18px;
+    line-height: 2;
+}
+
+.about-hero-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+.about-primary-btn,
+.about-secondary-btn {
+    min-height: 48px;
+    padding: 0 21px;
+    border-radius: var(--r);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    text-decoration: none;
+    transition: .3s ease;
+}
+
+.about-primary-btn {
+    background: linear-gradient(
+        135deg,
+        var(--green-2),
+        var(--green)
+    );
+
+    color: var(--text);
+    box-shadow: var(--shadow-sm);
+}
+
+.about-primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.about-secondary-btn {
+    color: var(--text-2);
+    border: 1px solid var(--line);
+    background: var(--bg-soft);
+}
+
+.about-secondary-btn:hover {
+    background: var(--bg-2);
+    border-color: var(--line-2);
+    color: var(--gold-2);
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   Quran Card
+   ========================================================= */
+
+.hero-quran-card {
+    position: relative;
+    min-height: 310px;
+    padding: 35px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            color-mix(in srgb, var(--gold) 5%, var(--bg-2)),
+            var(--bg-soft)
+        );
+
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+
+    box-shadow:
+        var(--shadow),
+        inset 0 1px 0 color-mix(
+            in srgb,
+            var(--text) 5%,
+            transparent
+        );
+
+    backdrop-filter: blur(20px);
+}
+
+.hero-quran-card::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border-radius: calc(var(--r-lg) - 8px);
+    border: 1px solid var(--line);
+    pointer-events: none;
+}
+
+.quran-card-icon {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 18px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 25px;
+
+    color: var(--gold-2);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 10%,
+            transparent
+        );
+
+    border: 1px solid var(--line);
+}
+
+.quran-arabic {
+    font-family: "Amiri Quran", "Scheherazade New", serif;
+    font-size: 29px;
+    line-height: 2;
+    color: var(--gold-3);
+}
+
+.hero-quran-card span {
+    color: var(--text-3);
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   Sections
+   ========================================================= */
+
+.about-intro,
+.about-values,
+.about-services {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 100px 30px;
+}
+
+.section-heading {
+    max-width: 680px;
+    margin-bottom: 45px;
+}
+
+.section-kicker {
+    display: inline-block;
+
+    color: var(--gold);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 14px;
+}
+
+.section-heading h2 {
+    margin: 0;
+
+    font-size: clamp(32px, 5vw, 50px);
+
+    line-height: 1.3;
+
+    color: var(--text);
+}
+
+.section-heading h2 span {
+    color: var(--gold-2);
+}
+
+.section-heading p {
+    color: var(--text-3);
+    line-height: 2;
+    margin-top: 17px;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   Message Card
+   ========================================================= */
+
+.about-main-card {
+    display: grid;
+    grid-template-columns: 85px 1fr;
+
+    gap: 25px;
+
+    align-items: start;
+
+    padding: 35px;
+
+    border-radius: var(--r-lg);
+
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--gold) 6%, var(--bg-2)),
+            var(--bg-soft)
+        );
+
+    border: 1px solid var(--line);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.main-card-icon {
+    width: 68px;
+    height: 68px;
+
+    border-radius: 20px;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--gold-2);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 10%,
+            transparent
+        );
+
+    border: 1px solid var(--line);
+}
+
+.about-main-card h3 {
+    margin: 0 0 10px;
+
+    font-size: 25px;
+
+    color: var(--text);
+}
+
+.about-main-card p {
+    margin: 0;
+
+    color: var(--text-2);
+
+    line-height: 2;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   Statistics
+   ========================================================= */
+
+.about-stats {
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    padding: 0 30px 100px;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.stat-card {
+    min-height: 165px;
+
+    padding: 25px;
+
+    border-radius: var(--r-lg);
+
+    border: 1px solid var(--line);
+
+    background: var(--bg-soft);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    transition: .3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+
+    border-color: var(--line-2);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 5%,
+            var(--bg-soft)
+        );
+
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-icon {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--gold-2);
+
+    margin-bottom: 12px;
+}
+
+.stat-card strong {
+    font-size: 28px;
+
+    color: var(--text);
+}
+
+.stat-card span {
+    color: var(--text-3);
+
+    font-size: 12px;
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   Values
+   ========================================================= */
+
+.values-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.value-card {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 35px;
+
+    min-height: 290px;
+
+    border-radius: var(--r-lg);
+
+    background: var(--bg-soft);
+
+    border: 1px solid var(--line);
+
+    transition: .35s ease;
+}
+
+.value-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: -100px;
+    bottom: -100px;
+
+    border-radius: 50%;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 7%,
+            transparent
+        );
+
+    filter: blur(25px);
+
+    transition: .4s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-8px);
+
+    border-color: var(--line-2);
+
+    box-shadow: var(--shadow);
+}
+
+.value-card:hover::after {
+    transform: scale(1.5);
+}
+
+.value-number {
+    position: absolute;
+
+    left: 22px;
+    top: 15px;
+
+    font-size: 58px;
+
+    font-weight: 900;
+
+    color:
+        color-mix(
+            in srgb,
+            var(--gold) 5%,
+            transparent
+        );
+}
+
+.value-icon {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 17px;
+
+    display: grid;
+    place-items: center;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 9%,
+            transparent
+        );
+
+    color: var(--gold-2);
+
+    border: 1px solid var(--line);
+
+    margin-bottom: 25px;
+}
+
+.value-card h3 {
+    color: var(--text);
+
+    font-size: 21px;
+
+    margin: 0 0 12px;
+}
+
+.value-card p {
+    color: var(--text-3);
+
+    line-height: 1.9;
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   Services
+   ========================================================= */
+
+.services-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 14px;
+}
+
+.service-card {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 60px 1fr 25px;
+
+    gap: 17px;
+
+    align-items: center;
+
+    padding: 22px;
+
+    border-radius: var(--r);
+
+    text-decoration: none;
+
+    border: 1px solid var(--line);
+
+    background: var(--bg-soft);
+
+    transition: .3s ease;
+}
+
+.service-card:hover {
+    transform: translateX(-5px);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 5%,
+            var(--bg-soft)
+        );
+
+    border-color: var(--line-2);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.service-icon {
+    width: 60px;
+    height: 60px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 18px;
+
+    color: var(--gold-2);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 9%,
+            transparent
+        );
+
+    border: 1px solid var(--line);
+}
+
+.service-card h3 {
+    color: var(--text);
+
+    font-size: 17px;
+
+    margin: 0 0 6px;
+}
+
+.service-card p {
+    color: var(--text-3);
+
+    font-size: 13px;
+
+    margin: 0;
+
+    line-height: 1.7;
+}
+
+.service-arrow {
+    color: var(--text-3);
+
+    transition: .3s ease;
+}
+
+.service-card:hover .service-arrow {
+    color: var(--gold-2);
+
+    transform: translate(-4px, -4px);
+}
+
+
+/* =========================================================
+   Vision
+   ========================================================= */
+
+.vision-section {
+    position: relative;
+
+    max-width: 1100px;
+
+    margin: 20px auto 110px;
+
+    padding: 85px 30px;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    border-radius: 35px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            color-mix(
+                in srgb,
+                var(--gold) 9%,
+                transparent
+            ),
+            transparent 65%
+        ),
+        var(--bg-soft);
+
+    border: 1px solid var(--line);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.vision-content {
+    max-width: 720px;
+
+    margin: auto;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.vision-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 22px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 21px;
+
+    color: var(--gold-2);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 10%,
+            transparent
+        );
+
+    border: 1px solid var(--line);
+}
+
+.vision-section h2 {
+    font-size: clamp(30px, 5vw, 48px);
+
+    line-height: 1.5;
+
+    color: var(--text);
+
+    margin: 0;
+}
+
+.vision-section h2 span {
+    color: var(--gold-2);
+}
+
+.vision-section p {
+    color: var(--text-2);
+
+    line-height: 2;
+
+    font-size: 16px;
+
+    margin: 22px auto;
+}
+
+.vision-line {
+    width: 50px;
+
+    height: 2px;
+
+    margin: 30px auto;
+
+    background: var(--gold);
+}
+
+.vision-quote {
+    font-family:
+        "Amiri Quran",
+        "Scheherazade New",
+        serif;
+
+    font-size: 25px;
+
+    color: var(--gold-3);
+}
+
+.vision-quote span {
+    color: var(--gold);
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.about-cta {
+    position: relative;
+
+    max-width: 950px;
+
+    margin: 0 auto 110px;
+
+    padding: 80px 30px;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(
+                in srgb,
+                var(--green-2) 10%,
+                var(--bg-2)
+            ),
+            var(--bg-soft)
+        );
+
+    border: 1px solid var(--line);
+
+    box-shadow: var(--shadow);
+}
+
+.cta-glow {
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    top: -220px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 10%,
+            transparent
+        );
+
+    filter: blur(60px);
+}
+
+.cta-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.cta-icon {
+    width: 60px;
+    height: 60px;
+
+    margin: 0 auto 22px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 20px;
+
+    color: var(--gold-2);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 10%,
+            transparent
+        );
+
+    border: 1px solid var(--line);
+}
+
+.about-cta h2 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: clamp(28px, 5vw, 43px);
+}
+
+.about-cta p {
+    color: var(--text-3);
+
+    line-height: 1.9;
+
+    margin: 14px auto 27px;
+}
+
+.cta-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 50px;
+
+    padding: 0 25px;
+
+    border-radius: var(--r);
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-2),
+            var(--green)
+        );
+
+    box-shadow: var(--shadow-sm);
+
+    transition: .3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-4px);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   Reveal
+   ========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .about-hero {
+        min-height: auto;
+
+        padding: 80px 20px 60px;
+
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+
+        text-align: center;
+    }
+
+    .about-badge {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about-hero-description {
+        margin-left: auto;
+        margin-right: auto;
+
+        font-size: 15px;
+    }
+
+    .about-hero-actions {
+        justify-content: center;
+    }
+
+    .hero-quran-card {
+        max-width: 500px;
+
+        width: 100%;
+
+        margin: auto;
+    }
+
+    .about-intro,
+    .about-values,
+    .about-services {
+        padding: 70px 20px;
+    }
+
+    .about-stats {
+        padding: 0 20px 70px;
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vision-section {
+        margin: 10px 20px 80px;
+
+        padding: 65px 22px;
+    }
+
+    .about-cta {
+        margin: 0 20px 80px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .about-hero h2 {
+        font-size: 55px;
+
+        letter-spacing: -2px;
+    }
+
+    .about-hero-description {
+        font-size: 14px;
+    }
+
+    .about-main-card {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+    .main-card-icon {
+        margin: auto;
+    }
+
+    .about-stats {
+        gap: 10px;
+    }
+
+    .stat-card {
+        min-height: 140px;
+
+        padding: 18px;
+    }
+
+    .service-card {
+        grid-template-columns: 50px 1fr 20px;
+
+        padding: 17px;
+
+        gap: 12px;
+    }
+
+    .service-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .service-card p {
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo"><img src="assets/logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='ه'"></div>
+    <div class="brand-text"><h1 data-i18n="brand">الهُدى</h1><small data-i18n="brand_sub">EL HUDA</small></div>
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" class="current" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" onclick="toggleThemePanel()"><i data-lucide="palette"></i></button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+    <button class="menu-toggle icon-btn" id="menuToggle" onclick="toggleNav()"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+
+<main>
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <div class="about-hero-glow"></div>
+
+    <div class="about-hero-content reveal">
+      <div class="about-badge">
+        <span class="badge-dot"></span>
+        منصة إسلامية رقمية · 2026
+      </div>
+
+      <h2 data-i18n="about_title">من نحن</h2>
+
+      <p class="about-hero-description">
+        مساحة رقمية تجمع القرآن الكريم، السنة النبوية، المعرفة الإسلامية
+        والأدوات المفيدة في تجربة بسيطة وهادئة.
+      </p>
+
+      <div class="about-hero-actions">
+        <a href="quran.html" class="about-primary-btn">
+          <i data-lucide="book-open"></i>
+          ابدأ القراءة
+        </a>
+
+        <a href="#our-message" class="about-secondary-btn">
+          <i data-lucide="arrow-down"></i>
+          اكتشف الهُدى
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-quran-card reveal">
+      <div class="quran-card-icon">
+        <i data-lucide="sparkles"></i>
+      </div>
+
+      <p class="quran-arabic">
+        ﴿وَقُلْ رَبِّ زِدْنِي عِلْمًا﴾
+      </p>
+
+      <span>
+        سورة طه · الآية 114
+      </span>
+    </div>
+  </section>
+
+
+  <!-- Introduction -->
+  <section class="about-intro" id="our-message">
+
+    <div class="section-heading reveal">
+      <span class="section-kicker">EL HUDA</span>
+
+      <h2>
+        نؤمن أن المعرفة
+        <span>عبادة</span>
+      </h2>
+
+      <p>
+        لذلك نعمل على تقديم محتوى إسلامي نافع بطريقة عصرية،
+        واضحة وسهلة الوصول للجميع.
+      </p>
+    </div>
+
+    <div class="about-main-card reveal">
+
+      <div class="main-card-icon">
+        <i data-lucide="heart-handshake"></i>
+      </div>
+
+      <div>
+        <h3 data-i18n="about_h1">رسالتنا</h3>
+
+        <p data-i18n="about_p2">
+          نسعى لتقديم محتوى إسلامي واضح وسهل الوصول،
+          يخدم المسلمين في كل مكان، بثلاث لغات:
+          العربية، الفرنسية، والإنجليزية.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Stats -->
+  <section class="about-stats reveal">
+
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i data-lucide="languages"></i>
+      </div>
+
+      <strong>3+</strong>
+      <span>لغات</span>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i data-lucide="book-open"></i>
+      </div>
+
+      <strong>∞</strong>
+      <span>من المعرفة</span>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i data-lucide="calendar-days"></i>
+      </div>
+
+      <strong>2026</strong>
+      <span>عام الانطلاق</span>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i data-lucide="globe-2"></i>
+      </div>
+
+      <strong>🌍</strong>
+      <span>للجميع</span>
+    </div>
+
+  </section>
+
+
+  <!-- Values -->
+  <section class="about-values">
+
+    <div class="section-heading reveal">
+      <span class="section-kicker">OUR VALUES</span>
+
+      <h2>
+        مبادئنا
+        <span>أساس كل شيء</span>
+      </h2>
+
+      <p>
+        نسعى لأن تكون الهُدى مساحة موثوقة وهادئة لكل من يبحث عن المعرفة النافعة.
+      </p>
+    </div>
+
+
+    <div class="values-grid">
+
+      <article class="value-card reveal">
+        <div class="value-number">01</div>
+
+        <div class="value-icon">
+          <i data-lucide="shield-check"></i>
+        </div>
+
+        <h3>الموثوقية</h3>
+
+        <p>
+          نحرص على تقديم المعلومات الإسلامية بعناية،
+          مع الاهتمام بالمصادر والدقة قدر الإمكان.
+        </p>
+      </article>
+
+
+      <article class="value-card reveal">
+        <div class="value-number">02</div>
+
+        <div class="value-icon">
+          <i data-lucide="sparkles"></i>
+        </div>
+
+        <h3>البساطة</h3>
+
+        <p>
+          نؤمن أن الوصول إلى المعرفة لا يحتاج إلى واجهات معقدة،
+          لذلك نصمم تجربة واضحة ومريحة.
+        </p>
+      </article>
+
+
+      <article class="value-card reveal">
+        <div class="value-number">03</div>
+
+        <div class="value-icon">
+          <i data-lucide="users"></i>
+        </div>
+
+        <h3>الجميع</h3>
+
+        <p>
+          الهُدى متاحة للجميع، ونسعى لتقديم تجربة متعددة اللغات
+          تناسب أكبر عدد ممكن من الزوار.
+        </p>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- What we provide -->
+  <section class="about-services">
+
+    <div class="section-heading reveal">
+      <span class="section-kicker">EXPLORE EL HUDA</span>
+
+      <h2>
+        ماذا تجد في
+        <span>الهُدى؟</span>
+      </h2>
+    </div>
+
+
+    <div class="services-grid">
+
+      <a href="quran.html" class="service-card reveal">
+        <div class="service-icon">
+          <i data-lucide="book-open"></i>
+        </div>
+
+        <div>
+          <h3>القرآن الكريم</h3>
+          <p>اقرأ وتدبر كلام الله في تجربة مريحة.</p>
+        </div>
+
+        <i class="service-arrow" data-lucide="arrow-up-left"></i>
+      </a>
+
+
+      <a href="prayer.html" class="service-card reveal">
+        <div class="service-icon">
+          <i data-lucide="clock-3"></i>
+        </div>
+
+        <div>
+          <h3>مواقيت الصلاة</h3>
+          <p>تابع أوقات الصلاة بسهولة أينما كنت.</p>
+        </div>
+
+        <i class="service-arrow" data-lucide="arrow-up-left"></i>
+      </a>
+
+
+      <a href="hadiths.html" class="service-card reveal">
+        <div class="service-icon">
+          <i data-lucide="scroll-text"></i>
+        </div>
+
+        <div>
+          <h3>الأحاديث</h3>
+          <p>تعرّف على هدي النبي ﷺ وسنته.</p>
+        </div>
+
+        <i class="service-arrow" data-lucide="arrow-up-left"></i>
+      </a>
+
+
+      <a href="duas-dhikr.html" class="service-card reveal">
+        <div class="service-icon">
+          <i data-lucide="hands-praying"></i>
+        </div>
+
+        <div>
+          <h3>الأدعية والأذكار</h3>
+          <p>مجموعة من الأدعية والأذكار اليومية.</p>
+        </div>
+
+        <i class="service-arrow" data-lucide="arrow-up-left"></i>
+      </a>
+
+
+      <a href="stories.html" class="service-card reveal">
+        <div class="service-icon">
+          <i data-lucide="book-marked"></i>
+        </div>
+
+        <div>
+          <h3>قصص الأنبياء</h3>
+          <p>قصص وعبر من حياة الأنبياء والرسل.</p>
+        </div>
+
+        <i class="service-arrow" data-lucide="arrow-up-left"></i>
+      </a>
+
+
+      <a href="tools.html" class="service-card reveal">
+        <div class="service-icon">
+          <i data-lucide="wrench"></i>
+        </div>
+
+        <div>
+          <h3>الأدوات الإسلامية</h3>
+          <p>أدوات رقمية تساعدك في رحلتك اليومية.</p>
+        </div>
+
+        <i class="service-arrow" data-lucide="arrow-up-left"></i>
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- Vision -->
+  <section class="vision-section reveal">
+
+    <div class="vision-content">
+
+      <div class="vision-icon">
+        <i data-lucide="telescope"></i>
+      </div>
+
+      <span class="section-kicker">OUR VISION</span>
+
+      <h2>
+        هدفنا أن نجعل
+        <span>المعرفة الإسلامية</span>
+        أقرب إليك.
+      </h2>
+
+      <p>
+        نطمح إلى بناء منصة إسلامية رقمية تجمع بين المحتوى النافع،
+        التصميم العصري، وسهولة الاستخدام، لتكون رفيقًا للمسلم
+        في يومه وحياته.
+      </p>
+
+      <div class="vision-line"></div>
+
+      <div class="vision-quote">
+        <span>﴿</span>
+        وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ
+        <span>﴾</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+  <section class="about-cta reveal">
+
+    <div class="cta-glow"></div>
+
+    <div class="cta-content">
+
+      <div class="cta-icon">
+        <i data-lucide="moon-star"></i>
+      </div>
+
+      <h2>ابدأ رحلتك مع الهُدى</h2>
+
+      <p>
+        القرآن، الصلاة، الأذكار والمعرفة الإسلامية...
+        كل ذلك في مكان واحد.
+      </p>
+
+      <a href="index.html" class="cta-button">
+        اكتشف المنصة
+        <i data-lucide="arrow-left"></i>
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+<footer>
+    <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+
+  <p class="footer-tagline">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+  <nav class="footer-links">
+    <a class="footer-link" href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a class="footer-link" href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a class="footer-link" href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a class="footer-link" href="tools.html" data-i18n="nav_tools">الأدوات</a>
+    <a class="footer-link" href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="effects.js" defer></script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();
+document.addEventListener("DOMContentLoaded",function(){if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
+
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+    reveals.forEach((element) => {
+        observer.observe(element);
+    });
+
+});
+</script>
+</body>
+</html>

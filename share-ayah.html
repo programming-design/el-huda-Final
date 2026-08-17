@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+// Instant theme + lang restore (before render)
+(function(){
+  var t=localStorage.getItem('elhuda_theme');
+  if(t&&t!=='dark') document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title>مشاركة الآيات والأحاديث كصورة | الهُدى</title>
+<meta name="description" content="حوّل آية قرآنية أو حديثًا شريفًا إلى صورة جميلة قابلة للمشاركة على وسائل التواصل الاجتماعي.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elhida.online/share-ayah.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://elhida.online/share-ayah.html">
+<meta property="og:title" content="مشاركة الآيات والأحاديث كصورة | الهُدى">
+<meta property="og:description" content="حوّل آية قرآنية أو حديثًا شريفًا إلى صورة جميلة قابلة للمشاركة على وسائل التواصل الاجتماعي.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="مشاركة الآيات والأحاديث كصورة | الهُدى">
+<meta name="twitter:description" content="حوّل آية قرآنية أو حديثًا شريفًا إلى صورة جميلة قابلة للمشاركة على وسائل التواصل الاجتماعي.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://elhida.online/index.html"}, {"@type": "ListItem", "position": 2, "name": "مشاركة الآيات والأحاديث كصورة", "item": "https://elhida.online/share-ayah.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Scheherazade+New:wght@400;700&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<style>
+.share-layout{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:0 clamp(6vw,8vw,120px) 60px;max-width:1100px;margin:0 auto;}
+@media(max-width:750px){.share-layout{grid-template-columns:1fr;}}
+
+/* LEFT: Controls */
+.share-controls{display:flex;flex-direction:column;gap:16px;}
+.sc-group label{font-size:.82rem;opacity:.6;margin-bottom:6px;display:block;}
+.sc-group textarea, .sc-group input, .sc-group select{
+  width:100%;box-sizing:border-box;padding:11px 14px;border-radius:12px;
+  border:1px solid var(--line);background:var(--bg-soft);color:var(--text);
+  font-family:'Scheherazade New',serif;font-size:1rem;outline:none;resize:vertical;transition:.2s;
+}
+.sc-group textarea{min-height:100px;direction:rtl;}
+.sc-group input, .sc-group select{font-family:inherit;font-size:.9rem;}
+.sc-group textarea:focus,.sc-group input:focus,.sc-group select:focus{border-color:var(--gold);}
+
+.style-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.style-opt{border:2px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;transition:.2s;aspect-ratio:1;}
+.style-opt.active{border-color:var(--gold);}
+.style-opt canvas{width:100%;height:100%;display:block;}
+
+.color-row{display:flex;gap:8px;flex-wrap:wrap;}
+.color-opt{width:32px;height:32px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.2s;}
+.color-opt.active{border-color:var(--gold);transform:scale(1.1);}
+
+.quick-ayahs{display:flex;flex-direction:column;gap:6px;}
+.qa-item{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:10px 14px;cursor:pointer;transition:.2s;font-size:.85rem;}
+.qa-item:hover{border-color:var(--gold-soft);}
+.qa-arabic{font-family:'Scheherazade New',serif;font-size:1rem;color:var(--gold-soft);margin-bottom:2px;}
+.qa-ref{font-size:.72rem;opacity:.5;}
+
+/* RIGHT: Preview + Download */
+.share-preview{position:sticky;top:90px;display:flex;flex-direction:column;gap:14px;}
+.preview-wrap{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000;}
+#previewCanvas{width:100%;display:block;border-radius:0;}
+.download-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.dl-btn{flex:1;min-width:120px;padding:11px 16px;border-radius:12px;border:none;cursor:pointer;font-family:inherit;font-size:.88rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;transition:.2s;}
+.dl-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5;}
+.dl-btn.primary{background:var(--gold);color:#1a1108;}
+.dl-btn.primary:hover{opacity:.88;}
+.dl-btn.secondary{background:var(--bg-soft);border:1px solid var(--line);color:var(--text-dim);}
+.dl-btn.secondary:hover{border-color:var(--gold-soft);color:var(--gold-soft);}
+.share-socials{display:flex;gap:8px;flex-wrap:wrap;}
+.ss-btn{flex:1;min-width:90px;padding:9px;border-radius:10px;border:1px solid var(--line);background:var(--bg-soft);color:var(--text-dim);font-family:inherit;font-size:.78rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:.2s;}
+.ss-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;}
+.ss-btn.ig:hover{border-color:#e1306c;color:#e1306c;}
+.ss-btn.wa:hover{border-color:#25d366;color:#25d366;}
+.ss-btn.tw:hover{border-color:#1da1f2;color:#1da1f2;}
+.ss-btn.fb:hover{border-color:#1877f2;color:#1877f2;}
+
+.sec-label{font-size:.8rem;opacity:.5;margin-bottom:4px;}
+</style>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo"><img src="assets/logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='ه'"></div>
+    <div class="brand-text"><h1 data-i18n="brand">الهُدى</h1><small data-i18n="brand_sub">EL HUDA</small></div>
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" onclick="toggleThemePanel()"><i data-lucide="palette"></i></button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+    <button class="menu-toggle icon-btn" id="menuToggle" onclick="toggleNav()"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+<section class="page-hero" style="padding-bottom:30px;">
+  <div class="page-hero-badge" data-i18n="hero_eyebrow">منصة إسلامية رقمية · 2026</div>
+  <h2>مشاركة الآيات كصورة</h2>
+  <p class="lead">صمّم بطاقة آية قرآنية جاهزة للنشر على وسائل التواصل الاجتماعي.</p>
+</section>
+
+<div class="share-layout">
+
+  <!-- LEFT: CONTROLS -->
+  <div class="share-controls reveal">
+
+    <div class="sc-group">
+      <label>آيات مقترحة — اضغط لاختيار</label>
+      <div class="quick-ayahs" id="quickAyahs"></div>
+    </div>
+
+    <div class="sc-group">
+      <label>نص الآية أو الحديث</label>
+      <textarea id="ayahText" placeholder="اكتب الآية أو الحديث هنا..."></textarea>
+    </div>
+
+    <div class="sc-group">
+      <label>المصدر (مثال: سورة البقرة · 255)</label>
+      <input type="text" id="ayahRef" placeholder="سورة — رقم الآية">
+    </div>
+
+    <div class="sc-group">
+      <label>الخلفية</label>
+      <div class="color-row" id="bgColors"></div>
+    </div>
+
+    <div class="sc-group">
+      <label>نمط البطاقة</label>
+      <div class="style-grid" id="styleGrid"></div>
+    </div>
+
+    <div class="sc-group">
+      <label>الحجم</label>
+      <select id="sizeSelect">
+        <option value="square">مربع — Instagram / WhatsApp (1:1)</option>
+        <option value="story">ستوري — 9:16</option>
+        <option value="wide">عريض — Twitter / Facebook (16:9)</option>
+      </select>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: PREVIEW -->
+  <div class="share-preview reveal">
+    <div class="preview-wrap">
+      <canvas id="previewCanvas"></canvas>
+    </div>
+
+    <div>
+      <div class="sec-label">⬇️ تحميل</div>
+      <div class="download-btns">
+        <button class="dl-btn primary" onclick="downloadImage('png')"><i data-lucide="download"></i> تحميل PNG</button>
+        <button class="dl-btn secondary" onclick="copyImage()"><i data-lucide="copy"></i> نسخ</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-label">مشاركة مباشرة</div>
+      <div class="share-socials">
+        <button class="ss-btn wa" onclick="shareWhatsApp()"><i data-lucide="message-circle"></i> WhatsApp</button>
+        <button class="ss-btn ig" onclick="shareInstagram()"><i data-lucide="instagram"></i> Instagram</button>
+        <button class="ss-btn tw" onclick="shareTwitter()"><i data-lucide="twitter"></i> X/Twitter</button>
+        <button class="ss-btn fb" onclick="shareFacebook()"><i data-lucide="facebook"></i> Facebook</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+    <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+
+  <p class="footer-tagline">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+  <nav class="footer-links">
+    <a class="footer-link" href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a class="footer-link" href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a class="footer-link" href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a class="footer-link" href="tools.html" data-i18n="nav_tools">الأدوات</a>
+    <a class="footer-link" href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="effects.js" defer></script>
+<script>
+const AYAHS = [
+  { ar:'وَقُل رَّبِّ زِدْنِي عِلْمًا', ref:'سورة طه · 114' },
+  { ar:'إِنَّ مَعَ الْعُسْرِ يُسْرًا', ref:'سورة الشرح · 6' },
+  { ar:'وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ', ref:'سورة الطلاق · 3' },
+  { ar:'وَبَشِّرِ الصَّابِرِينَ', ref:'سورة البقرة · 155' },
+  { ar:'اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ', ref:'سورة النور · 35' },
+  { ar:'إِنَّ اللَّهَ مَعَ الصَّابِرِينَ', ref:'سورة البقرة · 153' },
+  { ar:'وَلَا تَيْأَسُوا مِن رَّوْحِ اللَّهِ', ref:'سورة يوسف · 87' },
+];
+
+const BG_THEMES = [
+  { name:'ليلي', bg:['#0a1a12','#1a3020'], text:'#e8d5a3', sub:'#b8a070' },
+  { name:'ذهبي', bg:['#1a1108','#2d1e00'], text:'#f5e6b5', sub:'#c9a84c' },
+  { name:'أزرق', bg:['#050d1a','#0a1830'], text:'#c5d8f0', sub:'#7aafdf' },
+  { name:'بنفسجي', bg:['#100820','#1e0a38'], text:'#e0cff5', sub:'#a07ad5' },
+  { name:'فاتح', bg:['#f8f4e8','#ede8d5'], text:'#2a1e08', sub:'#7a6030' },
+  { name:'أخضر', bg:['#071510','#0e2a1e'], text:'#c5e8d5', sub:'#70b890' },
+];
+
+const CARD_STYLES = [
+  { name:'كلاسيك', id:'classic' },
+  { name:'مزخرف', id:'ornate' },
+  { name:'بسيط', id:'minimal' },
+];
+
+const SIZES = {
+  square: { w:1080, h:1080 },
+  story:  { w:1080, h:1920 },
+  wide:   { w:1920, h:1080 },
+};
+
+let cfg = { text:'وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ', ref:'سورة الطلاق · 3', bgIdx:0, styleIdx:0, size:'square' };
+
+// ── Quick ayahs
+function buildQuickAyahs() {
+  const el = document.getElementById('quickAyahs');
+  el.innerHTML = AYAHS.map((a,i) => `
+    <div class="qa-item" onclick="selectAyah(${i})">
+      <div class="qa-arabic">${a.ar}</div>
+      <div class="qa-ref">${a.ref}</div>
+    </div>`).join('');
+}
+
+function selectAyah(i) {
+  cfg.text = AYAHS[i].ar;
+  cfg.ref = AYAHS[i].ref;
+  document.getElementById('ayahText').value = cfg.text;
+  document.getElementById('ayahRef').value = cfg.ref;
+  render();
+}
+
+// ── Color pickers
+function buildColors() {
+  const el = document.getElementById('bgColors');
+  el.innerHTML = BG_THEMES.map((t,i) => `
+    <div class="color-opt ${i===0?'active':''}" data-i="${i}" title="${t.name}"
+      style="background:linear-gradient(135deg,${t.bg[0]},${t.bg[1]})"
+      onclick="selectBg(${i})"></div>`).join('');
+}
+function selectBg(i) {
+  cfg.bgIdx = i;
+  document.querySelectorAll('.color-opt').forEach((c,j)=>c.classList.toggle('active',j===i));
+  render();
+}
+
+// ── Style previews
+function buildStyles() {
+  const el = document.getElementById('styleGrid');
+  el.innerHTML = CARD_STYLES.map((s,i) => `
+    <div class="style-opt ${i===0?'active':''}" data-i="${i}" onclick="selectStyle(${i})" title="${s.name}">
+      <canvas id="styleThumb${i}" width="80" height="80"></canvas>
+    </div>`).join('');
+  CARD_STYLES.forEach((_,i) => drawThumb(i));
+}
+function selectStyle(i) {
+  cfg.styleIdx = i;
+  document.querySelectorAll('.style-opt').forEach((s,j)=>s.classList.toggle('active',j===i));
+  render();
+}
+function drawThumb(i) {
+  const c = document.getElementById(`styleThumb${i}`);
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  const th = BG_THEMES[cfg.bgIdx];
+  const gr = ctx.createLinearGradient(0,0,80,80);
+  gr.addColorStop(0, th.bg[0]); gr.addColorStop(1, th.bg[1]);
+  ctx.fillStyle = gr; ctx.fillRect(0,0,80,80);
+  ctx.fillStyle = th.text; ctx.font = 'bold 9px serif'; ctx.textAlign = 'center';
+  ctx.fillText(CARD_STYLES[i].name, 40, 44);
+}
+
+// ── MAIN RENDER
+function render() {
+  const canvas = document.getElementById('previewCanvas');
+  const size = SIZES[cfg.size];
+  canvas.width = size.w; canvas.height = size.h;
+  canvas.style.maxHeight = '420px';
+  const ctx = canvas.getContext('2d');
+  const th = BG_THEMES[cfg.bgIdx];
+  const W = size.w, H = size.h;
+
+  // Background gradient
+  const gr = ctx.createLinearGradient(0, 0, W, H);
+  gr.addColorStop(0, th.bg[0]); gr.addColorStop(1, th.bg[1]);
+  ctx.fillStyle = gr; ctx.fillRect(0,0,W,H);
+
+  const style = CARD_STYLES[cfg.styleIdx].id;
+
+  // ── ORNATE borders
+  if(style === 'ornate' || style === 'classic') {
+    ctx.strokeStyle = th.sub; ctx.lineWidth = W*0.003; ctx.globalAlpha = 0.4;
+    const m = W*0.04;
+    ctx.strokeRect(m, m, W-m*2, H-m*2);
+    ctx.globalAlpha = 1;
+    if(style === 'ornate') {
+      // Corner ornaments
+      const corners = [[m,m],[W-m,m],[W-m,H-m],[m,H-m]];
+      corners.forEach(([x,y]) => {
+        ctx.beginPath();
+        ctx.arc(x, y, W*0.025, 0, Math.PI*2);
+        ctx.fillStyle = th.sub; ctx.globalAlpha = 0.5;
+        ctx.fill(); ctx.globalAlpha = 1;
+      });
+    }
+  }
+
+  // ── Gold top line
+  const gLine = ctx.createLinearGradient(W*0.2,0,W*0.8,0);
+  gLine.addColorStop(0,'transparent'); gLine.addColorStop(0.5,th.sub); gLine.addColorStop(1,'transparent');
+  ctx.fillStyle = gLine; ctx.fillRect(W*0.2, H*0.08, W*0.6, 2);
+
+  // ── Bismillah
+  ctx.font = `${W*0.028}px 'Scheherazade New', serif`;
+  ctx.fillStyle = th.sub; ctx.textAlign = 'center'; ctx.globalAlpha = 0.6;
+  ctx.fillText('بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ', W/2, H*0.16);
+  ctx.globalAlpha = 1;
+
+  // ── Main ayah text (word-wrapped)
+  const text = cfg.text || 'الآية';
+  const fontSize = Math.min(W * 0.055, H * 0.06);
+  ctx.font = `${fontSize}px 'Scheherazade New', serif`;
+  ctx.fillStyle = th.text; ctx.textAlign = 'center';
+  const maxW = W * 0.78;
+  const lines = wrapText(ctx, text, maxW);
+  const lineH = fontSize * 1.7;
+  const totalH = lines.length * lineH;
+  const startY = (H - totalH) / 2;
+  lines.forEach((line, i) => ctx.fillText(line, W/2, startY + i * lineH));
+
+  // ── Reference
+  ctx.font = `bold ${W*0.025}px 'Tajawal', sans-serif`;
+  ctx.fillStyle = th.sub; ctx.globalAlpha = 0.85;
+  ctx.fillText(`— ${cfg.ref || ''}`, W/2, H*0.82);
+  ctx.globalAlpha = 1;
+
+  // ── Bottom line + branding
+  ctx.fillStyle = gLine; ctx.fillRect(W*0.2, H*0.88, W*0.6, 2);
+  ctx.font = `${W*0.02}px 'Poppins', sans-serif`;
+  ctx.fillStyle = th.sub; ctx.globalAlpha = 0.4;
+  ctx.fillText('الهُدى · El Huda', W/2, H*0.93);
+  ctx.globalAlpha = 1;
+}
+
+function wrapText(ctx, text, maxW) {
+  const words = text.split(' ');
+  const lines = []; let line = '';
+  words.forEach(word => {
+    const test = line + (line ? ' ' : '') + word;
+    if(ctx.measureText(test).width > maxW && line) { lines.push(line); line = word; }
+    else line = test;
+  });
+  if(line) lines.push(line);
+  return lines;
+}
+
+// ── Download
+function downloadImage(fmt) {
+  render();
+  const canvas = document.getElementById('previewCanvas');
+  const a = document.createElement('a');
+  a.download = `elhuda-ayah-${Date.now()}.${fmt}`;
+  a.href = canvas.toDataURL(`image/${fmt}`, 1);
+  a.click();
+}
+
+async function copyImage() {
+  render();
+  const canvas = document.getElementById('previewCanvas');
+  canvas.toBlob(async blob => {
+    try {
+      await navigator.clipboard.write([new ClipboardItem({'image/png': blob})]);
+      alert('تم نسخ الصورة!');
+    } catch { alert('المتصفح لا يدعم النسخ المباشر — حمّل الصورة'); }
+  });
+}
+
+function shareWhatsApp() { downloadImage('png'); setTimeout(()=>window.open('https://wa.me/?text='+encodeURIComponent(cfg.text+' '+cfg.ref+'\n\nالهُدى · elhuda.com'),'_blank'), 500); }
+function shareInstagram() { downloadImage('png'); alert('تم تحميل الصورة — افتح Instagram وشاركها!'); }
+function shareTwitter() { window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent('﴿'+cfg.text+'﴾\n'+cfg.ref+'\n\n#القرآن_الكريم #الهدى'),'_blank'); }
+function shareFacebook() { window.open('https://www.facebook.com/sharer/sharer.php?u=https://elhuda.com','_blank'); }
+
+// ── Init
+document.addEventListener('DOMContentLoaded', () => {
+  buildQuickAyahs(); buildColors(); buildStyles();
+  document.getElementById('ayahText').value = cfg.text;
+  document.getElementById('ayahRef').value = cfg.ref;
+  document.getElementById('ayahText').addEventListener('input', e => { cfg.text = e.target.value; render(); });
+  document.getElementById('ayahRef').addEventListener('input', e => { cfg.ref = e.target.value; render(); });
+  document.getElementById('sizeSelect').addEventListener('change', e => { cfg.size = e.target.value; render(); });
+  setTimeout(render, 200);
+});
+</script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();document.addEventListener("DOMContentLoaded",()=>{if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+</body>
+</html>

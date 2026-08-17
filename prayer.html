@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+// Instant theme + lang restore (before render)
+(function(){
+  var t=localStorage.getItem('elhuda_theme');
+  if(t&&t!=='dark') document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title>مواقيت الصلاة اليوم حسب موقعك | الهُدى</title>
+<meta name="description" content="اعرف مواقيت الصلاة الخمس اليوم بدقة حسب موقعك الجغرافي: الفجر، الظهر، العصر، المغرب، والعشاء، مع تنبيه للصلاة القادمة.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elhida.online/prayer.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://elhida.online/prayer.html">
+<meta property="og:title" content="مواقيت الصلاة اليوم حسب موقعك | الهُدى">
+<meta property="og:description" content="اعرف مواقيت الصلاة الخمس اليوم بدقة حسب موقعك الجغرافي: الفجر، الظهر، العصر، المغرب، والعشاء، مع تنبيه للصلاة القادمة.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="مواقيت الصلاة اليوم حسب موقعك | الهُدى">
+<meta name="twitter:description" content="اعرف مواقيت الصلاة الخمس اليوم بدقة حسب موقعك الجغرافي: الفجر، الظهر، العصر، المغرب، والعشاء، مع تنبيه للصلاة القادمة.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://elhida.online/index.html"}, {"@type": "ListItem", "position": 2, "name": "مواقيت الصلاة اليوم حسب موقعك", "item": "https://elhida.online/prayer.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Poppins:wght@300;400;600;800&family=Amiri+Quran&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo"><img src="assets/logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='ه'"></div>
+    <div class="brand-text"><h1 data-i18n="brand">الهُدى</h1><small data-i18n="brand_sub">EL HUDA</small></div>
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" class="current" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" onclick="toggleThemePanel()"><i data-lucide="palette"></i></button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+    <button class="menu-toggle icon-btn" id="menuToggle" onclick="toggleNav()"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+<section class="page-hero">
+  <div class="page-hero-badge">منصة إسلامية رقمية · 2026</div>
+  <h2 data-i18n="prayer_title">مواقيت الصلاة</h2>
+  
+</section>
+
+<section class="reveal">
+  <p id="location-status"></p>
+  <div class="prayer-wrap">
+    <div class="prayer-cell" id="cell-Fajr"><div class="name" data-i18n="p_fajr">الفجر</div><div class="time" id="time-Fajr">--:--</div></div>
+    <div class="prayer-cell" id="cell-Sunrise"><div class="name" data-i18n="p_sunrise">الشروق</div><div class="time" id="time-Sunrise">--:--</div></div>
+    <div class="prayer-cell" id="cell-Dhuhr"><div class="name" data-i18n="p_dhuhr">الظهر</div><div class="time" id="time-Dhuhr">--:--</div></div>
+    <div class="prayer-cell" id="cell-Asr"><div class="name" data-i18n="p_asr">العصر</div><div class="time" id="time-Asr">--:--</div></div>
+    <div class="prayer-cell" id="cell-Maghrib"><div class="name" data-i18n="p_maghrib">المغرب</div><div class="time" id="time-Maghrib">--:--</div></div>
+    <div class="prayer-cell" id="cell-Isha"><div class="name" data-i18n="p_isha">العشاء</div><div class="time" id="time-Isha">--:--</div></div>
+  </div>
+  <p id="next-prayer-label"></p>
+  <p class="prayer-note" data-i18n="prayer_note">* المواقيت تقريبية ويُفضل ضبطها حسب موقعك.</p>
+</section>
+<footer>
+    <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+
+  <p class="footer-tagline">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+  <nav class="footer-links">
+    <a class="footer-link" href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a class="footer-link" href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a class="footer-link" href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a class="footer-link" href="tools.html" data-i18n="nav_tools">الأدوات</a>
+    <a class="footer-link" href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="prayer.js" defer></script>
+<script src="effects.js" defer></script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();
+document.addEventListener("DOMContentLoaded",function(){if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+</body>
+</html>

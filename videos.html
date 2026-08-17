@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+// Instant theme + lang restore (before render)
+(function(){
+  var t=localStorage.getItem('elhuda_theme');
+  if(t&&t!=='dark') document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title>فيديوهات إسلامية: محاضرات وتلاوات | الهُدى</title>
+<meta name="description" content="مجموعة فيديوهات إسلامية مختارة: محاضرات دينية وتلاوات قرآنية مؤثرة.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elhida.online/videos.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://elhida.online/videos.html">
+<meta property="og:title" content="فيديوهات إسلامية: محاضرات وتلاوات | الهُدى">
+<meta property="og:description" content="مجموعة فيديوهات إسلامية مختارة: محاضرات دينية وتلاوات قرآنية مؤثرة.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="فيديوهات إسلامية: محاضرات وتلاوات | الهُدى">
+<meta name="twitter:description" content="مجموعة فيديوهات إسلامية مختارة: محاضرات دينية وتلاوات قرآنية مؤثرة.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://elhida.online/index.html"}, {"@type": "ListItem", "position": 2, "name": "فيديوهات إسلامية: محاضرات وتلاوات", "item": "https://elhida.online/videos.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Poppins:wght@300;400;600;800&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<style>
+.vid-filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:24px auto 28px;padding:0 clamp(6vw,8vw,120px);}
+.vf-btn{padding:8px 18px;border-radius:20px;border:1px solid var(--line);background:var(--bg-soft);color:var(--text-dim);cursor:pointer;font-family:inherit;font-size:.86rem;transition:.2s;display:flex;align-items:center;gap:6px;}
+.vf-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;}
+.vf-btn.active,.vf-btn:hover{background:var(--gold);border-color:var(--gold);color:#1a1108;}
+
+.vid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;padding:0 clamp(6vw,8vw,120px);margin-bottom:60px;}
+.vid-card{background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .2s,border-color .2s;cursor:pointer;}
+.vid-card:hover{transform:translateY(-4px);border-color:var(--gold);}
+.vid-card.hidden{display:none;}
+
+.vid-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0a1a12;}
+.vid-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.vid-card:hover .vid-thumb img{transform:scale(1.05);}
+.vid-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.vid-play-btn{width:52px;height:52px;border-radius:50%;background:rgba(212,175,106,.9);display:flex;align-items:center;justify-content:center;transition:.2s;}
+.vid-play-btn svg{width:22px;height:22px;stroke:#1a1108;fill:#1a1108;stroke-width:1.5;margin-right:-2px;}
+.vid-card:hover .vid-play-btn{background:var(--gold);transform:scale(1.1);}
+.vid-duration{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.75);border-radius:6px;padding:2px 8px;font-size:.72rem;font-family:'Poppins',sans-serif;color:#fff;}
+.vid-type-badge{position:absolute;top:8px;right:8px;border-radius:8px;padding:3px 10px;font-size:.68rem;font-weight:700;}
+.badge-lecture{background:rgba(100,150,255,.9);color:#fff;}
+.badge-tilawa{background:rgba(100,200,120,.9);color:#fff;}
+.badge-short{background:rgba(255,150,50,.9);color:#fff;}
+.badge-dua{background:rgba(200,100,255,.9);color:#fff;}
+
+.vid-info{padding:16px 18px;}
+.vid-channel{font-size:.72rem;opacity:.5;margin-bottom:4px;display:flex;align-items:center;gap:5px;}
+.vid-channel svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;}
+.vid-title{font-size:.95rem;font-weight:700;margin:0 0 6px;line-height:1.4;}
+.vid-desc{font-size:.8rem;opacity:.65;line-height:1.5;margin:0 0 12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.vid-meta{display:flex;align-items:center;justify-content:space-between;}
+.vid-views{font-size:.72rem;opacity:.45;display:flex;align-items:center;gap:4px;}
+.vid-views svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;}
+.vid-open{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:8px;background:var(--gold);color:#1a1108;font-size:.78rem;font-weight:700;text-decoration:none;transition:opacity .2s;}
+.vid-open:hover{opacity:.85;}
+.vid-open svg{width:12px;height:12px;stroke:#1a1108;fill:none;stroke-width:2.5;}
+
+/* Modal player */
+.vid-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px);}
+.vid-modal-bg.open{display:flex;}
+.vid-modal{background:var(--bg);border:1px solid var(--line);border-radius:18px;max-width:860px;width:100%;overflow:hidden;position:relative;}
+.vid-modal-close{position:absolute;top:12px;left:12px;z-index:10;background:rgba(0,0,0,.6);border:1px solid var(--line);border-radius:8px;color:#fff;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.vid-modal-close svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.5;}
+.vid-modal iframe{width:100%;aspect-ratio:16/9;display:block;border:none;}
+.vid-modal-info{padding:18px 20px;}
+.vid-modal-info h3{margin:0 0 6px;font-size:1.1rem;}
+.vid-modal-info p{font-size:.85rem;opacity:.65;margin:0;}
+</style>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo"><img src="assets/logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='ه'"></div>
+    <div class="brand-text"><h1 data-i18n="brand">الهُدى</h1><small data-i18n="brand_sub">EL HUDA</small></div>
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" onclick="toggleThemePanel()"><i data-lucide="palette"></i></button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+    <button class="menu-toggle icon-btn" id="menuToggle" onclick="toggleNav()"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-badge">منصة إسلامية رقمية · 2026</div>
+  <h2>فيديوهات إسلامية</h2>
+  
+</section>
+<div class="soon-banner">
+  <i data-lucide="construction"></i>
+  <span>هذا القسم قيد الإعداد حاليًا، وسيتم استكماله وإطلاقه رسميًا قريبًا بإذن الله.</span>
+</div>
+<!-----------------------
+<div class="vid-filters reveal">
+  <button class="vf-btn active" data-cat="all"><i data-lucide="layout-grid"></i> الكل</button>
+  <button class="vf-btn" data-cat="lecture"><i data-lucide="mic"></i> محاضرات</button>
+  <button class="vf-btn" data-cat="tilawa"><i data-lucide="music"></i> تلاوات</button>
+  <button class="vf-btn" data-cat="short"><i data-lucide="zap"></i> فيديوهات قصيرة</button>
+  <button class="vf-btn" data-cat="dua"><i data-lucide="heart"></i> أدعية</button>
+</div>
+
+<div class="vid-grid" id="vidGrid">
+
+  <div class="vid-card anim-card" data-cat="tilawa">
+    <div class="vid-thumb">
+      <img src="https://img.youtube.com/vi/pnbJEg9ZwNI/mqdefault.jpg" alt="تلاوة" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'320\' height=\'180\' style=\'background:%230a1a12\'><text x=\'50%\' y=\'50%\' fill=\'%23b8860b\' font-size=\'40\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🎵</text></svg>'">
+      <div class="vid-play"><div class="vid-play-btn"><i data-lucide="play"></i></div></div>
+      <span class="vid-duration">1:02:34</span>
+      <span class="vid-type-badge badge-tilawa">تلاوة</span>
+    </div>
+    <div class="vid-info">
+      <div class="vid-channel"><i data-lucide="user"></i> الشيخ ماهر المعيقلي</div>
+      <div class="vid-title">ختمة قرآنية كاملة — صلاة التراويح</div>
+      <div class="vid-desc">تلاوة خاشعة بصوت الشيخ ماهر المعيقلي من المسجد الحرام</div>
+      <div class="vid-meta">
+        <span class="vid-views"><i data-lucide="eye"></i> 4.2M مشاهدة</span>
+        <a class="vid-open" href="https://www.youtube.com/watch?v=pnbJEg9ZwNI" target="_blank" rel="noopener"><i data-lucide="external-link"></i> شاهد</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vid-card anim-card" data-cat="tilawa">
+    <div class="vid-thumb">
+      <img src="https://img.youtube.com/vi/PgEMQMPBNIM/mqdefault.jpg" alt="تلاوة" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'320\' height=\'180\' style=\'background:%230a1a12\'><text x=\'50%\' y=\'50%\' fill=\'%23b8860b\' font-size=\'40\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🎵</text></svg>'">
+      <div class="vid-play"><div class="vid-play-btn"><i data-lucide="play"></i></div></div>
+      <span class="vid-duration">45:12</span>
+      <span class="vid-type-badge badge-tilawa">تلاوة</span>
+    </div>
+    <div class="vid-info">
+      <div class="vid-channel"><i data-lucide="user"></i> الشيخ عبدالرحمن السديس</div>
+      <div class="vid-title">سورة البقرة كاملة — تلاوة مرتلة</div>
+      <div class="vid-desc">تلاوة رائعة لسورة البقرة بصوت الشيخ عبدالرحمن السديس</div>
+      <div class="vid-meta">
+        <span class="vid-views"><i data-lucide="eye"></i> 8.1M مشاهدة</span>
+        <a class="vid-open" href="https://www.youtube.com/watch?v=PgEMQMPBNIM" target="_blank" rel="noopener"><i data-lucide="external-link"></i> شاهد</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vid-card anim-card" data-cat="lecture">
+    <div class="vid-thumb">
+      <img src="https://img.youtube.com/vi/D58n1qiSVnQ/mqdefault.jpg" alt="محاضرة" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'320\' height=\'180\' style=\'background:%230a1a12\'><text x=\'50%\' y=\'50%\' fill=\'%23b8860b\' font-size=\'40\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🎤</text></svg>'">
+      <div class="vid-play"><div class="vid-play-btn"><i data-lucide="play"></i></div></div>
+      <span class="vid-duration">28:45</span>
+      <span class="vid-type-badge badge-lecture">محاضرة</span>
+    </div>
+    <div class="vid-info">
+      <div class="vid-channel"><i data-lucide="user"></i> د. عمر عبدالكافي</div>
+      <div class="vid-title">كيف تقوي إيمانك في زمن الفتن؟</div>
+      <div class="vid-desc">محاضرة قيّمة عن تقوية الإيمان والثبات في مواجهة التحديات المعاصرة</div>
+      <div class="vid-meta">
+        <span class="vid-views"><i data-lucide="eye"></i> 1.5M مشاهدة</span>
+        <a class="vid-open" href="https://www.youtube.com/watch?v=D58n1qiSVnQ" target="_blank" rel="noopener"><i data-lucide="external-link"></i> شاهد</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vid-card anim-card" data-cat="lecture">
+    <div class="vid-thumb">
+      <img src="https://img.youtube.com/vi/zNqBVOBKMGM/mqdefault.jpg" alt="محاضرة" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'320\' height=\'180\' style=\'background:%230a1a12\'><text x=\'50%\' y=\'50%\' fill=\'%23b8860b\' font-size=\'40\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🎤</text></svg>'">
+      <div class="vid-play"><div class="vid-play-btn"><i data-lucide="play"></i></div></div>
+      <span class="vid-duration">52:18</span>
+      <span class="vid-type-badge badge-lecture">محاضرة</span>
+    </div>
+    <div class="vid-info">
+      <div class="vid-channel"><i data-lucide="user"></i> الشيخ خالد الجندي</div>
+      <div class="vid-title">فضل صلاة الفجر وأسرارها</div>
+      <div class="vid-desc">درس مفصل عن أهمية صلاة الفجر وكيف تجعلها عادة يومية راسخة</div>
+      <div class="vid-meta">
+        <span class="vid-views"><i data-lucide="eye"></i> 2.3M مشاهدة</span>
+        <a class="vid-open" href="https://www.youtube.com/watch?v=zNqBVOBKMGM" target="_blank" rel="noopener"><i data-lucide="external-link"></i> شاهد</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vid-card anim-card" data-cat="short">
+    <div class="vid-thumb">
+      <img src="https://img.youtube.com/vi/5M1pPsHHOjk/mqdefault.jpg" alt="قصير" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'320\' height=\'180\' style=\'background:%230a1a12\'><text x=\'50%\' y=\'50%\' fill=\'%23b8860b\' font-size=\'40\' text-anchor=\'middle\' dominant-baseline=\'middle\'>⚡</text></svg>'">
+      <div class="vid-play"><div class="vid-play-btn"><i data-lucide="play"></i></div></div>
+      <span class="vid-duration">2:30</span>
+      <span class="vid-type-badge badge-short">قصير</span>
+    </div>
+    <div class="vid-info">
+      <div class="vid-channel"><i data-lucide="user"></i> ملخصات إسلامية</div>
+      <div class="vid-title">ما هو أفضل ذكر بعد الصلاة؟</div>
+      <div class="vid-desc">ملخص سريع لأفضل الأذكار التي تقال بعد كل صلاة مكتوبة</div>
+      <div class="vid-meta">
+        <span class="vid-views"><i data-lucide="eye"></i> 890K مشاهدة</span>
+        <a class="vid-open" href="https://www.youtube.com/shorts/5M1pPsHHOjk" target="_blank" rel="noopener"><i data-lucide="external-link"></i> شاهد</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vid-card anim-card" data-cat="short">
+    <div class="vid-thumb">
+      <img src="https://img.youtube.com/vi/Rl-k_oHf3EQ/mqdefault.jpg" alt="قصير" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'320\' height=\'180\' style=\'background:%230a1a12\'><text x=\'50%\' y=\'50%\' fill=\'%23b8860b\' font-size=\'40\' text-anchor=\'middle\' dominant-baseline=\'middle\'>⚡</text></svg>'">
+      <div class="vid-play"><div class="vid-play-btn"><i data-lucide="play"></i></div></div>
+      <span class="vid-duration">1:45</span>
+      <span class="vid-type-badge badge-short">قصير</span>
+    </div>
+    <div class="vid-info">
+      <div class="vid-channel"><i data-lucide="user"></i> نور الإسلام</div>
+      <div class="vid-title">3 أسباب تجعل الرزق يتضاعف</div>
+      <div class="vid-desc">فيديو قصير يشرح الأسباب الشرعية لجلب الرزق وزيادته</div>
+      <div class="vid-meta">
+        <span class="vid-views"><i data-lucide="eye"></i> 1.2M مشاهدة</span>
+        <a class="vid-open" href="https://www.youtube.com/watch?v=Rl-k_oHf3EQ" target="_blank" rel="noopener"><i data-lucide="external-link"></i> شاهد</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vid-card anim-card" data-cat="dua">
+    <div class="vid-thumb">
+      <img src="https://img.youtube.com/vi/l4IbOxdLTFw/mqdefault.jpg" alt="دعاء" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'320\' height=\'180\' style=\'background:%230a1a12\'><text x=\'50%\' y=\'50%\' fill=\'%23b8860b\' font-size=\'40\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🤲</text></svg>'">
+      <div class="vid-play"><div class="vid-play-btn"><i data-lucide="play"></i></div></div>
+      <span class="vid-duration">18:22</span>
+      <span class="vid-type-badge badge-dua">دعاء</span>
+    </div>
+    <div class="vid-info">
+      <div class="vid-channel"><i data-lucide="user"></i> الشيخ مشاري العفاسي</div>
+      <div class="vid-title">دعاء ختم القرآن الكريم</div>
+      <div class="vid-desc">دعاء مؤثر لختم القرآن بصوت الشيخ مشاري راشد العفاسي</div>
+      <div class="vid-meta">
+        <span class="vid-views"><i data-lucide="eye"></i> 5.7M مشاهدة</span>
+        <a class="vid-open" href="https://www.youtube.com/watch?v=l4IbOxdLTFw" target="_blank" rel="noopener"><i data-lucide="external-link"></i> شاهد</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vid-card anim-card" data-cat="dua">
+    <div class="vid-thumb">
+      <img src="https://img.youtube.com/vi/AEN3XRB8i7I/mqdefault.jpg" alt="دعاء" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'320\' height=\'180\' style=\'background:%230a1a12\'><text x=\'50%\' y=\'50%\' fill=\'%23b8860b\' font-size=\'40\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🤲</text></svg>'">
+      <div class="vid-play"><div class="vid-play-btn"><i data-lucide="play"></i></div></div>
+      <span class="vid-duration">6:48</span>
+      <span class="vid-type-badge badge-dua">دعاء</span>
+    </div>
+    <div class="vid-info">
+      <div class="vid-channel"><i data-lucide="user"></i> قناة الرحمة</div>
+      <div class="vid-title">دعاء القنوت كاملاً مع الترديد</div>
+      <div class="vid-desc">تعلم دعاء القنوت مع الترديد لحفظه وتطبيقه في صلاة الوتر</div>
+      <div class="vid-meta">
+        <span class="vid-views"><i data-lucide="eye"></i> 3.4M مشاهدة</span>
+        <a class="vid-open" href="https://www.youtube.com/watch?v=AEN3XRB8i7I" target="_blank" rel="noopener"><i data-lucide="external-link"></i> شاهد</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+--------------------->
+<footer>
+    <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+
+  <p class="footer-tagline">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+  <nav class="footer-links">
+    <a class="footer-link" href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a class="footer-link" href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a class="footer-link" href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a class="footer-link" href="tools.html" data-i18n="nav_tools">الأدوات</a>
+    <a class="footer-link" href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="effects.js" defer></script>
+<script>
+document.querySelectorAll('.vf-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.vf-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat=btn.dataset.cat;
+    document.querySelectorAll('.vid-card').forEach(c=>{
+      c.classList.toggle('hidden', cat!=='all' && c.dataset.cat!==cat);
+    });
+  });
+});
+</script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();document.addEventListener("DOMContentLoaded",()=>{if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+</body>
+</html>

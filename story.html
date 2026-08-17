@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+// Instant theme + lang restore (before render)
+(function(){
+  var t=localStorage.getItem('elhuda_theme');
+  if(t&&t!=='dark') document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title id="pageTitle">قصص الأنبياء كاملة من آدم إلى محمد ﷺ | الهُدى</title>
+<meta name="description" id="pageDesc" content="اقرأ قصص الأنبياء والرسل الخمسة والعشرين كاملة كما وردت في القرآن الكريم، من آدم عليه السلام إلى خاتم الأنبياء محمد ﷺ، بسرد شامل ودروس مستفادة.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" id="pageCanonical" href="https://elhida.online/stories.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" id="ogUrl" content="https://elhida.online/stories.html">
+<meta property="og:title" id="ogTitle" content="قصص الأنبياء كاملة من آدم إلى محمد ﷺ | الهُدى">
+<meta property="og:description" id="ogDesc" content="اقرأ قصص الأنبياء والرسل الخمسة والعشرين كاملة كما وردت في القرآن الكريم، من آدم عليه السلام إلى خاتم الأنبياء محمد ﷺ، بسرد شامل ودروس مستفادة.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="twTitle" content="قصص الأنبياء كاملة من آدم إلى محمد ﷺ | الهُدى">
+<meta name="twitter:description" id="twDesc" content="اقرأ قصص الأنبياء والرسل الخمسة والعشرين كاملة كما وردت في القرآن الكريم، من آدم عليه السلام إلى خاتم الأنبياء محمد ﷺ، بسرد شامل ودروس مستفادة.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json" id="jsonldBreadcrumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"https://elhida.online/index.html"},{"@type":"ListItem","position":2,"name":"قصص الأنبياء","item":"https://elhida.online/stories.html"},{"@type":"ListItem","position":3,"name":"القصة","item":"https://elhida.online/story.html"}]}</script>
+<script type="application/ld+json" id="jsonldArticle">{"@context":"https://schema.org","@type":"Article","headline":"قصص الأنبياء","description":"قصص الأنبياء كاملة من القرآن الكريم","url":"https://elhida.online/stories.html","image":"https://elhida.online/assets/og-banner.jpg","inLanguage":"ar","publisher":{"@type":"Organization","name":"الهُدى | El Huda","logo":{"@type":"ImageObject","url":"https://elhida.online/assets/logo.png"}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Poppins:wght@300;400;600;800&family=Amiri+Quran&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<style>
+.story-crumb{max-width:820px;margin:26px auto 0;padding:0 clamp(20px,7vw,120px);display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--text-3);position:relative;z-index:1;}
+.story-crumb a{color:var(--text-3);text-decoration:none;}
+.story-crumb a:hover{color:var(--gold);}
+.story-crumb .sep{opacity:.5;}
+.story-crumb .cur{color:var(--gold-2);font-weight:700;}
+.story-hero-icon{width:74px;height:74px;margin:26px auto 14px;border-radius:20px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.18);display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 8px 20px rgba(201,168,76,.25));}
+.story-hero-icon i{width:34px;height:34px;stroke:var(--gold-2);stroke-width:1.6;}
+.story-hero-num{color:var(--gold);font-size:.8rem;letter-spacing:3px;font-family:'Poppins',sans-serif;margin-bottom:8px;}
+.story-hero-name{font-size:clamp(1.7rem,4.5vw,2.6rem);font-weight:900;color:var(--gold-2);margin-bottom:26px;}
+.story-body{text-align:start;}
+.story-body p{font-size:1.08rem;line-height:2.15;color:var(--text-2);margin-bottom:18px;}
+.lesson-box{margin:30px 0 8px;padding:22px 24px;border-radius:var(--r-lg,16px);background:linear-gradient(145deg,rgba(212,175,106,.1),rgba(255,255,255,.02));border:1px solid var(--line-2);text-align:start;}
+.lesson-box .lesson-label{display:flex;align-items:center;gap:8px;color:var(--gold);font-weight:800;font-size:.85rem;letter-spacing:1px;margin-bottom:8px;}
+.lesson-box p{margin:0;color:var(--text);font-size:1.02rem;line-height:1.9;}
+.story-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:34px 0 6px;}
+.story-actions button,.story-actions a{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:30px;border:1px solid var(--line);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:.86rem;cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s;}
+.story-actions button:hover,.story-actions a:hover{border-color:var(--gold);color:var(--gold-2);}
+.story-pagenav{max-width:820px;margin:46px auto 10px;padding:0 clamp(20px,7vw,120px);display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative;z-index:1;}
+.pn-card{display:flex;align-items:center;gap:12px;padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:var(--bg-soft);text-decoration:none;color:inherit;transition:border-color .25s,transform .25s;}
+.pn-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.pn-card .pn-icon{width:30px;height:30px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(201,168,76,.1);}
+.pn-card .pn-icon i{width:16px;height:16px;stroke:var(--gold);}
+.pn-card .pn-meta{display:flex;flex-direction:column;gap:2px;overflow:hidden;}
+.pn-card .pn-dir{font-size:.72rem;color:var(--text-3);}
+.pn-card .pn-name{font-size:.92rem;font-weight:700;color:var(--gold-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pn-next{justify-content:flex-end;text-align:end;}
+.story-notfound{max-width:600px;margin:80px auto;text-align:center;padding:0 20px;position:relative;z-index:1;}
+</style>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo"><img src="assets/logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='ه'"></div>
+    <div class="brand-text"><h1 data-i18n="brand">الهُدى</h1><small data-i18n="brand_sub">EL HUDA</small></div>
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" class="current" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" onclick="toggleThemePanel()"><i data-lucide="palette"></i></button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+    <button class="menu-toggle icon-btn" id="menuToggle" onclick="toggleNav()"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+<nav class="story-crumb" id="storyCrumb">
+  <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+  <span class="sep">/</span>
+  <a href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+  <span class="sep">/</span>
+  <span class="cur" id="crumbName">…</span>
+</nav>
+
+<div id="storyRoot"></div>
+
+<footer>
+    <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+
+  <p class="footer-tagline">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+  <nav class="footer-links">
+    <a class="footer-link" href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a class="footer-link" href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a class="footer-link" href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a class="footer-link" href="tools.html" data-i18n="nav_tools">الأدوات</a>
+    <a class="footer-link" href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script>
+(function(){
+  var UI = {
+    ar:{ back:"← كل القصص", lesson:"العِبرة", prev:"← السابق", next:"التالي →", share:"مشاركة", copied:"تم نسخ الرابط ✓",
+         notfoundTitle:"لم نجد هذه القصة", notfoundBody:"تحقق من الرابط أو تصفّح كل قصص الأنبياء.", notfoundBtn:"كل القصص" },
+    en:{ back:"← All stories", lesson:"THE LESSON", prev:"← Previous", next:"Next →", share:"Share", copied:"Link copied ✓",
+         notfoundTitle:"Story not found", notfoundBody:"Check the link or browse all the Prophets' stories.", notfoundBtn:"All stories" },
+    fr:{ back:"← Toutes les histoires", lesson:"LA LEÇON", prev:"← Précédent", next:"Suivant →", share:"Partager", copied:"Lien copié ✓",
+         notfoundTitle:"Histoire introuvable", notfoundBody:"Vérifiez le lien ou parcourez toutes les histoires des Prophètes.", notfoundBtn:"Toutes les histoires" }
+  };
+  // Sentences that read as a closing "moral" line in this dataset — shown as a highlighted takeaway.
+  var LESSON_HINTS = ["قصته","عبرة","درس","story teaches","lesson","sign of","a warning","son histoire","une leçon","un signe","met en garde"];
+
+  function getLang(){ return document.body.getAttribute('data-lang') || 'ar'; }
+  function getSlug(){
+    var p = new URLSearchParams(window.location.search);
+    return (p.get('id') || '').toLowerCase().trim();
+  }
+  function splitParagraphs(text){
+    return text.split(/\n\s*\n/).map(function(p){return p.trim();}).filter(Boolean);
+  }
+  function looksLikeLesson(paragraph){
+    var low = paragraph.toLowerCase();
+    return LESSON_HINTS.some(function(h){ return low.indexOf(h.toLowerCase()) > -1; });
+  }
+
+  function render(){
+    if(typeof storiesList === 'undefined' || typeof storySlugs === 'undefined'){
+      setTimeout(render, 100); return;
+    }
+    var lang = getLang(), t = UI[lang] || UI.ar;
+    var list = storiesList[lang] || storiesList.ar;
+    var slug = getSlug();
+    var idx = storySlugs.indexOf(slug);
+    var root = document.getElementById('storyRoot');
+    var crumbName = document.getElementById('crumbName');
+
+    if(idx === -1 || !list[idx]){
+      document.getElementById('pageTitle').textContent = t.notfoundTitle + ' | الهُدى';
+      if(crumbName) crumbName.textContent = t.notfoundTitle;
+      root.innerHTML =
+        '<div class="story-notfound">' +
+          '<div class="story-hero-icon"><i data-lucide="help-circle"></i></div>' +
+          '<h2>' + t.notfoundTitle + '</h2>' +
+          '<p class="lead" style="margin:10px 0 26px;">' + t.notfoundBody + '</p>' +
+          '<a class="btn-primary" href="stories.html">' + t.notfoundBtn + '</a>' +
+        '</div>';
+      return;
+    }
+
+    var item = list[idx];
+    var icon = (typeof storyIcons !== 'undefined' && storyIcons[idx]) || 'sparkles';
+    var paragraphs = splitParagraphs(item.s);
+    var lastIdx = paragraphs.length - 1;
+    var hasLesson = lastIdx > 0 && looksLikeLesson(paragraphs[lastIdx]) && paragraphs[lastIdx].length < 260;
+    var bodyParagraphs = hasLesson ? paragraphs.slice(0, lastIdx) : paragraphs;
+
+    var pageTitle = 'قصة ' + item.p + ' كاملة | الهُدى';
+    var pageDesc = paragraphs[0].length > 155 ? paragraphs[0].slice(0, 155).trim() + '…' : paragraphs[0];
+    var pageUrl = 'https://elhida.online/story.html?id=' + storySlugs[idx];
+
+    document.getElementById('pageTitle').textContent = pageTitle;
+    var descEl = document.getElementById('pageDesc'); if(descEl) descEl.setAttribute('content', pageDesc);
+    var canEl = document.getElementById('pageCanonical'); if(canEl) canEl.setAttribute('href', pageUrl);
+    var ogUrl = document.getElementById('ogUrl'); if(ogUrl) ogUrl.setAttribute('content', pageUrl);
+    var ogTitle = document.getElementById('ogTitle'); if(ogTitle) ogTitle.setAttribute('content', pageTitle);
+    var ogDesc = document.getElementById('ogDesc'); if(ogDesc) ogDesc.setAttribute('content', pageDesc);
+    var twTitle = document.getElementById('twTitle'); if(twTitle) twTitle.setAttribute('content', pageTitle);
+    var twDesc = document.getElementById('twDesc'); if(twDesc) twDesc.setAttribute('content', pageDesc);
+    var jsonldArticle = document.getElementById('jsonldArticle');
+    if(jsonldArticle){
+      try{
+        var data = JSON.parse(jsonldArticle.textContent);
+        data.headline = 'قصة ' + item.p; data.description = pageDesc; data.url = pageUrl;
+        jsonldArticle.textContent = JSON.stringify(data);
+      }catch(e){}
+    }
+    var jsonldCrumb = document.getElementById('jsonldBreadcrumb');
+    if(jsonldCrumb){
+      try{
+        var cdata = JSON.parse(jsonldCrumb.textContent);
+        cdata.itemListElement[2].name = item.p; cdata.itemListElement[2].item = pageUrl;
+        jsonldCrumb.textContent = JSON.stringify(cdata);
+      }catch(e){}
+    }
+    if(crumbName) crumbName.textContent = item.p;
+
+    var bodyHtml = bodyParagraphs.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+    var lessonHtml = hasLesson
+      ? '<div class="lesson-box"><div class="lesson-label"><i data-lucide="sparkles"></i>' + t.lesson + '</div><p>' + paragraphs[lastIdx] + '</p></div>'
+      : '';
+
+    var prevIdx = (idx - 1 + storySlugs.length) % storySlugs.length;
+    var nextIdx = (idx + 1) % storySlugs.length;
+    var prevItem = list[prevIdx], nextItem = list[nextIdx];
+    var prevIcon = (typeof storyIcons !== 'undefined' && storyIcons[prevIdx]) || 'sparkles';
+    var nextIcon = (typeof storyIcons !== 'undefined' && storyIcons[nextIdx]) || 'sparkles';
+
+    root.innerHTML =
+      '<a class="back-link" href="stories.html">' + t.back + '</a>' +
+      '<div class="story-detail reveal in">' +
+        '<div class="story-hero-icon"><i data-lucide="' + icon + '"></i></div>' +
+        '<div class="story-hero-num">' + (idx+1) + ' / ' + storySlugs.length + '</div>' +
+        '<h2 class="story-hero-name">' + item.p + '</h2>' +
+        '<div class="story-body">' + bodyHtml + lessonHtml + '</div>' +
+        '<div class="story-actions">' +
+          '<button id="shareBtn" type="button"><i data-lucide="share-2"></i>' + t.share + '</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="story-pagenav">' +
+        '<a class="pn-card pn-prev" href="story.html?id=' + storySlugs[prevIdx] + '">' +
+          '<span class="pn-icon"><i data-lucide="' + prevIcon + '"></i></span>' +
+          '<span class="pn-meta"><span class="pn-dir">' + t.prev + '</span><span class="pn-name">' + prevItem.p + '</span></span>' +
+        '</a>' +
+        '<a class="pn-card pn-next" href="story.html?id=' + storySlugs[nextIdx] + '">' +
+          '<span class="pn-meta"><span class="pn-dir">' + t.next + '</span><span class="pn-name">' + nextItem.p + '</span></span>' +
+          '<span class="pn-icon"><i data-lucide="' + nextIcon + '"></i></span>' +
+        '</a>' +
+      '</div>';
+
+    var shareBtn = document.getElementById('shareBtn');
+    if(shareBtn){
+      shareBtn.addEventListener('click', function(){
+        var url = window.location.href;
+        if(navigator.share){
+          navigator.share({ title: item.p, url: url }).catch(function(){});
+        } else if(navigator.clipboard){
+          navigator.clipboard.writeText(url).then(function(){
+            var original = shareBtn.innerHTML;
+            shareBtn.innerHTML = '<i data-lucide="check"></i>' + t.copied;
+            if(typeof lucide!=='undefined') lucide.createIcons();
+            setTimeout(function(){ shareBtn.innerHTML = original; if(typeof lucide!=='undefined') lucide.createIcons(); }, 1800);
+          });
+        }
+      });
+    }
+    if(typeof lucide!=='undefined') lucide.createIcons();
+  }
+
+  document.addEventListener('DOMContentLoaded', render);
+  document.addEventListener('langchange', render);
+})();
+</script>
+<script src="effects.js" defer></script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();
+document.addEventListener("DOMContentLoaded",function(){if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+</body>
+</html>

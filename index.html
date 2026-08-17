@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+// Instant theme + lang restore (before render)
+(function(){
+  var t=localStorage.getItem('elhuda_theme');
+  if(t&&t!=='dark') document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title>الهُدى — El Huda | القرآن، الصلاة، وأسماء الله الحسنى</title>
+<meta name="description" content="منصة الهُدى الإسلامية: اقرأ القرآن بالتجويد الملوّن، استمع للتلاوات، تصفّح أوقات الصلاة والقبلة، وتعرّف على أسماء الله الحسنى وقصص الأنبياء كاملة.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elhida.online/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://elhida.online/index.html">
+<meta property="og:title" content="الهُدى — El Huda | القرآن، الصلاة، وأسماء الله الحسنى">
+<meta property="og:description" content="منصة الهُدى الإسلامية: اقرأ القرآن بالتجويد الملوّن، استمع للتلاوات، تصفّح أوقات الصلاة والقبلة، وتعرّف على أسماء الله الحسنى وقصص الأنبياء كاملة.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="الهُدى — El Huda | القرآن، الصلاة، وأسماء الله الحسنى">
+<meta name="twitter:description" content="منصة الهُدى الإسلامية: اقرأ القرآن بالتجويد الملوّن، استمع للتلاوات، تصفّح أوقات الصلاة والقبلة، وتعرّف على أسماء الله الحسنى وقصص الأنبياء كاملة.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "الهُدى | El Huda", "alternateName": "El Huda", "url": "https://elhida.online/index.html", "inLanguage": "ar", "potentialAction": {"@type": "SearchAction", "target": "https://elhida.online/search.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "الهُدى | El Huda", "alternateName": "El Huda", "url": "https://elhida.online/index.html", "logo": "https://elhida.online/assets/logo.png"}</script>
+<meta name="description" content="منصة إسلامية رقمية — القرآن الكريم، مواقيت الصلاة، أسماء الله، قصص الأنبياء وأكثر">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Poppins:wght@300;400;600;800&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- ══════════ HEADER ══════════ -->
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo">
+      <img src="assets/logo.png" alt="El Huda" onerror="this.style.display='none';this.parentElement.textContent='ه'">
+    </div>
+    <div class="brand-text">
+      <h1 data-i18n="brand">الهُدى</h1>
+      <small data-i18n="brand_sub">EL HUDA</small>
+    </div>
+  </a>
+
+  <nav class="links" id="navLinks">
+    <a href="index.html" class="current" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <!-- Theme -->
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" title="Theme" onclick="toggleThemePanel()">
+        <i data-lucide="palette"></i>
+      </button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+
+    <button class="menu-toggle icon-btn" id="menuToggle" aria-label="menu" onclick="toggleNav()">
+      <i data-lucide="menu"></i>
+    </button>
+  </div>
+</header>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="home">
+  <!-- Decorative Arabic letter -->
+  <div class="hero-bg-letter" aria-hidden="true">ه</div>
+
+  <!-- Floating context cards -->
+  <div class="hero-floats" aria-hidden="true">
+    <div class="hero-float"><i data-lucide="landmark"></i> مواقيت الصلاة</div>
+    <div class="hero-float"><i data-lucide="book-open"></i> 114 سورة قرآنية</div>
+    <div class="hero-float"><i data-lucide="sparkles"></i> 99 اسمًا لله</div>
+    <div class="hero-float"><i data-lucide="moon-star"></i> قصص الأنبياء</div>
+    <div class="hero-float"><i data-lucide="compass"></i> القبلة GPS</div>
+  </div>
+
+  <div class="hero-badge" data-i18n="hero_eyebrow">
+    <span class="hero-badge-dot"></span>
+    منصة إسلامية رقمية · 2026
+  </div>
+
+  <h1>
+    نور <span class="highlight">القرآن</span><br>
+    ودليلك إلى الهدى
+  </h1>
+
+  <p class="hero-desc" data-i18n="hero_lead">
+    اكتشف القرآن الكريم، مواقيت الصلاة، وأسماء الله الحسنى — في تجربة عصرية وهادئة.
+  </p>
+
+  <div class="hero-cta">
+    <a href="quran.html" class="btn btn-primary">
+      <i data-lucide="book-open"></i>
+      <span data-i18n="cta_primary">ابدأ القراءة</span>
+    </a>
+    <a href="prayer.html" class="btn btn-ghost">
+      <i data-lucide="clock"></i>
+      <span data-i18n="cta_ghost">مواقيت الصلاة</span>
+    </a>
+    <a href="tools.html" class="btn btn-ghost">
+      <i data-lucide="wrench"></i>
+      <span>الأدوات</span>
+    </a>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-hint-line"></div>
+    <span>اكتشف</span>
+  </div>
+</section>
+
+<!-- ══════════ QUICK ACCESS ══════════ -->
+<div class="quick-bar reveal">
+  <div class="quick-bar-inner stagger">
+    <a class="quick-chip" href="quran-read.html"><i data-lucide="book-open"></i><span data-i18n="quran_hub_read_h">المصحف</span></a>
+    <a class="quick-chip" href="quran-listen.html"><i data-lucide="headphones"></i><span data-i18n="quran_hub_listen_h">الاستماع</span></a>
+    <a class="quick-chip" href="quran-tafsir.html"><i data-lucide="layers"></i><span data-i18n="quran_hub_tafsir_h">التفسير</span></a>
+    <a class="quick-chip" href="hadiths.html"><i data-lucide="scroll-text"></i><span data-i18n="nav_hadiths">أحاديث</span></a>
+    <a class="quick-chip" href="duas-dhikr.html"><i data-lucide="heart-handshake"></i><span data-i18n="nav_duas">أدعية وأذكار</span></a>
+    <a class="quick-chip" href="asmaullah.html"><i data-lucide="star"></i><span data-i18n="tool_asma_h">أسماء الله</span></a>
+    <a class="quick-chip" href="qibla.html"><i data-lucide="compass"></i><span data-i18n="tool_qibla_h">القبلة</span></a>
+    <a class="quick-chip" href="tasbih.html"><i data-lucide="circle-dot"></i>التسبيح</a>
+    <a class="quick-chip" href="search.html"><i data-lucide="search"></i><span data-i18n="tool_search_h">البحث</span></a>
+  </div>
+</div>
+
+<!-- ══════════ STATS ══════════ -->
+<div class="section section-sm section-center">
+  <div class="stats-row reveal stagger">
+    <div class="stat-item">
+      <span class="stat-num" data-count="114">0</span>
+      <span class="stat-label">سورة قرآنية</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-count="6236">0</span>
+      <span class="stat-label">آية كريمة</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-count="99">0</span>
+      <span class="stat-label" data-i18n="tool_asma_h">اسمًا لله</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-count="25">0</span>
+      <span class="stat-label">قصة نبي</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-count="30">0</span>
+      <span class="stat-label">الأدوات</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ AYAH FEATURE ══════════ -->
+<div class="ayah-feature">
+  <div class="ayah-card reveal">
+    <p class="ayah-text" data-i18n="ayah_quote">«وَقُل رَّبِّ زِدْنِي عِلْمًا»</p>
+    <p class="ayah-ref" data-i18n="ayah_ref">سورة طه · 114</p>
+  </div>
+</div>
+
+<!-- ══════════ FEATURES ══════════ -->
+<section class="section">
+  <div class="section-center reveal" style="margin-bottom:48px;">
+    <div class="section-badge">المحتوى</div>
+    <h2 class="section-title" data-i18n="tools_title">ماذا يقدم <span class="accent">الهُدى</span>؟</h2>
+    <p class="section-desc">كل ما تحتاجه في رحلتك الإيمانية في مكان واحد.</p>
+  </div>
+
+  <div class="features-grid stagger">
+    <a class="feature-card" href="quran.html">
+      <div class="fc-icon"><i data-lucide="book-open"></i></div>
+      <div class="fc-title" data-i18n="quran_hub_read_h">المصحف الرقمي</div>
+      <div class="fc-desc">اقرأ القرآن بخط عثماني، استمع للتلاوات، مع تفسير ميسّر وقراء متعددين.</div>
+      <div class="fc-arrow"><i data-lucide="arrow-left"></i> اكتشف</div>
+    </a>
+    <a class="feature-card" href="prayer.html">
+      <div class="fc-icon"><i data-lucide="clock"></i></div>
+      <div class="fc-title" data-i18n="prayer_title">مواقيت الصلاة</div>
+      <div class="fc-desc">توقيت دقيق للصلوات الخمس بناءً على موقعك الجغرافي، مع تمييز الصلاة القادمة.</div>
+      <div class="fc-arrow"><i data-lucide="arrow-left"></i> اكتشف</div>
+    </a>
+    <a class="feature-card" href="asmaullah.html">
+      <div class="fc-icon"><i data-lucide="star"></i></div>
+      <div class="fc-title" data-i18n="tool_asma_h">أسماء الله الحسنى</div>
+      <div class="fc-desc">استعرض الأسماء التسعة والتسعين مع معانيها ودلالتها في القرآن.</div>
+      <div class="fc-arrow"><i data-lucide="arrow-left"></i> اكتشف</div>
+    </a>
+    <a class="feature-card" href="stories.html">
+      <div class="fc-icon"><i data-lucide="users"></i></div>
+      <div class="fc-title" data-i18n="stories_title">قصص الأنبياء</div>
+      <div class="fc-desc">قصص كاملة لـ25 نبيًا من القرآن الكريم، مع درس مستفاد من كل قصة.</div>
+      <div class="fc-arrow"><i data-lucide="arrow-left"></i> اكتشف</div>
+    </a>
+    <a class="feature-card" href="ramadan.html">
+      <div class="fc-icon"><i data-lucide="moon"></i></div>
+      <div class="fc-title">رمضان والأعياد</div>
+      <div class="fc-desc">دليل رمضان الكامل، عداد تنازلي، ومواعيد الأعياد الإسلامية لسنوات قادمة.</div>
+      <div class="fc-arrow"><i data-lucide="arrow-left"></i> اكتشف</div>
+    </a>
+    <a class="feature-card" href="tools.html">
+      <div class="fc-icon"><i data-lucide="wrench"></i></div>
+      <div class="fc-title" data-i18n="nav_tools">أدوات إسلامية</div>
+      <div class="fc-desc">قبلة GPS، حاسبة الزكاة، التقويم الهجري، بحث قرآني، خلفيات وأكثر.</div>
+      <div class="fc-arrow"><i data-lucide="arrow-left"></i> اكتشف</div>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════ BENTO GRID ══════════ -->
+<section class="section" style="padding-top:0;">
+  <div class="bento-grid reveal">
+
+    <!-- Quran big -->
+    <a class="bento-cell bento-quran span-6 row-2" href="quran.html">
+      <div class="bento-icon"><i data-lucide="book-open"></i></div>
+      <div class="bento-title" style="font-size:1.3rem; margin-bottom:10px;">القرآن الكريم</div>
+      <div class="bento-desc">اقرأ، استمع، وتدبّر في تصميم هادئ ومريح مع تلوين التجويد والتفسير الميسّر.</div>
+      <div class="bento-tag" style="margin-top:auto;">114 سورة · 6236 آية</div>
+    </a>
+
+    <!-- Prayer -->
+    <a class="bento-cell bento-prayer span-6" href="prayer.html">
+      <div class="bento-icon"><i data-lucide="clock"></i></div>
+      <div class="bento-title">مواقيت الصلاة</div>
+      <div class="bento-desc">توقيت دقيق حسب موقعك الجغرافي.</div>
+    </a>
+
+    <!-- Ayah quote -->
+    <div class="bento-cell span-6" style="background:linear-gradient(135deg,rgba(201,168,76,.1),var(--bg-2));">
+      <p class="bento-quote-text" data-i18n="ayah_quote">«وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ»</p>
+      <p class="bento-quote-ref">سورة الطلاق · 3</p>
+    </div>
+
+    <!-- Asma -->
+    <a class="bento-cell bento-gold span-4" href="asmaullah.html">
+      <div class="bento-icon"><i data-lucide="star"></i></div>
+      <div class="bento-title">أسماء الله الحسنى</div>
+      <div class="bento-tag">99 اسمًا</div>
+    </a>
+
+    <!-- Stories -->
+    <a class="bento-cell bento-stories span-4" href="stories.html">
+      <div class="bento-icon"><i data-lucide="users"></i></div>
+      <div class="bento-title">قصص الأنبياء</div>
+      <div class="bento-tag">25 نبيًا</div>
+    </a>
+
+    <!-- Tasbih -->
+    <a class="bento-cell span-4" href="tasbih.html">
+      <div class="bento-icon"><i data-lucide="circle-dot"></i></div>
+      <div class="bento-title">عداد التسبيح</div>
+      <div class="bento-desc">تسبيح لمسي تفاعلي.</div>
+    </a>
+
+    <!-- Ramadan -->
+    <a class="bento-cell span-4" href="ramadan.html" style="background:linear-gradient(135deg,rgba(60,0,80,.22),var(--bg-2));">
+      <div class="bento-icon"><i data-lucide="moon"></i></div>
+      <div class="bento-title">رمضان</div>
+      <div class="bento-desc">دليل كامل وأعياد إسلامية.</div>
+    </a>
+
+    <!-- Lessons -->
+    <a class="bento-cell span-4" href="lessons.html" style="background:linear-gradient(135deg,rgba(0,40,80,.22),var(--bg-2));position:relative;">
+      <span class="soon-badge"><i data-lucide="clock"></i> قريباً</span>
+      <div class="bento-icon"><i data-lucide="library-big"></i></div>
+      <div class="bento-title">الدروس</div>
+      <div class="bento-desc">فقه، عقيدة، أخلاق وزواج.</div>
+    </a>
+
+    <!-- Videos -->
+    <a class="bento-cell span-4" href="videos.html" style="background:linear-gradient(135deg,rgba(80,0,0,.22),var(--bg-2));position:relative;">
+      <span class="soon-badge"><i data-lucide="clock"></i> قريباً</span>
+      <div class="bento-icon"><i data-lucide="play-circle"></i></div>
+      <div class="bento-title">فيديوهات</div>
+      <div class="bento-desc">محاضرات وتلاوات مختارة.</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<div class="section section-sm">
+  <div class="cta-band reveal">
+    <div class="section-badge">مجتمع المسلمين</div>
+    <h2 data-i18n="contact_lead">انضم إلى مجتمع الهُدى</h2>
+    <p>تعلّم، تدبّر، وتواصل مع مسلمين من حول العالم.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:28px;">
+      <a href="https://discord.gg/2R9mwzxxRe" target="_blank" class="btn btn-primary"><i data-lucide="users"></i><span data-i18n="contact_join_btn">الانضمام</span></a>
+      <a href="tools.html" class="btn btn-ghost"><i data-lucide="wrench"></i><span>الأدوات</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+  <p class="footer-tagline" data-i18n="hero_lead">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+
+  <nav class="footer-links">
+    <a class="footer-link" href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a class="footer-link" href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a class="footer-link" href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a class="footer-link" href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a class="footer-link" href="asmaullah.html" data-i18n="tool_asma_h">أسماء الله</a>
+    <a class="footer-link" href="ramadan.html">رمضان</a>
+    <a class="footer-link" href="tools.html" data-i18n="nav_tools">الأدوات</a>
+    <a class="footer-link" href="about.html" data-i18n="nav_about">من نحن</a>
+    <a class="footer-link" href="contact.html">تواصل</a>
+  </nav>
+
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="effects.js" defer></script>
+<script>
+// ── Language pill buttons
+function setLangBtn(lang) {
+  document.querySelectorAll('.lang-opt').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  document.querySelectorAll('#langSelect').forEach(s => s.value = lang);
+  if (typeof setLang === 'function') setLang(lang);
+}
+
+// Sync pill with select on change
+document.querySelectorAll('#langSelect').forEach(s => {
+  s.addEventListener('change', () => setLangBtn(s.value));
+});
+
+// Restore saved lang pill state
+const savedLang = localStorage.getItem('elhuda_lang') || 'ar';
+document.querySelectorAll('.lang-opt').forEach(b => b.classList.toggle('active', b.dataset.lang === savedLang));
+
+// ── Theme
+function toggleThemePanel() {
+  document.getElementById('themePanel').classList.toggle('open');
+}
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('elhuda_theme', t);
+  document.querySelectorAll('.theme-option').forEach(o => o.classList.toggle('active', o.dataset.theme === t));
+  document.getElementById('themePanel').classList.remove('open');
+}
+// Restore theme
+const savedTheme = localStorage.getItem('elhuda_theme') || 'dark';
+if (savedTheme !== 'dark') setTheme(savedTheme);
+document.addEventListener('click', e => {
+  if (!e.target.closest('.theme-wrap')) document.getElementById('themePanel').classList.remove('open');
+});
+
+// ── Mobile nav
+function toggleNav() {
+  const nav = document.getElementById('navLinks');
+  const btn = document.getElementById('menuToggle');
+  const open = nav.classList.toggle('open');
+  btn.innerHTML = open ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+document.querySelectorAll('#navLinks a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('menuToggle').innerHTML = '<i data-lucide="menu"></i>';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+});
+
+// ── Stat counters
+function animateCounters() {
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    let cur = 0;
+    const step = Math.max(1, Math.floor(target / 60));
+    const id = setInterval(() => {
+      cur = Math.min(cur + step, target);
+      el.textContent = cur.toLocaleString('ar');
+      if (cur >= target) clearInterval(id);
+    }, 18);
+  });
+}
+
+// ── Reveal observer
+function initReveal() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        if (e.target.querySelector('[data-count]')) animateCounters();
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.reveal, .stagger, .reveal-up, .reveal-scale').forEach(el => obs.observe(el));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initReveal();
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+});
+</script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();</script>
+
+</body>
+</html>

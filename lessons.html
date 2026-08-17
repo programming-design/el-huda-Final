@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+// Instant theme + lang restore (before render)
+(function(){
+  var t=localStorage.getItem('elhuda_theme');
+  if(t&&t!=='dark') document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title>دروس إسلامية في الفقه والعقيدة | الهُدى</title>
+<meta name="description" content="دروس إسلامية ميسّرة في الفقه والعقيدة والأخلاق والزواج، لتعلم أمور دينك بسهولة.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elhida.online/lessons.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://elhida.online/lessons.html">
+<meta property="og:title" content="دروس إسلامية في الفقه والعقيدة | الهُدى">
+<meta property="og:description" content="دروس إسلامية ميسّرة في الفقه والعقيدة والأخلاق والزواج، لتعلم أمور دينك بسهولة.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="دروس إسلامية في الفقه والعقيدة | الهُدى">
+<meta name="twitter:description" content="دروس إسلامية ميسّرة في الفقه والعقيدة والأخلاق والزواج، لتعلم أمور دينك بسهولة.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://elhida.online/index.html"}, {"@type": "ListItem", "position": 2, "name": "دروس إسلامية في الفقه والعقيدة", "item": "https://elhida.online/lessons.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Poppins:wght@300;400;600;800&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<style>
+/* ─── FILTER BAR ─── */
+.filter-bar{padding:0 clamp(6vw,8vw,120px);}
+.filter-search{position:relative;margin-bottom:14px;}
+.filter-search input{width:100%;box-sizing:border-box;padding:11px 44px 11px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s;}
+.filter-search input:focus{border-color:var(--gold);}
+.filter-search .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);pointer-events:none;}
+.filter-search .search-icon svg{width:16px;height:16px;stroke:var(--text-dim);fill:none;stroke-width:2;}
+.filter-cats{display:flex;flex-wrap:wrap;gap:7px;}
+.cat-chip{padding:7px 16px;border-radius:20px;border:1px solid var(--line);background:var(--bg-soft);color:var(--text-dim);cursor:pointer;font-family:inherit;font-size:.84rem;transition:.2s;display:flex;align-items:center;gap:6px;}
+.cat-chip svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;}
+.cat-chip.active,.cat-chip:hover{background:var(--gold);border-color:var(--gold);color:#1a1108;}
+.filter-levels{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.level-chip{padding:5px 13px;border-radius:14px;font-size:.78rem;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--text-dim);font-family:inherit;transition:.2s;}
+.level-chip.active,.level-chip:hover{border-color:var(--gold-soft);color:var(--gold-soft);}
+.filter-count{font-size:.78rem;opacity:.5;margin-top:10px;}
+
+/* ─── LESSONS GRID ─── */
+.lessons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;padding:0 clamp(6vw,8vw,120px);}
+.lesson-card{background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s;}
+.lesson-card:hover{transform:translateY(-3px);border-color:var(--gold);}
+.lesson-card.hidden{display:none;}
+.lc-top{padding:22px 20px 14px;}
+.lc-icon-wrap{width:44px;height:44px;border-radius:12px;background:rgba(212,175,106,.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.lc-icon-wrap svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.7;}
+.lc-cat-badge{font-size:.7rem;padding:3px 10px;border-radius:10px;background:var(--gold);color:#1a1108;font-weight:700;display:inline-block;margin-bottom:8px;}
+.lc-title{font-size:.98rem;font-weight:700;margin:0 0 6px;}
+.lc-desc{font-size:.84rem;opacity:.7;line-height:1.65;margin:0;}
+.lc-bottom{padding:12px 20px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;}
+.lc-level{font-size:.72rem;padding:3px 10px;border-radius:10px;font-weight:600;}
+.lc-level.beginner{background:rgba(50,200,100,.12);color:#3acc78;}
+.lc-level.intermediate{background:rgba(255,180,0,.12);color:#ffb700;}
+.lc-level.advanced{background:rgba(255,80,80,.12);color:#ff6060;}
+.lc-read{font-size:.78rem;opacity:.5;display:flex;align-items:center;gap:4px;}
+.lc-read svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;}
+
+/* ─── NO RESULTS ─── */
+.no-results{text-align:center;padding:60px 20px;opacity:.4;display:none;}
+.no-results svg{width:48px;height:48px;stroke:var(--text-dim);fill:none;margin-bottom:12px;}
+.no-results p{font-size:.9rem;}
+
+/* ─── MODAL ─── */
+.lesson-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.lesson-modal-bg.open{display:flex;}
+.lesson-modal{background:var(--bg);border:1px solid var(--line);border-radius:20px;max-width:640px;width:100%;max-height:88vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.5);}
+@media(max-width:500px){.lesson-modal{padding:22px 16px;border-radius:16px;}}
+.modal-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;}
+.modal-icon{width:50px;height:50px;border-radius:14px;background:rgba(212,175,106,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.modal-icon svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.7;}
+.modal-meta .modal-cat{font-size:.72rem;padding:2px 10px;border-radius:10px;background:var(--gold);color:#1a1108;font-weight:700;display:inline-block;margin-bottom:6px;}
+.modal-meta h2{font-size:1.2rem;margin:0;}
+.modal-close{position:absolute;top:16px;left:16px;background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;color:var(--text-dim);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;}
+.modal-close:hover{border-color:var(--gold);color:var(--gold-soft);}
+.modal-close svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5;}
+.modal-body{font-size:.9rem;line-height:1.9;opacity:.85;}
+.modal-body h4{font-size:.95rem;color:var(--gold-soft);margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+.modal-body h4 svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:2;}
+.modal-body p{margin:0 0 10px;}
+.modal-body ul{padding-right:18px;margin:0 0 10px;}
+.modal-body li{margin-bottom:5px;}
+.modal-hadith{background:rgba(212,175,106,.07);border-right:3px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-style:italic;font-size:.88rem;}
+</style>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo"><img src="assets/logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='ه'"></div>
+    <div class="brand-text"><h1 data-i18n="brand">الهُدى</h1><small data-i18n="brand_sub">EL HUDA</small></div>
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" onclick="toggleThemePanel()"><i data-lucide="palette"></i></button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+    <button class="menu-toggle icon-btn" id="menuToggle" onclick="toggleNav()"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-badge">منصة إسلامية رقمية · 2026</div>
+  <h2>الدروس الإسلامية</h2>
+  
+</section>
+<div class="soon-banner">
+  <i data-lucide="construction"></i>
+  <span>هذا القسم قيد الإعداد حاليًا، وسيتم استكماله وإطلاقه رسميًا قريبًا بإذن الله.</span>
+</div>
+
+<!-- ─── FILTER BAR ─── 
+<div class="filter-bar reveal">-->
+  <!-- Search 
+  <div class="filter-search">
+    <div class="search-icon"><i data-lucide="search"></i></div>
+    <input type="text" id="lessonSearch" placeholder="ابحث عن درس..." autocomplete="off">
+  </div>-->
+  <!-- Categories 
+  <div class="filter-cats" id="catChips">
+    <button class="cat-chip active" data-cat="all"><i data-lucide="layout-grid"></i> الكل</button>
+    <button class="cat-chip" data-cat="zawaj"><i data-lucide="ring"></i> الزواج</button>
+    <button class="cat-chip" data-cat="aqeedah"><i data-lucide="star"></i> العقيدة</button>
+    <button class="cat-chip" data-cat="fiqh"><i data-lucide="clipboard-list"></i> الفقه</button>
+    <button class="cat-chip" data-cat="akhlaq"><i data-lucide="gem"></i> الأخلاق</button>
+    <button class="cat-chip" data-cat="family"><i data-lucide="users"></i> الأسرة</button>
+  </div>-->
+  <!-- Levels 
+  <div class="filter-levels" id="levelChips">
+    <button class="level-chip active" data-level="all">كل المستويات</button>
+    <button class="level-chip" data-level="beginner">مبتدئ</button>
+    <button class="level-chip" data-level="intermediate">متوسط</button>
+  </div>
+  <div class="filter-count" id="filterCount"></div>
+</div>-->
+
+<!-- ─── LESSONS GRID ─── 
+<div class="lessons-grid" id="lessonsGrid">
+
+  <div class="lesson-card anim-card" data-cat="zawaj" data-level="beginner" data-lesson="zawaj1" data-keywords="زواج عقد شروط ولي شاهد مهر">
+    <div class="lc-top">
+      <div class="lc-icon-wrap"><i data-lucide="ring"></i></div>
+      <span class="lc-cat-badge">الزواج</span>
+      <div class="lc-title">شروط صحة عقد الزواج</div>
+      <div class="lc-desc">تعرف على الشروط الشرعية اللازمة لصحة عقد الزواج في الإسلام.</div>
+    </div>
+    <div class="lc-bottom">
+      <span class="lc-level beginner">مبتدئ</span>
+      <span class="lc-read"><i data-lucide="book-open"></i> اقرأ الدرس</span>
+    </div>
+  </div>
+
+  <div class="lesson-card anim-card" data-cat="zawaj" data-level="beginner" data-lesson="zawaj2" data-keywords="زواج حقوق واجبات زوج زوجة نفقة معاشرة">
+    <div class="lc-top">
+      <div class="lc-icon-wrap"><i data-lucide="heart-handshake"></i></div>
+      <span class="lc-cat-badge">الزواج</span>
+      <div class="lc-title">حقوق الزوجين وواجباتهما</div>
+      <div class="lc-desc">ما الذي يجب على الزوج تجاه زوجته والعكس — دليل شامل من القرآن والسنة.</div>
+    </div>
+    <div class="lc-bottom">
+      <span class="lc-level beginner">مبتدئ</span>
+      <span class="lc-read"><i data-lucide="book-open"></i> اقرأ الدرس</span>
+    </div>
+  </div>
+
+  <div class="lesson-card anim-card" data-cat="zawaj" data-level="beginner" data-lesson="zawaj3" data-keywords="خطبة آداب نظر تواصل وعد">
+    <div class="lc-top">
+      <div class="lc-icon-wrap"><i data-lucide="mail"></i></div>
+      <span class="lc-cat-badge">الزواج</span>
+      <div class="lc-title">الخطبة وآدابها</div>
+      <div class="lc-desc">آداب الخطبة الشرعية، ما يجوز وما لا يجوز للخاطب من النظر والتواصل.</div>
+    </div>
+    <div class="lc-bottom">
+      <span class="lc-level beginner">مبتدئ</span>
+      <span class="lc-read"><i data-lucide="book-open"></i> اقرأ الدرس</span>
+    </div>
+  </div>
+
+  <div class="lesson-card anim-card" data-cat="zawaj" data-level="intermediate" data-lesson="zawaj4" data-keywords="طلاق عدة أنواع بائن رجعي مال">
+    <div class="lc-top">
+      <div class="lc-icon-wrap"><i data-lucide="scale"></i></div>
+      <span class="lc-cat-badge">الزواج</span>
+      <div class="lc-title">الطلاق وأحكامه</div>
+      <div class="lc-desc">أنواع الطلاق، العدة، والحقوق المالية — أحكام موضحة بأسلوب مبسط.</div>
+    </div>
+    <div class="lc-bottom">
+      <span class="lc-level intermediate">متوسط</span>
+      <span class="lc-read"><i data-lucide="book-open"></i> اقرأ الدرس</span>
+    </div>
+  </div>
+
+  <div class="lesson-card anim-card" data-cat="aqeedah" data-level="beginner" data-lesson="aqeedah1" data-keywords="إيمان أركان ملائكة رسل كتب قدر يوم آخر">
+    <div class="lc-top">
+      <div class="lc-icon-wrap"><i data-lucide="star"></i></div>
+      <span class="lc-cat-badge">العقيدة</span>
+      <div class="lc-title">أركان الإيمان الستة</div>
+      <div class="lc-desc">ما يجب على كل مسلم الإيمان به: الله، الملائكة، الكتب، الرسل، اليوم الآخر، القدر.</div>
+    </div>
+    <div class="lc-bottom">
+      <span class="lc-level beginner">مبتدئ</span>
+      <span class="lc-read"><i data-lucide="book-open"></i> اقرأ الدرس</span>
+    </div>
+  </div>
+
+  <div class="lesson-card anim-card" data-cat="aqeedah" data-level="intermediate" data-lesson="aqeedah2" data-keywords="توحيد ربوبية ألوهية أسماء صفات">
+    <div class="lc-top">
+      <div class="lc-icon-wrap"><i data-lucide="circle-dot"></i></div>
+      <span class="lc-cat-badge">العقيدة</span>
+      <div class="lc-title">التوحيد وأنواعه</div>
+      <div class="lc-desc">توحيد الربوبية والألوهية والأسماء والصفات — الأساس الذي تقوم عليه العقيدة.</div>
+    </div>
+    <div class="lc-bottom">
+      <span class="lc-level intermediate">متوسط</span>
+      <span class="lc-read"><i data-lucide="book-open"></i> اقرأ الدرس</span>
+    </div>
+  </div>
+
+  <div class="lesson-card anim-card" data-cat="fiqh" data-level="beginner" data-lesson="fiqh1" data-keywords="طهارة وضوء فرائض سنن نواقض">
+    <div class="lc-top">
+      <div class="lc-icon-wrap"><i data-lucide="droplets"></i></div>
+      <span class="lc-cat-badge">الفقه</span>
+      <div class="lc-title">الطهارة وأحكام الوضوء</div>
+      <div class="lc-desc">شروط الوضوء وفرائضه وسننه ونواقضه — درس أساسي لكل مسلم ومسلمة.</div>
+    </div>
+    <div class="lc-bottom">
+      <span class="lc-level beginner">مبتدئ</span>
+      <span class="lc-read"><i data-lucide="book-open"></i> اقرأ الدرس</span>
+    </div>
+  </div>
+
+  <div class="lesson-card anim-card" data-cat="fiqh" data-level="beginner" data-lesson="fiqh2" data-keywords="صلاة أركان واجبات مبطلات فريضة">
+    <div class="lc-top">
+      <div class="lc-icon-wrap"><i data-lucide="clipboard-list"></i></div>
+      <span class="lc-cat-badge">الفقه</span>
+      <div class="lc-title">أركان الصلاة وواجباتها</div>
+      <div class="lc-desc">ما تصح به الصلاة وما يُبطلها — دليل مبسط مع الفروق بين المذاهب.</div>
+    </div>
+    <div class="lc-bottom">
+      <span class="lc-level beginner">مبتدئ</span>
+      <span class="lc-read"><i data-lucide="book-open"></i> اقرأ الدرس</span>
+    </div>
+  </div>
+
+  <div class="lesson-card anim-card" data-cat="akhlaq" data-level="beginner" data-lesson="akhlaq1" data-keywords="صدق أمانة ثقة شخصية أخلاق">
+    <div class="lc-top">
+      <div class="lc-icon-wrap"><i data-lucide="gem"></i></div>
+      <span class="lc-cat-badge">الأخلاق</span>
+      <div class="lc-title">الصدق وأثره في حياة المسلم</div>
+      <div class="lc-desc">فضل الصدق في القول والعمل، وكيف يبني المسلم شخصية موثوقة بين الناس.</div>
+    </div>
+    <div class="lc-bottom">
+      <span class="lc-level beginner">مبتدئ</span>
+      <span class="lc-read"><i data-lucide="book-open"></i> اقرأ الدرس</span>
+    </div>
+  </div>
+
+  <div class="lesson-card anim-card" data-cat="akhlaq" data-level="beginner" data-lesson="akhlaq2" data-keywords="صبر شكر راحة سعادة ابتلاء">
+    <div class="lc-top">
+      <div class="lc-icon-wrap"><i data-lucide="heart"></i></div>
+      <span class="lc-cat-badge">الأخلاق</span>
+      <div class="lc-title">الصبر والشكر — ركيزتا السعادة</div>
+      <div class="lc-desc">كيف يجعل الإسلام من الصبر في الشدة والشكر في النعمة طريقًا للراحة النفسية.</div>
+    </div>
+    <div class="lc-bottom">
+      <span class="lc-level beginner">مبتدئ</span>
+      <span class="lc-read"><i data-lucide="book-open"></i> اقرأ الدرس</span>
+    </div>
+  </div>
+
+  <div class="lesson-card anim-card" data-cat="family" data-level="intermediate" data-lesson="family1" data-keywords="تربية أبناء أطفال إسلام هوية قيم">
+    <div class="lc-top">
+      <div class="lc-icon-wrap"><i data-lucide="users"></i></div>
+      <span class="lc-cat-badge">الأسرة</span>
+      <div class="lc-title">تربية الأبناء في الإسلام</div>
+      <div class="lc-desc">مبادئ التربية الإسلامية للطفل منذ الولادة — بناء الهوية الإيمانية والقيم.</div>
+    </div>
+    <div class="lc-bottom">
+      <span class="lc-level intermediate">متوسط</span>
+      <span class="lc-read"><i data-lucide="book-open"></i> اقرأ الدرس</span>
+    </div>
+  </div>
+
+  <div class="lesson-card anim-card" data-cat="family" data-level="beginner" data-lesson="family2" data-keywords="والدين بر طاعة أم أب رحمة">
+    <div class="lc-top">
+      <div class="lc-icon-wrap"><i data-lucide="heart-handshake"></i></div>
+      <span class="lc-cat-badge">الأسرة</span>
+      <div class="lc-title">بر الوالدين — أعلى الواجبات</div>
+      <div class="lc-desc">فضل بر الوالدين وحدوده وكيفية التعامل مع الوالدين غير المسلمين.</div>
+    </div>
+    <div class="lc-bottom">
+      <span class="lc-level beginner">مبتدئ</span>
+      <span class="lc-read"><i data-lucide="book-open"></i> اقرأ الدرس</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="no-results" id="noResults">
+  <i data-lucide="search-x"></i>
+  <p>لا توجد نتائج — جرّب بحثاً آخر</p>
+</div>-->
+
+<!-- ─── MODAL ─── 
+<div class="lesson-modal-bg" id="lessonModalBg">
+  <div class="lesson-modal" id="lessonModal">
+    <button class="modal-close" id="modalClose"><i data-lucide="x"></i></button>
+    <div class="modal-top">
+      <div class="modal-icon" id="modalIcon"><i data-lucide="book-open"></i></div>
+      <div class="modal-meta">
+        <span class="modal-cat" id="modalCat"></span>
+        <h2 id="modalTitle"></h2>
+      </div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>-->
+
+<footer>
+    <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+
+  <p class="footer-tagline">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+  <nav class="footer-links">
+    <a class="footer-link" href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a class="footer-link" href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a class="footer-link" href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a class="footer-link" href="tools.html" data-i18n="nav_tools">الأدوات</a>
+    <a class="footer-link" href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="effects.js" defer></script>
+<script>
+// ── LESSON CONTENT ──
+const lessonData = {
+  zawaj1:{cat:'الزواج',icon:'ring',title:'شروط صحة عقد الزواج',body:`
+    <p>عقد الزواج في الإسلام عقد مقدس مبني على الرضا والإشهار. لصحته لا بد من توافر شروط أساسية:</p>
+    <h4><i data-lucide="check-circle"></i> الإيجاب والقبول</h4>
+    <p>يصدر الإيجاب من الولي ويُقابَل بالقبول من الزوج أو وكيله، في مجلس واحد وبألفاظ تدل على الرضا.</p>
+    <h4><i data-lucide="user"></i> الولي</h4>
+    <p>لا تُنكح المرأة نفسها — الولي (الأب أو من يقوم مقامه) شرط عند جمهور العلماء.</p>
+    <div class="modal-hadith">«لا نكاح إلا بولي» — رواه الإمام أحمد وأبو داود والترمذي</div>
+    <h4><i data-lucide="users"></i> الشهود</h4>
+    <p>يجب حضور شاهدَين عدلَين لإعلان العقد وإثباته أمام الناس.</p>
+    <h4><i data-lucide="x-circle"></i> خلو الطرفين من الموانع</h4>
+    <ul>
+      <li>ألا تكون المرأة محرّمة على الرجل (أم، أخت، رضاعة...)</li>
+      <li>ألا تكون في عدة من طلاق أو وفاة</li>
+      <li>ألا يكون الرجل متزوجًا بأربع زوجات</li>
+    </ul>
+    <h4><i data-lucide="coins"></i> المهر</h4>
+    <p>المهر حق واجب للمرأة — يُحدَّد باتفاق الطرفين ويجب أن يُسلَّم لها.</p>`
+  },
+  zawaj2:{cat:'الزواج',icon:'heart-handshake',title:'حقوق الزوجين وواجباتهما',body:`
+    <h4><i data-lucide="user"></i> واجبات الزوج</h4>
+    <ul>
+      <li>النفقة: السكن والطعام واللباس والعلاج بالمعروف</li>
+      <li>المعاشرة بالمعروف: العدل، الاحترام، والمودة</li>
+      <li>تعليمها أمور دينها إن كانت تجهلها</li>
+      <li>الغيرة عليها وصيانة كرامتها</li>
+    </ul>
+    <h4><i data-lucide="user"></i> واجبات الزوجة</h4>
+    <ul>
+      <li>طاعة الزوج في المعروف (لا في المعصية)</li>
+      <li>حفظ بيته وماله وأسراره</li>
+      <li>تربية الأبناء برعاية وإحسان</li>
+    </ul>
+    <div class="modal-hadith">«خيركم خيركم لأهله، وأنا خيركم لأهلي» — رواه الترمذي</div>
+    <h4><i data-lucide="users"></i> حقوق مشتركة</h4>
+    <p>الاحترام المتبادل، التشاور في شؤون الأسرة، والسعي المشترك لبناء بيت مسلم متحاب.</p>`
+  },
+  zawaj3:{cat:'الزواج',icon:'mail',title:'الخطبة وآدابها',body:`
+    <p>الخطبة هي طلب الرجل التزوج بامرأة — مرحلة تسبق العقد وليست عقداً ملزماً.</p>
+    <h4><i data-lucide="check-circle"></i> ما يجوز للخاطب</h4>
+    <ul>
+      <li>النظر إلى وجه المخطوبة وكفيها بحضور وليّها</li>
+      <li>التحدث معها بحضور محرم للتعارف</li>
+      <li>السؤال عن أخلاقها ودينها من أهلها</li>
+    </ul>
+    <h4><i data-lucide="x-circle"></i> ما لا يجوز</h4>
+    <ul>
+      <li>الخلوة بها قبل العقد</li>
+      <li>التواصل الخاص المستمر بدون محرم</li>
+      <li>الخطبة على خطبة أخيه المسلم</li>
+    </ul>
+    <h4><i data-lucide="info"></i> فسخ الخطبة</h4>
+    <p>الخطبة وعد لا عقد — يجوز لكلا الطرفين العدول عنها، وترد الهدايا الرمزية عادةً عند الفسخ.</p>`
+  },
+  zawaj4:{cat:'الزواج',icon:'scale',title:'الطلاق وأحكامه',body:`
+    <div class="modal-hadith">«أبغض الحلال إلى الله الطلاق» — رواه أبو داود وابن ماجه</div>
+    <h4><i data-lucide="list"></i> أنواع الطلاق</h4>
+    <ul>
+      <li><strong>الطلاق الرجعي:</strong> للزوج حق المراجعة خلال العدة بلا عقد جديد</li>
+      <li><strong>البائن بينونة صغرى:</strong> بعد العدة يمكن الرجوع بعقد ومهر جديدين</li>
+      <li><strong>البائن بينونة كبرى:</strong> بعد الطلاق الثالث — لا رجوع حتى تتزوج من آخر</li>
+    </ul>
+    <h4><i data-lucide="clock"></i> العدة</h4>
+    <p>المطلقة تنتظر ثلاثة قروء (حيضات) قبل الزواج من آخر. وعدة المتوفى عنها زوجها: أربعة أشهر وعشر ليالٍ.</p>
+    <h4><i data-lucide="coins"></i> الحقوق المالية</h4>
+    <p>المرأة المطلقة تستحق نفقة العدة وسكنها، والمتعة إن طُلقت قبل الدخول. المهر حق مكتسب لا يُسترد.</p>`
+  },
+  aqeedah1:{cat:'العقيدة',icon:'star',title:'أركان الإيمان الستة',body:`
+    <div class="modal-hadith">«أن تؤمن بالله وملائكته وكتبه ورسله واليوم الآخر وتؤمن بالقدر خيره وشره» — حديث جبريل</div>
+    <h4><i data-lucide="circle-dot"></i> الإيمان بالله</h4>
+    <p>توحيد الله في ربوبيته وألوهيته وأسمائه وصفاته — وهو أساس كل شيء.</p>
+    <h4><i data-lucide="wind"></i> الإيمان بالملائكة</h4>
+    <p>مخلوقون من نور، يطيعون الله ولا يعصونه، لكل منهم مهمة محددة.</p>
+    <h4><i data-lucide="book-open"></i> الإيمان بالكتب</h4>
+    <p>التوراة والزبور والإنجيل والقرآن. القرآن هو الكتاب المحفوظ الناسخ لما قبله.</p>
+    <h4><i data-lucide="users"></i> الإيمان بالرسل</h4>
+    <p>جميع الأنبياء والمرسلين، ومحمد ﷺ خاتمهم وأفضلهم.</p>
+    <h4><i data-lucide="calendar"></i> الإيمان باليوم الآخر</h4>
+    <p>البعث والحشر والحساب والصراط والجنة والنار.</p>
+    <h4><i data-lucide="infinity"></i> الإيمان بالقدر</h4>
+    <p>الله علم كل شيء وكتبه وشاءه وخلقه — دون أن ينفي ذلك إرادة الإنسان ومسؤوليته.</p>`
+  },
+  aqeedah2:{cat:'العقيدة',icon:'circle-dot',title:'التوحيد وأنواعه',body:`
+    <h4><i data-lucide="globe"></i> توحيد الربوبية</h4>
+    <p>الإقرار بأن الله وحده هو الخالق الرازق المدبر لهذا الكون — أقرّ به حتى مشركو قريش.</p>
+    <h4><i data-lucide="star"></i> توحيد الألوهية</h4>
+    <p>إفراد الله بالعبادة: الصلاة والدعاء والذبح والنذر وغيرها. وهو مقتضى «لا إله إلا الله».</p>
+    <h4><i data-lucide="tag"></i> توحيد الأسماء والصفات</h4>
+    <p>الإيمان بما أثبته الله لنفسه في القرآن والسنة، دون تعطيل أو تشبيه أو تأويل يُفرغها من معانيها.</p>
+    <div class="modal-hadith">التوحيد هو سبب الخلق، ومقصود الرسالات، وشرط قبول الأعمال.</div>`
+  },
+  fiqh1:{cat:'الفقه',icon:'droplets',title:'الطهارة وأحكام الوضوء',body:`
+    <h4><i data-lucide="list"></i> فرائض الوضوء</h4>
+    <ul>
+      <li>النية، غسل الوجه، غسل اليدين إلى المرفقين</li>
+      <li>مسح الرأس، غسل الرجلين إلى الكعبين</li>
+      <li>الترتيب بين الأعضاء والموالاة</li>
+    </ul>
+    <h4><i data-lucide="plus-circle"></i> سنن الوضوء</h4>
+    <p>التسمية، السواك، غسل الكفين ثلاثًا، المضمضة والاستنشاق، تخليل اللحية والأصابع، تثليث الغسل.</p>
+    <h4><i data-lucide="x-circle"></i> نواقض الوضوء</h4>
+    <ul>
+      <li>الخارج من السبيلين (بول، غائط، ريح)</li>
+      <li>النوم المستثقل وزوال العقل</li>
+      <li>مس الفرج بشهوة (عند بعض المذاهب)</li>
+    </ul>`
+  },
+  fiqh2:{cat:'الفقه',icon:'clipboard-list',title:'أركان الصلاة وواجباتها',body:`
+    <h4><i data-lucide="list"></i> أركان الصلاة</h4>
+    <ul>
+      <li>النية، تكبيرة الإحرام، القيام مع القدرة</li>
+      <li>قراءة الفاتحة في كل ركعة</li>
+      <li>الركوع والاعتدال منه</li>
+      <li>السجود والجلوس بين السجدتين</li>
+      <li>التشهد الأخير والتسليم</li>
+      <li>الطمأنينة في كل ركن والترتيب</li>
+    </ul>
+    <h4><i data-lucide="x-circle"></i> مبطلات الصلاة</h4>
+    <p>الكلام العمد، الضحك، الحدث (نقض الوضوء)، انكشاف العورة، الأكل والشرب، الانحراف عن القبلة.</p>
+    <div class="modal-hadith">تفاصيل الصلاة تختلف قليلاً بين المذاهب الأربعة. راجع عالماً في مذهبك للتفصيل.</div>`
+  },
+  akhlaq1:{cat:'الأخلاق',icon:'gem',title:'الصدق وأثره في حياة المسلم',body:`
+    <div class="modal-hadith">«عليكم بالصدق؛ فإن الصدق يهدي إلى البر، وإن البر يهدي إلى الجنة» — رواه البخاري ومسلم</div>
+    <h4><i data-lucide="list"></i> أنواع الصدق</h4>
+    <ul>
+      <li><strong>صدق اللسان:</strong> التزام الحق في الكلام والإخبار</li>
+      <li><strong>صدق النية:</strong> الإخلاص لله في العبادة</li>
+      <li><strong>صدق العزم:</strong> الوفاء بما عزمت عليه</li>
+    </ul>
+    <h4><i data-lucide="sparkles"></i> ثمار الصدق</h4>
+    <ul>
+      <li>كسب ثقة الناس واحترامهم</li>
+      <li>الراحة النفسية وصفاء الضمير</li>
+      <li>البركة في الرزق والتجارة</li>
+      <li>دخول الجنة كما أخبر النبي ﷺ</li>
+    </ul>`
+  },
+  akhlaq2:{cat:'الأخلاق',icon:'heart',title:'الصبر والشكر — ركيزتا السعادة',body:`
+    <div class="modal-hadith">«عجبًا لأمر المؤمن! إن أمره كله خير: إن أصابته سراء شكر، وإن أصابته ضراء صبر» — رواه مسلم</div>
+    <h4><i data-lucide="list"></i> أنواع الصبر</h4>
+    <ul>
+      <li>الصبر على طاعة الله</li>
+      <li>الصبر عن معاصي الله</li>
+      <li>الصبر على أقدار الله المؤلمة</li>
+    </ul>
+    <h4><i data-lucide="sun"></i> الشكر في الإسلام</h4>
+    <p>الشكر لا يكون بالقول فقط، بل بالاعتراف القلبي بنعمة الله، والثناء عليه، واستخدامها في طاعته.</p>
+    <h4><i data-lucide="lightbulb"></i> كيف تبني الصبر</h4>
+    <ul>
+      <li>ربط المصيبة بقضاء الله وقدره</li>
+      <li>تذكر أن الدنيا دار ابتلاء وزوال</li>
+      <li>الإكثار من الدعاء وذكر الله</li>
+    </ul>`
+  },
+  family1:{cat:'الأسرة',icon:'users',title:'تربية الأبناء في الإسلام',body:`
+    <h4><i data-lucide="baby"></i> المراحل الأولى</h4>
+    <p>الأذان في أذن المولود، الاسم الحسن، العقيقة، والختان — سنن تُكرّس انتماء الطفل لهذا الدين منذ الولادة.</p>
+    <h4><i data-lucide="star"></i> غرس الإيمان</h4>
+    <ul>
+      <li>تعليمه «لا إله إلا الله» أول كلمة</li>
+      <li>تعليمه الصلاة من سن السابعة</li>
+      <li>القرآن والقصص النبوية كمادة ثقافية أولى</li>
+    </ul>
+    <h4><i data-lucide="eye"></i> القدوة قبل التوجيه</h4>
+    <p>الطفل يتعلم مما يرى لا مما يُأمر به. صلّ أمامه، اذكر الله في بيتك، وعامل الناس بالحسنى.</p>`
+  },
+  family2:{cat:'الأسرة',icon:'heart-handshake',title:'بر الوالدين — أعلى الواجبات',body:`
+    <p>قرن الله طاعته بطاعة الوالدين في أكثر من آية كريمة.</p>
+    <div class="modal-hadith">«وَقَضَىٰ رَبُّكَ أَلَّا تَعْبُدُوا إِلَّا إِيَّاهُ وَبِالْوَالِدَيْنِ إِحْسَانًا» — سورة الإسراء 23</div>
+    <h4><i data-lucide="heart"></i> صور البر</h4>
+    <ul>
+      <li>الكلام اللين: «فلا تقل لهما أف»</li>
+      <li>الإنفاق عليهما عند الحاجة</li>
+      <li>زيارتهما وتفقد أحوالهما</li>
+      <li>الدعاء لهما حيَّين وبعد مماتهما</li>
+    </ul>
+    <h4><i data-lucide="globe"></i> بر الوالدين غير المسلمين</h4>
+    <p>أمر الله ببر الوالدين حتى لو كانا غير مسلمين، ما داما لا يأمران بالمعصية: «وَصَاحِبْهُمَا فِي الدُّنْيَا مَعْرُوفًا».</p>
+    <h4><i data-lucide="info"></i> حدود الطاعة</h4>
+    <p>لا طاعة لمخلوق في معصية الخالق — إن أمراك بالحرام ترفض بأدب مع المحافظة على العلاقة الحسنة معهما.</p>`
+  }
+};
+
+// ── STATE ──
+let activeCat = 'all', activeLevel = 'all', searchQ = '';
+
+function applyFilters() {
+  const cards = document.querySelectorAll('.lesson-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const cat = card.dataset.cat;
+    const level = card.dataset.level;
+    const keywords = (card.dataset.keywords || '') + ' ' + card.querySelector('.lc-title').textContent + ' ' + card.querySelector('.lc-desc').textContent;
+    const matchCat = activeCat === 'all' || cat === activeCat;
+    const matchLevel = activeLevel === 'all' || level === activeLevel;
+    const matchSearch = !searchQ || keywords.includes(searchQ);
+    const show = matchCat && matchLevel && matchSearch;
+    card.classList.toggle('hidden', !show);
+    if(show) visible++;
+  });
+  document.getElementById('filterCount').textContent = `${visible} درس`;
+  document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+  if(typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+// Category chips
+document.querySelectorAll('.cat-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activeCat = chip.dataset.cat;
+    applyFilters();
+  });
+});
+
+// Level chips
+document.querySelectorAll('.level-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.level-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activeLevel = chip.dataset.level;
+    applyFilters();
+  });
+});
+
+// Search
+document.getElementById('lessonSearch').addEventListener('input', e => {
+  searchQ = e.target.value.trim();
+  applyFilters();
+});
+
+// ── MODAL ──
+document.querySelectorAll('.lesson-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const key = card.dataset.lesson;
+    const data = lessonData[key];
+    if(!data) return;
+    document.getElementById('modalCat').textContent = data.cat;
+    document.getElementById('modalTitle').textContent = data.title;
+    document.getElementById('modalBody').innerHTML = data.body;
+    document.getElementById('modalIcon').innerHTML = `<i data-lucide="${data.icon}"></i>`;
+    document.getElementById('lessonModalBg').classList.add('open');
+    document.getElementById('lessonModal').scrollTop = 0;
+    if(typeof lucide !== 'undefined') lucide.createIcons();
+  });
+});
+
+document.getElementById('modalClose').addEventListener('click', () => document.getElementById('lessonModalBg').classList.remove('open'));
+document.getElementById('lessonModalBg').addEventListener('click', e => { if(e.target === e.currentTarget) e.currentTarget.classList.remove('open'); });
+
+// Init count
+applyFilters();
+</script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();document.addEventListener("DOMContentLoaded",function(){if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+</body>
+</html>

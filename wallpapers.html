@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+// Instant theme + lang restore (before render)
+(function(){
+  var t=localStorage.getItem('elhuda_theme');
+  if(t&&t!=='dark') document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title>خلفيات إسلامية للهاتف والحاسوب | الهُدى</title>
+<meta name="description" content="خلفيات إسلامية مصممة بعناية لهاتفك أو حاسوبك، جاهزة للتحميل مجانًا بجودة عالية.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elhida.online/wallpapers.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://elhida.online/wallpapers.html">
+<meta property="og:title" content="خلفيات إسلامية للهاتف والحاسوب | الهُدى">
+<meta property="og:description" content="خلفيات إسلامية مصممة بعناية لهاتفك أو حاسوبك، جاهزة للتحميل مجانًا بجودة عالية.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="خلفيات إسلامية للهاتف والحاسوب | الهُدى">
+<meta name="twitter:description" content="خلفيات إسلامية مصممة بعناية لهاتفك أو حاسوبك، جاهزة للتحميل مجانًا بجودة عالية.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://elhida.online/index.html"}, {"@type": "ListItem", "position": 2, "name": "خلفيات إسلامية للهاتف والحاسوب", "item": "https://elhida.online/wallpapers.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Scheherazade+New:wght@400;700&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<style>
+.wp-filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:24px auto 28px;padding:0 clamp(6vw,8vw,120px);}
+.wpf-btn{padding:8px 18px;border-radius:20px;border:1px solid var(--line);background:var(--bg-soft);color:var(--text-dim);cursor:pointer;font-family:inherit;font-size:.86rem;transition:.2s;display:flex;align-items:center;gap:6px;}
+.wpf-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;}
+.wpf-btn.active,.wpf-btn:hover{background:var(--gold);border-color:var(--gold);color:#1a1108;}
+
+.wp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;padding:0 clamp(6vw,8vw,120px);margin-bottom:60px;}
+.wp-item{position:relative;border-radius:14px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:.25s;aspect-ratio:9/16;}
+@media(max-width:600px){.wp-item{aspect-ratio:3/4;}}
+.wp-item:hover{border-color:var(--gold);transform:translateY(-3px);}
+.wp-item canvas{width:100%;height:100%;display:block;}
+.wp-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:.25s;display:flex;align-items:center;justify-content:center;gap:10px;opacity:0;}
+.wp-item:hover .wp-overlay{background:rgba(0,0,0,.45);opacity:1;}
+.wp-dl-btn{background:var(--gold);border:none;border-radius:10px;padding:9px 16px;color:#1a1108;font-family:inherit;font-size:.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;transition:.15s;}
+.wp-dl-btn:hover{opacity:.88;}
+.wp-dl-btn svg{width:14px;height:14px;stroke:#1a1108;fill:none;stroke-width:2.5;}
+.wp-badge{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.6);border-radius:6px;padding:3px 8px;font-size:.68rem;color:#fff;font-family:'Poppins',sans-serif;}
+
+/* Modal preview */
+.wp-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px);}
+.wp-modal-bg.open{display:flex;}
+.wp-modal{position:relative;max-height:92vh;max-width:500px;width:100%;display:flex;flex-direction:column;gap:12px;}
+.wp-modal-close{position:absolute;top:-14px;left:-14px;z-index:10;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:50%;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;}
+.wp-modal canvas{width:100%;max-height:80vh;object-fit:contain;border-radius:12px;display:block;}
+.wp-modal-actions{display:flex;gap:10px;}
+.wp-modal-dl{flex:1;padding:12px;border-radius:12px;background:var(--gold);border:none;color:#1a1108;font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;}
+.wp-modal-dl svg{width:16px;height:16px;stroke:#1a1108;fill:none;stroke-width:2.5;}
+</style>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo"><img src="assets/logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='ه'"></div>
+    <div class="brand-text"><h1 data-i18n="brand">الهُدى</h1><small data-i18n="brand_sub">EL HUDA</small></div>
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" onclick="toggleThemePanel()"><i data-lucide="palette"></i></button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+    <button class="menu-toggle icon-btn" id="menuToggle" onclick="toggleNav()"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-badge">منصة إسلامية رقمية · 2026</div>
+  <h2>خلفيات إسلامية</h2>
+  
+</section>
+
+<div class="wp-filters reveal">
+  <button class="wpf-btn active" data-cat="all"><i data-lucide="layout-grid"></i> الكل</button>
+  <button class="wpf-btn" data-cat="ayah"><i data-lucide="book-open"></i> آيات</button>
+  <button class="wpf-btn" data-cat="dhikr"><i data-lucide="circle-dot"></i> أذكار</button>
+  <button class="wpf-btn" data-cat="dark"><i data-lucide="moon"></i> داكن</button>
+  <button class="wpf-btn" data-cat="light"><i data-lucide="sun"></i> فاتح</button>
+</div>
+
+<div class="wp-grid" id="wpGrid"></div>
+
+<!-- MODAL -->
+<div class="wp-modal-bg" id="wpModalBg">
+  <div class="wp-modal">
+    <button class="wp-modal-close" onclick="closeModal()">✕</button>
+    <canvas id="wpModalCanvas"></canvas>
+    <div class="wp-modal-actions">
+      <button class="wp-modal-dl" onclick="downloadModal()"><i data-lucide="download"></i> تحميل الخلفية (1080×1920)</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+    <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+
+  <p class="footer-tagline">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+  <nav class="footer-links">
+    <a class="footer-link" href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a class="footer-link" href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a class="footer-link" href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a class="footer-link" href="tools.html" data-i18n="nav_tools">الأدوات</a>
+    <a class="footer-link" href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="effects.js" defer></script>
+<script>
+const WALLPAPERS = [
+  { id:0, cat:'ayah dark', title:'آية الكرسي', text:'اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ', ref:'سورة البقرة · 255', bg:['#040c18','#08182e'], accent:'#4a9de0', sub:'#2a6090' },
+  { id:1, cat:'dhikr dark', title:'سبحان الله', text:'سُبْحَانَ اللهِ وَبِحَمْدِهِ سُبْحَانَ اللهِ الْعَظِيمِ', ref:'', bg:['#0a1a12','#0d2218'], accent:'#5ac891', sub:'#2a7050' },
+  { id:2, cat:'ayah light', title:'وعد الله', text:'وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ', ref:'سورة الطلاق · 3', bg:['#f5f0e8','#ede5d0'], accent:'#8a6000', sub:'#b8920a' },
+  { id:3, cat:'ayah dark', title:'مع العسر يسر', text:'فَإِنَّ مَعَ الْعُسْرِ يُسْرًا إِنَّ مَعَ الْعُسْرِ يُسْرًا', ref:'سورة الشرح · 5-6', bg:['#180a0a','#2d1010'], accent:'#e07070', sub:'#a03030' },
+  { id:4, cat:'dhikr dark', title:'الاستغفار', text:'أَسْتَغْفِرُ اللهَ الْعَظِيمَ وَأَتُوبُ إِلَيْهِ', ref:'', bg:['#0a0a1a','#141428'], accent:'#9070e0', sub:'#5040a0' },
+  { id:5, cat:'ayah light', title:'نور الله', text:'اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ', ref:'سورة النور · 35', bg:['#f8f5e8','#f0e8cc'], accent:'#7a5800', sub:'#a07a10' },
+  { id:6, cat:'dhikr dark', title:'الصلاة على النبي', text:'اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ', ref:'', bg:['#071510','#0e2a1e'], accent:'#50c880', sub:'#207040' },
+  { id:7, cat:'ayah dark', title:'لا تيأس', text:'لَا تَيْأَسُوا مِن رَّوْحِ اللَّهِ إِنَّهُ لَا يَيْأَسُ مِن رَّوْحِ اللَّهِ إِلَّا الْقَوْمُ الْكَافِرُونَ', ref:'سورة يوسف · 87', bg:['#0a1018','#121e2e'], accent:'#60a8d8', sub:'#306888' },
+  { id:8, cat:'dhikr light', title:'حسبنا الله', text:'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ', ref:'سورة آل عمران · 173', bg:['#eef5ee','#ddeedd'], accent:'#1a6030', sub:'#2a8040' },
+];
+
+let activeWp = null;
+
+function drawWallpaper(canvas, wp, W, H) {
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // BG
+  const gr = ctx.createLinearGradient(0,0,W,H);
+  gr.addColorStop(0, wp.bg[0]); gr.addColorStop(1, wp.bg[1]);
+  ctx.fillStyle = gr; ctx.fillRect(0,0,W,H);
+
+  // Geometric pattern (subtle dots)
+  ctx.globalAlpha = 0.04;
+  for(let i=0;i<W;i+=60) for(let j=0;j<H;j+=60) {
+    ctx.beginPath(); ctx.arc(i,j,3,0,Math.PI*2);
+    ctx.fillStyle=wp.accent; ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+
+  // Gold top bar
+  const gBar = ctx.createLinearGradient(W*0.1,0,W*0.9,0);
+  gBar.addColorStop(0,'transparent'); gBar.addColorStop(0.5,wp.accent); gBar.addColorStop(1,'transparent');
+  ctx.fillStyle = gBar; ctx.fillRect(W*0.1, H*0.07, W*0.8, 2);
+
+  // Bismillah small
+  ctx.font = `${W*0.04}px 'Scheherazade New',serif`;
+  ctx.fillStyle = wp.accent; ctx.textAlign='center'; ctx.globalAlpha=0.5;
+  ctx.fillText('بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ', W/2, H*0.13);
+  ctx.globalAlpha=1;
+
+  // Main text
+  const fs = Math.min(W*0.065, H*0.048);
+  ctx.font = `${fs}px 'Scheherazade New',serif`;
+  ctx.fillStyle = wp.accent; ctx.textAlign='center';
+  const lines = wrapText(ctx, wp.text, W*0.82);
+  const lh = fs*1.8;
+  const ty = (H - lines.length*lh)/2;
+  lines.forEach((l,i) => ctx.fillText(l, W/2, ty+i*lh));
+
+  // Ref
+  if(wp.ref) {
+    ctx.font = `bold ${W*0.03}px 'Tajawal',sans-serif`;
+    ctx.fillStyle = wp.sub; ctx.globalAlpha=0.8;
+    ctx.fillText('— '+wp.ref, W/2, H*0.85);
+    ctx.globalAlpha=1;
+  }
+
+  // Bottom bar + branding
+  ctx.fillStyle = gBar; ctx.fillRect(W*0.1, H*0.9, W*0.8, 2);
+  ctx.font = `${W*0.025}px 'Poppins',sans-serif`;
+  ctx.fillStyle = wp.accent; ctx.globalAlpha=0.3;
+  ctx.fillText('الهُدى · El Huda', W/2, H*0.95);
+  ctx.globalAlpha=1;
+}
+
+function wrapText(ctx, text, maxW) {
+  const words = text.split(' ');
+  const lines = []; let line = '';
+  words.forEach(w => {
+    const t = line+(line?' ':'')+w;
+    if(ctx.measureText(t).width > maxW && line){lines.push(line);line=w;}else line=t;
+  });
+  if(line)lines.push(line); return lines;
+}
+
+function buildGrid() {
+  const grid = document.getElementById('wpGrid');
+  grid.innerHTML = '';
+  WALLPAPERS.forEach(wp => {
+    const div = document.createElement('div');
+    div.className = 'wp-item anim-card';
+    div.dataset.cat = wp.cat;
+    div.innerHTML = `
+      <canvas id="wpC${wp.id}"></canvas>
+      <div class="wp-badge">${wp.title}</div>
+      <div class="wp-overlay">
+        <button class="wp-dl-btn" onclick="event.stopPropagation();quickDownload(${wp.id})">
+          <i data-lucide="download"></i> تحميل
+        </button>
+      </div>`;
+    div.addEventListener('click', () => openModal(wp.id));
+    grid.appendChild(div);
+    setTimeout(() => {
+      const c = document.getElementById(`wpC${wp.id}`);
+      drawWallpaper(c, wp, 300, 533);
+    }, wp.id * 40);
+  });
+  if(typeof lucide!=='undefined') lucide.createIcons();
+}
+
+function openModal(id) {
+  activeWp = WALLPAPERS.find(w=>w.id===id);
+  const mc = document.getElementById('wpModalCanvas');
+  drawWallpaper(mc, activeWp, 1080, 1920);
+  mc.style.maxHeight = '75vh'; mc.style.width = '100%'; mc.style.objectFit = 'contain';
+  document.getElementById('wpModalBg').classList.add('open');
+  if(typeof lucide!=='undefined') lucide.createIcons();
+}
+
+function closeModal() { document.getElementById('wpModalBg').classList.remove('open'); }
+
+function downloadModal() {
+  if(!activeWp) return;
+  const c = document.getElementById('wpModalCanvas');
+  const a = document.createElement('a');
+  a.download = `elhuda-wallpaper-${activeWp.title}-${Date.now()}.png`;
+  a.href = c.toDataURL('image/png',1); a.click();
+}
+
+function quickDownload(id) {
+  const wp = WALLPAPERS.find(w=>w.id===id);
+  const c = document.createElement('canvas');
+  drawWallpaper(c, wp, 1080, 1920);
+  const a = document.createElement('a');
+  a.download = `elhuda-wallpaper-${wp.title}-${Date.now()}.png`;
+  a.href = c.toDataURL('image/png',1); a.click();
+}
+
+// Filters
+document.querySelectorAll('.wpf-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.wpf-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat=btn.dataset.cat;
+    document.querySelectorAll('.wp-item').forEach(item=>{
+      const cats=item.dataset.cat||'';
+      item.style.display=(cat==='all'||cats.includes(cat))?'':'none';
+    });
+  });
+});
+
+document.getElementById('wpModalBg').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+document.addEventListener('DOMContentLoaded', buildGrid);
+</script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();document.addEventListener("DOMContentLoaded",()=>{if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+(function(){
+  var t=localStorage.getItem('elhuda_theme');
+  if(t&&t!=='dark') document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title>دليل أحكام التجويد الكاملة مع الألوان والأمثلة | الهُدى</title>
+<meta name="description" content="تعلّم أحكام التجويد الأساسية في القرآن الكريم: الغنة، القلقلة، المد، الإخفاء، الإدغام، وهمزة الوصل، مع شرح كل حكم ومثال عليه ولونه في المصحف.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elhida.online/tajweed-guide.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://elhida.online/tajweed-guide.html">
+<meta property="og:title" content="دليل أحكام التجويد الكاملة مع الألوان والأمثلة | الهُدى">
+<meta property="og:description" content="تعلّم أحكام التجويد الأساسية في القرآن الكريم: الغنة، القلقلة، المد، الإخفاء، الإدغام، وهمزة الوصل، مع شرح كل حكم ومثال عليه ولونه في المصحف.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="دليل أحكام التجويد الكاملة مع الألوان والأمثلة | الهُدى">
+<meta name="twitter:description" content="تعلّم أحكام التجويد الأساسية في القرآن الكريم: الغنة، القلقلة، المد، الإخفاء، الإدغام، وهمزة الوصل، مع شرح كل حكم ومثال عليه ولونه في المصحف.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://elhida.online/index.html"}, {"@type": "ListItem", "position": 2, "name": "دليل أحكام التجويد الكاملة مع الألوان والأمثلة", "item": "https://elhida.online/tajweed-guide.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "دليل أحكام التجويد الكاملة مع الألوان والأمثلة", "description": "تعلّم أحكام التجويد الأساسية في القرآن الكريم: الغنة، القلقلة، المد، الإخفاء، الإدغام، وهمزة الوصل، مع شرح كل حكم ومثال عليه ولونه في المصحف.", "url": "https://elhida.online/tajweed-guide.html", "image": "https://elhida.online/assets/og-banner.jpg", "inLanguage": "ar", "publisher": {"@type": "Organization", "name": "الهُدى | El Huda", "logo": {"@type": "ImageObject", "url": "https://elhida.online/assets/logo.png"}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Poppins:wght@300;400;600;800&family=Amiri+Quran&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<style>
+.tw-rules{max-width:900px;margin:0 auto;padding:0 4vw 70px;display:flex;flex-direction:column;gap:18px;}
+.tw-rule-card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px 28px;border-inline-start:4px solid var(--rc,var(--gold));}
+.tw-rule-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.tw-rule-dot{width:16px;height:16px;border-radius:5px;flex:none;background:var(--rc,var(--gold));}
+.tw-rule-term{font-size:1.25rem;font-weight:800;color:var(--gold-2);}
+.tw-rule-row{margin-bottom:12px;}
+.tw-rule-row:last-child{margin-bottom:0;}
+.tw-rule-label{display:block;font-size:.76rem;letter-spacing:1.5px;color:var(--text-3);font-weight:700;margin-bottom:4px;text-transform:uppercase;}
+.tw-rule-row p{color:var(--text-2);line-height:1.9;font-size:.96rem;}
+.tw-rule-example{background:var(--bg-soft);border-radius:10px;padding:10px 14px;font-family:'Amiri Quran','Scheherazade New',serif;font-size:1.15rem;color:var(--text);}
+.tw-intro-note{max-width:900px;margin:0 auto 30px;padding:16px 22px;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;text-align:center;font-size:.88rem;color:var(--text-3);line-height:1.8;}
+</style>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo"><img src="assets/logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='ه'"></div>
+    <div class="brand-text"><h1 data-i18n="brand">الهُدى</h1><small data-i18n="brand_sub">EL HUDA</small></div>
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" onclick="toggleThemePanel()"><i data-lucide="palette"></i></button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+    <button class="menu-toggle icon-btn" id="menuToggle" onclick="toggleNav()"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+<a class="back-link" href="quran.html" data-i18n="back_quran">← العودة إلى القرآن</a>
+<section class="page-hero" style="min-height:26vh;">
+  <h2 id="twTitle" data-i18n="tajweed_page_title">دليل التجويد</h2>
+  <p class="lead" id="twLead" data-i18n="tajweed_page_lead">تعرّف على أهم أحكام تجويد القرآن الكريم، مع الحكمة من كل حكم ومثال عليه.</p>
+</section>
+<p class="tw-intro-note" data-i18n="tajweed_disclaimer">الألوان تقريبية لمساعدة القارئ، ولا تُعتبر مرجعًا دقيقًا لأحكام التجويد — يُرجى الرجوع لمصحف تجويد معتمد أو معلم متخصص.</p>
+<div class="tw-rules" id="twRules"></div>
+<footer>
+    <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+
+  <p class="footer-tagline">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+  <nav class="footer-links">
+    <a class="footer-link" href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a class="footer-link" href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a class="footer-link" href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a class="footer-link" href="tools.html" data-i18n="nav_tools">الأدوات</a>
+    <a class="footer-link" href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script>
+(function(){
+  var LBL = {
+    ar:{how:"كيف يُطبَّق", why:"لماذا يهم", ex:"مثال"},
+    en:{how:"How it works", why:"Why it matters", ex:"Example"},
+    fr:{how:"Comment ça marche", why:"Pourquoi c'est important", ex:"Exemple"}
+  };
+  function getLang(){ return document.body.getAttribute('data-lang') || 'ar'; }
+  var COLORS = { ghunnah:'#e07a9e', qalqalah:'#e08a3c', madd_normal:'#d94b4b', ikhfa:'#4b8fd9', idgham:'#9b6bd9', ham_wasl:'#8a9099' };
+  function build(){
+    var wrap = document.getElementById('twRules');
+    if(!wrap) return;
+    if(typeof tajweedRules === 'undefined'){ setTimeout(build, 100); return; }
+    var lang = getLang();
+    var list = tajweedRules[lang] || tajweedRules.ar;
+    var L = LBL[lang] || LBL.ar;
+    wrap.innerHTML = list.map(function(r){
+      var exampleHtml = r.example ? (
+        '<div class="tw-rule-row"><span class="tw-rule-label">'+L.ex+'</span><div class="tw-rule-example">'+r.example+'</div></div>'
+      ) : '';
+      var rc = COLORS[r.color] || '';
+      return (
+        '<div class="tw-rule-card" style="--rc:'+rc+'">' +
+          '<div class="tw-rule-head"><span class="tw-rule-dot tw-swatch tw-'+r.color+'"></span><span class="tw-rule-term">'+r.term+'</span></div>' +
+          '<div class="tw-rule-row"><span class="tw-rule-label">'+L.how+'</span><p>'+r.how+'</p></div>' +
+          '<div class="tw-rule-row"><span class="tw-rule-label">'+L.why+'</span><p>'+r.why+'</p></div>' +
+          exampleHtml +
+        '</div>'
+      );
+    }).join('');
+  }
+  document.addEventListener('DOMContentLoaded', build);
+  document.addEventListener('langchange', build);
+})();
+</script>
+<script src="effects.js" defer></script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();
+document.addEventListener("DOMContentLoaded",function(){if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+</body>
+</html>

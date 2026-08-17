@@ -1,0 +1,15 @@
+{
+  "name": "الهُدى | El Huda",
+  "short_name": "الهُدى",
+  "description": "منصة إسلامية رقمية: القرآن الكريم، مواقيت الصلاة، أسماء الله الحسنى، وقصص الأنبياء.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#080f0c",
+  "theme_color": "#0d1f1a",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>(function(){var t=localStorage.getItem('elhuda_theme');if(t&&t!=='dark')document.documentElement.setAttribute('data-theme',t);})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title>القرآن الكريم — قراءة، استماع، وتفسير | الهُدى</title>
+<meta name="description" content="مركز القرآن الكريم في الهُدى: مصحف رقمي بخط عثماني وتلوين تجويد كامل، استماع للتلاوات، تفسير ميسّر لكل آية، وبحث فوري في نص القرآن. 114 سورة و6236 آية.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elhida.online/quran.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://elhida.online/quran.html">
+<meta property="og:title" content="القرآن الكريم — قراءة، استماع، وتفسير | الهُدى">
+<meta property="og:description" content="مركز القرآن الكريم في الهُدى: مصحف رقمي بخط عثماني وتلوين تجويد كامل، استماع للتلاوات، تفسير ميسّر لكل آية، وبحث فوري في نص القرآن. 114 سورة و6236 آية.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="القرآن الكريم — قراءة، استماع، وتفسير | الهُدى">
+<meta name="twitter:description" content="مركز القرآن الكريم في الهُدى: مصحف رقمي بخط عثماني وتلوين تجويد كامل، استماع للتلاوات، تفسير ميسّر لكل آية، وبحث فوري في نص القرآن. 114 سورة و6236 آية.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://elhida.online/index.html"}, {"@type": "ListItem", "position": 2, "name": "القرآن الكريم — قراءة، استماع، وتفسير", "item": "https://elhida.online/quran.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Poppins:wght@300;400;600;800&family=Amiri+Quran&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<style>
+/* ── DASHBOARD GRID ── */
+.quran-dash{padding:0 clamp(20px,5vw,80px) 80px;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto;gap:14px;}
+
+/* ── CARDS ── */
+.qd-card{background:var(--bg-2);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:all .25s;text-decoration:none;color:inherit;display:flex;flex-direction:column;}
+.qd-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-3px);box-shadow:0 20px 50px -10px rgba(0,0,0,.5);}
+
+/* Hero card — full width */
+.qd-hero{grid-column:1/-1;display:flex;flex-direction:row;align-items:stretch;min-height:220px;}
+.qd-hero-text{flex:1;padding:40px 36px;}
+.qd-hero-visual{width:280px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(26,107,69,.25),rgba(201,168,76,.1));position:relative;overflow:hidden;}
+.qd-hero-visual .big-letter{font-family:'Scheherazade New',serif;font-size:160px;color:var(--gold);opacity:.12;line-height:1;position:absolute;}
+.qd-hero-visual .bismillah{font-family:'Scheherazade New',serif;font-size:1.3rem;color:var(--gold-2);text-align:center;padding:20px;z-index:1;line-height:2;}
+
+.qd-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 12px;font-size:.7rem;color:var(--gold);letter-spacing:1.5px;font-weight:700;margin-bottom:14px;}
+.qd-badge svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;}
+.qd-hero h2{font-size:1.8rem;font-weight:900;margin-bottom:8px;color:var(--text);}
+.qd-hero p{color:var(--text-3);font-size:.88rem;line-height:1.75;margin-bottom:24px;}
+.qd-hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+
+/* Feature cards */
+.qd-feat{padding:28px;}
+.qd-feat-icon{width:48px;height:48px;border-radius:14px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.15);display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.qd-feat-icon svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.8;}
+.qd-feat h3{font-size:1rem;font-weight:800;margin-bottom:6px;color:var(--text);}
+.qd-feat p{font-size:.82rem;color:var(--text-3);line-height:1.7;margin-bottom:16px;}
+.qd-feat-tag{font-size:.7rem;color:var(--gold);font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:.7;}
+
+/* Stats row */
+.qd-stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border-radius:16px;overflow:hidden;border:1px solid var(--line);}
+.qd-stat{background:var(--bg-2);padding:22px 16px;text-align:center;}
+.qd-stat-n{font-size:1.8rem;font-weight:900;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--gold),var(--gold-3));-webkit-background-clip:text;background-clip:text;color:transparent;display:block;line-height:1;}
+.qd-stat-l{font-size:.72rem;color:var(--text-3);margin-top:5px;}
+
+/* Tajweed card */
+.qd-tajweed{grid-column:span 2;}
+.tajweed-colors{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.tj-color{display:flex;align-items:center;gap:7px;font-size:.78rem;color:var(--text-2);}
+.tj-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+
+/* Last read progress */
+.qd-progress{grid-column:span 1;}
+.progress-ring{display:flex;justify-content:center;margin:16px 0;}
+.progress-ring svg{width:100px;height:100px;}
+.pr-bg{fill:none;stroke:var(--line);stroke-width:6;}
+.pr-fill{fill:none;stroke:var(--gold);stroke-width:6;stroke-linecap:round;transform-origin:center;transform:rotate(-90deg);transition:stroke-dashoffset 1s ease;}
+.pr-text{fill:var(--gold-2);font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;text-anchor:middle;dominant-baseline:middle;}
+
+/* Surahs grid */
+.qd-surahs{grid-column:1/-1;}
+.qd-surahs-inner{padding:24px 28px;}
+.surah-search{position:relative;margin-bottom:16px;}
+.surah-search input{width:100%;padding:11px 44px 11px 16px;border-radius:12px;border:1px solid var(--line-2);background:var(--bg-3);color:var(--text);font-family:inherit;font-size:.88rem;outline:none;transition:.2s;}
+.surah-search input:focus{border-color:var(--gold);}
+.surah-search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--text-3);fill:none;stroke-width:2;}
+.surah-tabs{display:flex;gap:6px;margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:12px;}
+.st-btn{padding:6px 16px;border-radius:8px;border:none;background:transparent;color:var(--text-3);font-family:inherit;font-size:.82rem;cursor:pointer;transition:.2s;}
+.st-btn.active{background:rgba(201,168,76,.1);color:var(--gold-2);font-weight:700;}
+.surah-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;max-height:420px;overflow-y:auto;padding-left:4px;}
+.surah-list::-webkit-scrollbar{width:5px;}
+.surah-list::-webkit-scrollbar-track{background:transparent;}
+.surah-list::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:4px;}
+.surah-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:11px;cursor:pointer;transition:.2s;border:1px solid transparent;}
+.surah-item:hover{background:var(--bg-3);border-color:var(--line);}
+.surah-num{width:32px;height:32px;border-radius:8px;background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-family:'Poppins',sans-serif;color:var(--gold);font-weight:700;flex-shrink:0;}
+.surah-info{flex:1;min-width:0;}
+.surah-ar{font-family:'Scheherazade New',serif;font-size:.95rem;color:var(--gold-2);font-weight:700;}
+.surah-en{font-size:.72rem;color:var(--text-3);}
+.surah-meta{font-size:.68rem;color:var(--text-3);font-family:'Poppins',sans-serif;margin-top:2px;}
+
+/* Mobile responsive */
+@media(max-width:900px){
+  .quran-dash{grid-template-columns:1fr 1fr;}
+  .qd-hero{flex-direction:column;}
+  .qd-hero-visual{width:100%;height:100px;}
+  .qd-stats{grid-template-columns:repeat(3,1fr);}
+  .qd-tajweed{grid-column:span 2;}
+}
+@media(max-width:600px){
+  .quran-dash{grid-template-columns:1fr;}
+  .qd-card,.qd-tajweed,.qd-progress{grid-column:span 1!important;}
+  .qd-stats{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo"><img src="assets/logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='ه'"></div>
+    <div class="brand-text"><h1 data-i18n="brand">الهُدى</h1><small data-i18n="brand_sub">EL HUDA</small></div>
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" class="current" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" onclick="toggleThemePanel()"><i data-lucide="palette"></i></button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+    <button class="menu-toggle icon-btn" id="menuToggle" onclick="toggleNav()"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-badge">القرآن الكريم</div>
+  <h2>مركز القرآن الكريم</h2>
+  <p>اقرأ، استمع، وتدبّر — كل ما تحتاجه للتفاعل مع كلام الله في مكان واحد.</p>
+</section>
+
+<div class="quran-dash reveal">
+
+  <!-- HERO CARD -->
+  <div class="qd-card qd-hero">
+    <div class="qd-hero-text">
+      <div class="qd-badge"><i data-lucide="book-open"></i> ابدأ القراءة</div>
+      <h2>المصحف الرقمي</h2>
+      <p>اقرأ القرآن بخط عثماني أصيل مع تلوين التجويد الكامل — غُنّة، مدّ، إدغام، وأكثر. تجربة هادئة ومريحة.</p>
+      <div class="qd-hero-btns">
+        <a href="quran-read.html" class="btn btn-primary btn-sm"><i data-lucide="book-open"></i> اقرأ الآن</a>
+        <a href="quran-read.html" class="btn btn-ghost btn-sm" id="heroContinueBtn"><i data-lucide="bookmark"></i> متابعة من حيث توقفت</a>
+      </div>
+    </div>
+    <div class="qd-hero-visual">
+      <span class="big-letter">ق</span>
+      <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="qd-stats">
+    <div class="qd-stat"><span class="qd-stat-n">114</span><span class="qd-stat-l">سورة</span></div>
+    <div class="qd-stat"><span class="qd-stat-n">6236</span><span class="qd-stat-l">آية</span></div>
+    <div class="qd-stat"><span class="qd-stat-n">30</span><span class="qd-stat-l">جزءاً</span></div>
+    <div class="qd-stat"><span class="qd-stat-n">604</span><span class="qd-stat-l">صفحة</span></div>
+    <div class="qd-stat"><span class="qd-stat-n">1</span><span class="qd-stat-l">لغة</span></div>
+  </div>
+
+  <!-- LISTEN -->
+  <a class="qd-card qd-feat" href="quran-listen.html">
+    <div class="qd-feat-icon"><i data-lucide="headphones"></i></div>
+    <h3>الاستماع للتلاوات</h3>
+    <p>استمع لتلاوة كل آية، أو للسورة كاملة تلاوة متصلة، بصوت الشيخ مشاري العفاسي.</p>
+    <div class="qd-feat-tag">تلاوة متصلة</div>
+  </a>
+
+  <!-- TAFSIR -->
+  <a class="qd-card qd-feat" href="quran-tafsir.html">
+    <div class="qd-feat-icon"><i data-lucide="layers"></i></div>
+    <h3>التفسير الميسّر</h3>
+    <p>تفسير مبسط لكل آية يُعينك على فهم كلام الله والتدبر فيه بيسر وسهولة.</p>
+    <div class="qd-feat-tag">6236 تفسير آية</div>
+  </a>
+
+  <!-- SEARCH -->
+  <a class="qd-card qd-feat" href="search.html">
+    <div class="qd-feat-icon"><i data-lucide="search"></i></div>
+    <h3>البحث في القرآن</h3>
+    <p>ابحث عن أي كلمة أو آية فورًا في نص القرآن الكريم.</p>
+    <div class="qd-feat-tag">بحث فوري</div>
+  </a>
+
+  <!-- TAJWEED -->
+  <a class="qd-card qd-feat qd-tajweed" href="tajweed-guide.html">
+    <div class="qd-feat-icon"><i data-lucide="sparkles"></i></div>
+    <h3>دليل التجويد وتلوينه</h3>
+    <p>كل حكم تجويدي بلون مميز أثناء القراءة، مع شرح كامل لكل حكم وسبب أهميته.</p>
+    <div class="tajweed-colors">
+      <div class="tj-color"><div class="tj-dot" style="background:#e07a9e"></div>الغنة</div>
+      <div class="tj-color"><div class="tj-dot" style="background:#d94b4b"></div>المد</div>
+      <div class="tj-color"><div class="tj-dot" style="background:#9b6bd9"></div>الإدغام</div>
+      <div class="tj-color"><div class="tj-dot" style="background:#4b8fd9"></div>الإخفاء والإقلاب</div>
+      <div class="tj-color"><div class="tj-dot" style="background:#e08a3c"></div>القلقلة</div>
+      <div class="tj-color"><div class="tj-dot" style="background:#8a9099"></div>همزة الوصل</div>
+    </div>
+  </a>
+
+  <!-- PROGRESS -->
+  <div class="qd-card qd-feat qd-progress" style="cursor:default;">
+    <div class="qd-feat-icon"><i data-lucide="bar-chart-2"></i></div>
+    <h3>تقدم القراءة</h3>
+    <div class="progress-ring">
+      <svg viewBox="0 0 100 100">
+        <circle class="pr-bg" cx="50" cy="50" r="42"/>
+        <circle class="pr-fill" id="progressCircle" cx="50" cy="50" r="42"
+          stroke-dasharray="264" stroke-dashoffset="264"/>
+        <text class="pr-text" x="50" y="50" id="progressText">0%</text>
+      </svg>
+    </div>
+    <p id="progressCaption" style="font-size:.8rem;color:var(--text-3);text-align:center;">ابدأ القراءة لتتبع تقدمك</p>
+    <a href="quran-read.html" id="progressContinueBtn" class="btn btn-primary btn-sm" style="margin-top:8px;justify-content:center;">
+      <i data-lucide="play"></i> ابدأ الآن
+    </a>
+  </div>
+
+  <!-- SURAHS LIST -->
+  <div class="qd-card qd-surahs">
+    <div class="qd-surahs-inner">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <h3 style="font-size:1rem;font-weight:800;">السور القرآنية</h3>
+        <span style="font-size:.75rem;color:var(--text-3);">114 سورة</span>
+      </div>
+      <div class="surah-search">
+        <i data-lucide="search"></i>
+        <input type="text" id="surahSearch" placeholder="ابحث عن سورة...">
+      </div>
+      <div class="surah-tabs">
+        <button class="st-btn active" onclick="filterSurahs('all',this)">الكل</button>
+        <button class="st-btn" onclick="filterSurahs('makki',this)">مكية</button>
+        <button class="st-btn" onclick="filterSurahs('madani',this)">مدنية</button>
+      </div>
+      <div class="surah-list" id="surahList"></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+    <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+
+  <p class="footer-tagline">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+  <nav class="footer-links">
+    <a class="footer-link" href="quran-read.html">المصحف</a>
+    <a class="footer-link" href="quran-listen.html">الاستماع</a>
+    <a class="footer-link" href="quran-tafsir.html">التفسير</a>
+    <a class="footer-link" href="search.html">البحث</a>
+  </nav>
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script>
+const SURAHS = [
+  {n:1,ar:'الفاتحة',en:'Al-Fatihah',type:'makki',ayat:7},{n:2,ar:'البقرة',en:'Al-Baqarah',type:'madani',ayat:286},{n:3,ar:'آل عمران',en:"Al-Imran",type:'madani',ayat:200},{n:4,ar:'النساء',en:"An-Nisa",type:'madani',ayat:176},{n:5,ar:'المائدة',en:"Al-Maidah",type:'madani',ayat:120},{n:6,ar:'الأنعام',en:"Al-An'am",type:'makki',ayat:165},{n:7,ar:'الأعراف',en:"Al-A'raf",type:'makki',ayat:206},{n:8,ar:'الأنفال',en:"Al-Anfal",type:'madani',ayat:75},{n:9,ar:'التوبة',en:"At-Tawbah",type:'madani',ayat:129},{n:10,ar:'يونس',en:"Yunus",type:'makki',ayat:109},
+  {n:11,ar:'هود',en:"Hud",type:'makki',ayat:123},{n:12,ar:'يوسف',en:"Yusuf",type:'makki',ayat:111},{n:13,ar:'الرعد',en:"Ar-Ra'd",type:'madani',ayat:43},{n:14,ar:'إبراهيم',en:"Ibrahim",type:'makki',ayat:52},{n:15,ar:'الحجر',en:"Al-Hijr",type:'makki',ayat:99},{n:16,ar:'النحل',en:"An-Nahl",type:'makki',ayat:128},{n:17,ar:'الإسراء',en:"Al-Isra",type:'makki',ayat:111},{n:18,ar:'الكهف',en:"Al-Kahf",type:'makki',ayat:110},{n:19,ar:'مريم',en:"Maryam",type:'makki',ayat:98},{n:20,ar:'طه',en:"Ta-Ha",type:'makki',ayat:135},
+  {n:21,ar:'الأنبياء',en:"Al-Anbiya",type:'makki',ayat:112},{n:22,ar:'الحج',en:"Al-Hajj",type:'madani',ayat:78},{n:23,ar:'المؤمنون',en:"Al-Muminun",type:'makki',ayat:118},{n:24,ar:'النور',en:"An-Nur",type:'madani',ayat:64},{n:25,ar:'الفرقان',en:"Al-Furqan",type:'makki',ayat:77},{n:26,ar:'الشعراء',en:"Ash-Shu'ara",type:'makki',ayat:227},{n:27,ar:'النمل',en:"An-Naml",type:'makki',ayat:93},{n:28,ar:'القصص',en:"Al-Qasas",type:'makki',ayat:88},{n:29,ar:'العنكبوت',en:"Al-Ankabut",type:'makki',ayat:69},{n:30,ar:'الروم',en:"Ar-Rum",type:'makki',ayat:60},
+  {n:31,ar:'لقمان',en:"Luqman",type:'makki',ayat:34},{n:32,ar:'السجدة',en:"As-Sajdah",type:'makki',ayat:30},{n:33,ar:'الأحزاب',en:"Al-Ahzab",type:'madani',ayat:73},{n:34,ar:'سبأ',en:"Saba",type:'makki',ayat:54},{n:35,ar:'فاطر',en:"Fatir",type:'makki',ayat:45},{n:36,ar:'يس',en:"Ya-Sin",type:'makki',ayat:83},{n:37,ar:'الصافات',en:"As-Saffat",type:'makki',ayat:182},{n:38,ar:'ص',en:"Sad",type:'makki',ayat:88},{n:39,ar:'الزمر',en:"Az-Zumar",type:'makki',ayat:75},{n:40,ar:'غافر',en:"Ghafir",type:'makki',ayat:85},
+  {n:41,ar:'فصلت',en:"Fussilat",type:'makki',ayat:54},{n:42,ar:'الشورى',en:"Ash-Shura",type:'makki',ayat:53},{n:43,ar:'الزخرف',en:"Az-Zukhruf",type:'makki',ayat:89},{n:44,ar:'الدخان',en:"Ad-Dukhan",type:'makki',ayat:59},{n:45,ar:'الجاثية',en:"Al-Jathiyah",type:'makki',ayat:37},{n:46,ar:'الأحقاف',en:"Al-Ahqaf",type:'makki',ayat:35},{n:47,ar:'محمد',en:"Muhammad",type:'madani',ayat:38},{n:48,ar:'الفتح',en:"Al-Fath",type:'madani',ayat:29},{n:49,ar:'الحجرات',en:"Al-Hujurat",type:'madani',ayat:18},{n:50,ar:'ق',en:"Qaf",type:'makki',ayat:45},
+  {n:51,ar:'الذاريات',en:"Adh-Dhariyat",type:'makki',ayat:60},{n:52,ar:'الطور',en:"At-Tur",type:'makki',ayat:49},{n:53,ar:'النجم',en:"An-Najm",type:'makki',ayat:62},{n:54,ar:'القمر',en:"Al-Qamar",type:'makki',ayat:55},{n:55,ar:'الرحمن',en:"Ar-Rahman",type:'madani',ayat:78},{n:56,ar:'الواقعة',en:"Al-Waqi'ah",type:'makki',ayat:96},{n:57,ar:'الحديد',en:"Al-Hadid",type:'madani',ayat:29},{n:58,ar:'المجادلة',en:"Al-Mujadila",type:'madani',ayat:22},{n:59,ar:'الحشر',en:"Al-Hashr",type:'madani',ayat:24},{n:60,ar:'الممتحنة',en:"Al-Mumtahanah",type:'madani',ayat:13},
+  {n:61,ar:'الصف',en:"As-Saf",type:'madani',ayat:14},{n:62,ar:'الجمعة',en:"Al-Jumu'ah",type:'madani',ayat:11},{n:63,ar:'المنافقون',en:"Al-Munafiqun",type:'madani',ayat:11},{n:64,ar:'التغابن',en:"At-Taghabun",type:'madani',ayat:18},{n:65,ar:'الطلاق',en:"At-Talaq",type:'madani',ayat:12},{n:66,ar:'التحريم',en:"At-Tahrim",type:'madani',ayat:12},{n:67,ar:'الملك',en:"Al-Mulk",type:'makki',ayat:30},{n:68,ar:'القلم',en:"Al-Qalam",type:'makki',ayat:52},{n:69,ar:'الحاقة',en:"Al-Haqqah",type:'makki',ayat:52},{n:70,ar:'المعارج',en:"Al-Ma'arij",type:'makki',ayat:44},
+  {n:71,ar:'نوح',en:"Nuh",type:'makki',ayat:28},{n:72,ar:'الجن',en:"Al-Jinn",type:'makki',ayat:28},{n:73,ar:'المزمل',en:"Al-Muzzammil",type:'makki',ayat:20},{n:74,ar:'المدثر',en:"Al-Muddaththir",type:'makki',ayat:56},{n:75,ar:'القيامة',en:"Al-Qiyamah",type:'makki',ayat:40},{n:76,ar:'الإنسان',en:"Al-Insan",type:'madani',ayat:31},{n:77,ar:'المرسلات',en:"Al-Mursalat",type:'makki',ayat:50},{n:78,ar:'النبأ',en:"An-Naba",type:'makki',ayat:40},{n:79,ar:'النازعات',en:"An-Nazi'at",type:'makki',ayat:46},{n:80,ar:'عبس',en:"'Abasa",type:'makki',ayat:42},
+  {n:81,ar:'التكوير',en:"At-Takwir",type:'makki',ayat:29},{n:82,ar:'الانفطار',en:"Al-Infitar",type:'makki',ayat:19},{n:83,ar:'المطففين',en:"Al-Mutaffifin",type:'makki',ayat:36},{n:84,ar:'الانشقاق',en:"Al-Inshiqaq",type:'makki',ayat:25},{n:85,ar:'البروج',en:"Al-Buruj",type:'makki',ayat:22},{n:86,ar:'الطارق',en:"At-Tariq",type:'makki',ayat:17},{n:87,ar:'الأعلى',en:"Al-A'la",type:'makki',ayat:19},{n:88,ar:'الغاشية',en:"Al-Ghashiyah",type:'makki',ayat:26},{n:89,ar:'الفجر',en:"Al-Fajr",type:'makki',ayat:30},{n:90,ar:'البلد',en:"Al-Balad",type:'makki',ayat:20},
+  {n:91,ar:'الشمس',en:"Ash-Shams",type:'makki',ayat:15},{n:92,ar:'الليل',en:"Al-Layl",type:'makki',ayat:21},{n:93,ar:'الضحى',en:"Ad-Duha",type:'makki',ayat:11},{n:94,ar:'الشرح',en:"Ash-Sharh",type:'makki',ayat:8},{n:95,ar:'التين',en:"At-Tin",type:'makki',ayat:8},{n:96,ar:'العلق',en:"Al-Alaq",type:'makki',ayat:19},{n:97,ar:'القدر',en:"Al-Qadr",type:'makki',ayat:5},{n:98,ar:'البينة',en:"Al-Bayyinah",type:'madani',ayat:8},{n:99,ar:'الزلزلة',en:"Az-Zalzalah",type:'madani',ayat:8},{n:100,ar:'العاديات',en:"Al-Adiyat",type:'makki',ayat:11},
+  {n:101,ar:'القارعة',en:"Al-Qari'ah",type:'makki',ayat:11},{n:102,ar:'التكاثر',en:"At-Takathur",type:'makki',ayat:8},{n:103,ar:'العصر',en:"Al-Asr",type:'makki',ayat:3},{n:104,ar:'الهمزة',en:"Al-Humazah",type:'makki',ayat:9},{n:105,ar:'الفيل',en:"Al-Fil",type:'makki',ayat:5},{n:106,ar:'قريش',en:"Quraysh",type:'makki',ayat:4},{n:107,ar:'الماعون',en:"Al-Ma'un",type:'makki',ayat:7},{n:108,ar:'الكوثر',en:"Al-Kawthar",type:'makki',ayat:3},{n:109,ar:'الكافرون',en:"Al-Kafirun",type:'makki',ayat:6},{n:110,ar:'النصر',en:"An-Nasr",type:'madani',ayat:3},
+  {n:111,ar:'المسد',en:"Al-Masad",type:'makki',ayat:5},{n:112,ar:'الإخلاص',en:"Al-Ikhlas",type:'makki',ayat:4},{n:113,ar:'الفلق',en:"Al-Falaq",type:'makki',ayat:5},{n:114,ar:'الناس',en:"An-Nas",type:'makki',ayat:6}
+];
+
+let currentFilter = 'all', searchQ = '';
+
+function renderSurahs() {
+  const list = document.getElementById('surahList');
+  const filtered = SURAHS.filter(s => {
+    const matchType = currentFilter === 'all' || s.type === currentFilter;
+    const matchQ = !searchQ || s.ar.includes(searchQ) || s.en.toLowerCase().includes(searchQ.toLowerCase()) || String(s.n).includes(searchQ);
+    return matchType && matchQ;
+  });
+  list.innerHTML = filtered.map(s => `
+    <div class="surah-item" onclick="openSurah(${s.n})">
+      <div class="surah-num">${s.n}</div>
+      <div class="surah-info">
+        <div class="surah-ar">${s.ar}</div>
+        <div class="surah-en">${s.en}</div>
+        <div class="surah-meta">${s.ayat} آية · ${s.type==='makki'?'مكية':'مدنية'}</div>
+      </div>
+    </div>`).join('');
+}
+
+function filterSurahs(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.st-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSurahs();
+}
+
+function openSurah(n) {
+  window.location.href = `quran-read.html?surah=${n}`;
+}
+
+document.getElementById('surahSearch').addEventListener('input', function() {
+  searchQ = this.value.trim();
+  renderSurahs();
+});
+
+// Progress ring — reflects real reading activity recorded in quran-read.html
+const totalAyatRead = parseInt(localStorage.getItem('quran_progress_ayat') || '0', 10);
+const pct = Math.min(100, Math.round(totalAyatRead / 6236 * 100));
+const circle = document.getElementById('progressCircle');
+const txt = document.getElementById('progressText');
+const caption = document.getElementById('progressCaption');
+const continueBtn = document.getElementById('progressContinueBtn');
+if (circle && totalAyatRead > 0) {
+  const offset = 264 - (264 * pct / 100);
+  circle.style.strokeDashoffset = offset;
+  txt.textContent = pct + '%';
+  if (caption) caption.textContent = `${totalAyatRead} من 6236 آية`;
+  const lastSurah = localStorage.getItem('quran_last_surah');
+  if (continueBtn && lastSurah) {
+    continueBtn.href = `quran-read.html?surah=${lastSurah}`;
+    continueBtn.innerHTML = '<i data-lucide="play"></i> متابعة القراءة';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  }
+}
+const heroContinueBtn = document.getElementById('heroContinueBtn');
+if (heroContinueBtn) {
+  const ls = localStorage.getItem('quran_last_surah');
+  if (ls) heroContinueBtn.href = `quran-read.html?surah=${ls}`;
+}
+
+renderSurahs();
+</script>
+<script src="effects.js" defer></script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();document.addEventListener("DOMContentLoaded",()=>{if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+</body>
+</html>

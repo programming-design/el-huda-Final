@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+// Instant theme + lang restore (before render)
+(function(){
+  var t=localStorage.getItem('elhuda_theme');
+  if(t&&t!=='dark') document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title>الاستماع لتلاوة القرآن الكريم كاملاً | الهُدى</title>
+<meta name="description" content="استمع إلى تلاوة القرآن الكريم بصوت الشيخ مشاري العفاسي، آية بآية أو سورة كاملة تلاوة متصلة، مباشرة من متصفحك دون تحميل.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elhida.online/quran-listen.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://elhida.online/quran-listen.html">
+<meta property="og:title" content="الاستماع لتلاوة القرآن الكريم كاملاً | الهُدى">
+<meta property="og:description" content="استمع إلى تلاوة القرآن الكريم بصوت الشيخ مشاري العفاسي، آية بآية أو سورة كاملة تلاوة متصلة، مباشرة من متصفحك دون تحميل.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="الاستماع لتلاوة القرآن الكريم كاملاً | الهُدى">
+<meta name="twitter:description" content="استمع إلى تلاوة القرآن الكريم بصوت الشيخ مشاري العفاسي، آية بآية أو سورة كاملة تلاوة متصلة، مباشرة من متصفحك دون تحميل.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://elhida.online/index.html"}, {"@type": "ListItem", "position": 2, "name": "الاستماع لتلاوة القرآن الكريم كاملاً", "item": "https://elhida.online/quran-listen.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Poppins:wght@300;400;600;800&family=Amiri+Quran&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<STyle>
+  /* =========================================================
+   EL HUDA — QURAN PAGE
+   Professional Quran Reading Layout
+   Theme-token based
+   ========================================================= */
+
+
+/* =========================================================
+   Main Quran Container
+   ========================================================= */
+
+.quran-page,
+.quran-container,
+.quran-content {
+    width: min(1120px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+
+/* =========================================================
+   Quran Header / Hero
+   ========================================================= */
+
+.quran-page .page-hero,
+.quran-container .page-hero {
+    width: min(1120px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+.quran-page {
+    padding-bottom: 100px;
+}
+
+
+/* =========================================================
+   Quran Controls
+   ========================================================= */
+
+.quran-controls,
+.quran-toolbar,
+.quran-settings {
+    width: 100%;
+
+    margin: 25px auto 0;
+
+    padding: 22px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 14px;
+
+    border: 1px solid var(--line);
+
+    border-radius: var(--r-lg);
+
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(
+                in srgb,
+                var(--gold) 3%,
+                var(--bg-2)
+            ),
+            var(--bg-soft)
+        );
+
+    box-shadow: var(--shadow-sm);
+
+    backdrop-filter: blur(15px);
+}
+
+
+/* =========================================================
+   Select / Inputs
+   ========================================================= */
+
+.quran-controls select,
+.quran-toolbar select,
+.quran-settings select,
+.quran-controls button,
+.quran-toolbar button,
+.quran-settings button {
+    min-height: 46px;
+
+    border: 1px solid var(--line);
+
+    border-radius: var(--r);
+
+    background: var(--bg-soft);
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    transition:
+        border-color .25s ease,
+        background .25s ease,
+        color .25s ease,
+        box-shadow .25s ease;
+}
+
+.quran-controls select,
+.quran-toolbar select,
+.quran-settings select {
+    min-width: 220px;
+
+    padding: 0 15px;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+.quran-controls select:focus,
+.quran-toolbar select:focus,
+.quran-settings select:focus {
+    border-color: var(--line-2);
+
+    box-shadow:
+        0 0 0 3px
+        color-mix(
+            in srgb,
+            var(--gold) 8%,
+            transparent
+        );
+}
+
+
+/* =========================================================
+   Quran Options Row
+   ========================================================= */
+
+.quran-options,
+.quran-toolbar-row {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   Quran Surah Selector
+   ========================================================= */
+
+.quran-surah-select,
+.surah-select {
+    width: 100%;
+
+    min-height: 58px;
+
+    padding: 0 20px;
+
+    border-radius: var(--r-lg);
+
+    border: 1px solid var(--line);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--bg-2),
+            var(--bg-soft)
+        );
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.quran-surah-select:hover,
+.surah-select:hover {
+    border-color: var(--line-2);
+}
+
+
+/* =========================================================
+   Quran Action Buttons
+   ========================================================= */
+
+.quran-action,
+.quran-controls .active,
+.quran-toolbar .active {
+    color: var(--gold-2);
+
+    border-color: var(--line-2);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 8%,
+            var(--bg-soft)
+        );
+}
+
+
+/* =========================================================
+   Bismillah
+   ========================================================= */
+
+.bismillah,
+.quran-bismillah {
+    width: 100%;
+
+    margin: 45px auto 30px;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    font-family:
+        "Amiri Quran",
+        "Scheherazade New",
+        serif;
+
+    font-size: clamp(28px, 4vw, 42px);
+
+    line-height: 2;
+
+    color: var(--gold-3);
+
+    border-top: 1px solid var(--line);
+
+    border-bottom: 1px solid var(--line);
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            color-mix(
+                in srgb,
+                var(--gold) 5%,
+                transparent
+            ),
+            transparent 70%
+        );
+}
+
+
+/* =========================================================
+   Ayah List
+   ========================================================= */
+
+.quran-ayahs,
+.ayahs-list,
+.quran-list,
+.ayah-list {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin: 30px auto 0;
+}
+
+
+/* =========================================================
+   AYAH CARD
+   All cards same width
+   ========================================================= */
+
+.quran-ayah,
+.ayah-card,
+.ayah-item,
+.quran-verse {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 175px;
+
+    box-sizing: border-box;
+
+    padding: 58px 75px 45px;
+
+    border-radius: var(--r-lg);
+
+    border: 1px solid var(--line);
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--bg-2),
+            var(--bg-soft)
+        );
+
+    box-shadow:
+        0 8px 28px
+        color-mix(
+            in srgb,
+            var(--bg) 35%,
+            transparent
+        );
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+
+/* subtle inner border */
+
+.quran-ayah::before,
+.ayah-card::before,
+.ayah-item::before,
+.quran-verse::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 7px;
+
+    border-radius:
+        calc(var(--r-lg) - 6px);
+
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--gold) 5%,
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+/* Hover */
+
+.quran-ayah:hover,
+.ayah-card:hover,
+.ayah-item:hover,
+.quran-verse:hover {
+    transform: translateY(-3px);
+
+    border-color: var(--line-2);
+
+    background:
+        linear-gradient(
+            145deg,
+            color-mix(
+                in srgb,
+                var(--gold) 4%,
+                var(--bg-2)
+            ),
+            var(--bg-soft)
+        );
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* =========================================================
+   Ayah Number
+   ========================================================= */
+
+.quran-ayah .ayah-number,
+.ayah-card .ayah-number,
+.ayah-item .ayah-number,
+.quran-verse .ayah-number,
+.ayah-number {
+    position: absolute;
+
+    top: 18px;
+
+    right: 20px;
+
+    width: 42px;
+
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--line-2);
+
+    color: var(--gold);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 6%,
+            var(--bg-2)
+        );
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   Ayah Audio Button
+   ========================================================= */
+
+.quran-ayah .play-btn,
+.ayah-card .play-btn,
+.ayah-item .play-btn,
+.quran-verse .play-btn,
+.ayah-audio-btn {
+    position: absolute;
+
+    top: 18px;
+
+    left: 20px;
+
+    width: 42px;
+
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--line-2);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 5%,
+            var(--bg-2)
+        );
+
+    color: var(--gold);
+
+    cursor: pointer;
+
+    transition: .25s ease;
+
+    z-index: 2;
+}
+
+.quran-ayah .play-btn:hover,
+.ayah-card .play-btn:hover,
+.ayah-item .play-btn:hover,
+.quran-verse .play-btn:hover,
+.ayah-audio-btn:hover {
+    background: var(--gold);
+
+    color: var(--bg);
+
+    transform: scale(1.06);
+}
+
+
+/* =========================================================
+   Quran Arabic Text
+   ========================================================= */
+
+.quran-ayah .ayah-text,
+.ayah-card .ayah-text,
+.ayah-item .ayah-text,
+.quran-verse .ayah-text,
+.ayah-text {
+    position: relative;
+
+    z-index: 1;
+
+    width: 100%;
+
+    margin: 0 auto;
+
+    text-align: center;
+
+    direction: rtl;
+
+    font-family:
+        "Amiri Quran",
+        "Scheherazade New",
+        serif;
+
+    font-size: clamp(28px, 3.2vw, 42px);
+
+    line-height: 2.15;
+
+    letter-spacing: 0;
+
+    color: var(--text);
+
+    word-spacing: 5px;
+}
+
+
+/* =========================================================
+   Ayah Ornament
+   ========================================================= */
+
+.quran-ayah::after,
+.ayah-card::after,
+.ayah-item::after,
+.quran-verse::after {
+    content: "۞";
+
+    position: absolute;
+
+    bottom: 10px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color:
+        color-mix(
+            in srgb,
+            var(--gold) 22%,
+            transparent
+        );
+
+    font-family:
+        "Amiri Quran",
+        serif;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   Surah Header
+   ========================================================= */
+
+.surah-header,
+.quran-surah-header {
+    width: 100%;
+
+    min-height: 110px;
+
+    margin: 35px auto;
+
+    padding: 25px 30px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-radius: var(--r-lg);
+
+    border: 1px solid var(--line);
+
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(
+                in srgb,
+                var(--gold) 7%,
+                var(--bg-2)
+            ),
+            var(--bg-soft)
+        );
+
+    box-shadow: var(--shadow-sm);
+}
+
+.surah-header h2,
+.quran-surah-header h2 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: clamp(24px, 4vw, 35px);
+}
+
+.surah-header p,
+.quran-surah-header p {
+    margin: 6px 0 0;
+
+    color: var(--text-3);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   Reading Controls
+   ========================================================= */
+
+.reading-mode,
+.quran-reading-mode {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.reading-mode button,
+.quran-reading-mode button {
+    min-height: 40px;
+
+    padding: 0 14px;
+
+    border-radius: var(--r);
+
+    border: 1px solid var(--line);
+
+    background: var(--bg-soft);
+
+    color: var(--text-2);
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.reading-mode button:hover,
+.quran-reading-mode button:hover,
+.reading-mode button.active,
+.quran-reading-mode button.active {
+    color: var(--gold-2);
+
+    border-color: var(--line-2);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--gold) 7%,
+            var(--bg-2)
+        );
+}
+
+
+/* =========================================================
+   Quran Page Divider
+   ========================================================= */
+
+.quran-divider {
+    width: 100%;
+
+    height: 1px;
+
+    margin: 35px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--line-2),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   Responsive — Tablet
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .quran-page,
+    .quran-container,
+    .quran-content {
+        width: min(100% - 28px, 700px);
+    }
+
+    .quran-controls,
+    .quran-toolbar,
+    .quran-settings {
+        padding: 16px;
+    }
+
+    .quran-controls select,
+    .quran-toolbar select,
+    .quran-settings select {
+        min-width: 180px;
+        flex: 1;
+    }
+
+    .quran-ayah,
+    .ayah-card,
+    .ayah-item,
+    .quran-verse {
+        padding:
+            58px
+            45px
+            42px;
+    }
+
+    .quran-ayah .ayah-text,
+    .ayah-card .ayah-text,
+    .ayah-item .ayah-text,
+    .quran-verse .ayah-text,
+    .ayah-text {
+        font-size: clamp(25px, 5vw, 35px);
+        line-height: 2.1;
+    }
+}
+
+
+/* =========================================================
+   Responsive — Mobile
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .quran-page,
+    .quran-container,
+    .quran-content {
+        width: calc(100% - 20px);
+    }
+
+    .quran-controls,
+    .quran-toolbar,
+    .quran-settings {
+        padding: 12px;
+
+        gap: 9px;
+    }
+
+    .quran-options,
+    .quran-toolbar-row {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .quran-controls select,
+    .quran-toolbar select,
+    .quran-settings select,
+    .quran-surah-select,
+    .surah-select {
+        width: 100%;
+
+        min-width: 0;
+
+        min-height: 48px;
+    }
+
+    .bismillah,
+    .quran-bismillah {
+        margin: 30px auto 22px;
+
+        padding: 22px 10px;
+
+        font-size: 28px;
+    }
+
+    .quran-ayah,
+    .ayah-card,
+    .ayah-item,
+    .quran-verse {
+        min-height: 155px;
+
+        padding:
+            62px
+            22px
+            40px;
+
+        border-radius: 18px;
+    }
+
+    .quran-ayah .ayah-text,
+    .ayah-card .ayah-text,
+    .ayah-item .ayah-text,
+    .quran-verse .ayah-text,
+    .ayah-text {
+        font-size: 25px;
+
+        line-height: 2.15;
+
+        word-spacing: 3px;
+    }
+
+    .quran-ayah .ayah-number,
+    .ayah-card .ayah-number,
+    .ayah-item .ayah-number,
+    .quran-verse .ayah-number,
+    .ayah-number {
+        right: 14px;
+
+        top: 14px;
+
+        width: 36px;
+
+        height: 36px;
+
+        font-size: 11px;
+    }
+
+    .quran-ayah .play-btn,
+    .ayah-card .play-btn,
+    .ayah-item .play-btn,
+    .quran-verse .play-btn,
+    .ayah-audio-btn {
+        left: 14px;
+
+        top: 14px;
+
+        width: 36px;
+
+        height: 36px;
+    }
+
+    .surah-header,
+    .quran-surah-header {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        text-align: center;
+
+        padding: 22px 18px;
+    }
+}
+
+
+/* =========================================================
+   Very Small Screens
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .quran-ayah,
+    .ayah-card,
+    .ayah-item,
+    .quran-verse {
+        padding-inline: 15px;
+    }
+
+    .quran-ayah .ayah-text,
+    .ayah-card .ayah-text,
+    .ayah-item .ayah-text,
+    .quran-verse .ayah-text,
+    .ayah-text {
+        font-size: 22px;
+    }
+}
+</STyle>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo"><img src="assets/logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='ه'"></div>
+    <div class="brand-text"><h1 data-i18n="brand">الهُدى</h1><small data-i18n="brand_sub">EL HUDA</small></div>
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" onclick="toggleThemePanel()"><i data-lucide="palette"></i></button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+    <button class="menu-toggle icon-btn" id="menuToggle" onclick="toggleNav()"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+<a class="back-link" href="quran.html" data-i18n="back_quran">← العودة إلى القرآن</a>
+<section class="page-hero" style="min-height:26vh;">
+  <h2 data-i18n="quran_hub_listen_h">الاستماع للتلاوات</h2>
+</section>
+<section>
+  <div class="quran-controls">
+    <label data-i18n="quran_select_label" for="surahSelect">اختر السورة:</label>
+    <select id="surahSelect"></select>
+    <button class="tool-btn" id="playSurahBtn" data-i18n="play_surah" style="display:none;">▶ تشغيل السورة كاملة</button>
+  </div>
+  <div class="quran-toolbar">
+  <div class="group">
+    <label data-i18n="font_label">حجم الخط</label>
+    <button class="tool-btn" id="fontDec" data-i18n="font_dec">أ-</button>
+    <button class="tool-btn" id="fontInc" data-i18n="font_inc">أ+</button>
+  </div>
+  <div class="group">
+    <label data-i18n="mushaf_style_label">نوع الخط</label>
+    <select id="mushafStyle">
+      <option value="quran-uthmani" data-i18n="style_uthmani">الرسم العثماني</option>
+      <option value="quran-simple" data-i18n="style_simple">الرسم المبسط</option>
+      <option value="quran-tajweed" data-i18n="style_tajweed">تلوين التجويد</option>
+      <option value="quran-page" data-i18n="style_page">مصحف (صفحة)</option>
+    </select>
+  </div>
+  <div class="group">
+    <label data-i18n="reciter_label">القارئ:</label>
+    <select id="reciterSelect"></select>
+  </div>
+  <div class="group">
+    <label data-i18n="audio_mode_label">طريقة الاستماع</label>
+    <button class="tool-btn active" id="audioModeAyah" data-i18n="audio_ayah">آية بآية</button>
+    <button class="tool-btn" id="audioModeSurah" data-i18n="audio_surah">السورة كاملة</button>
+  </div>
+</div>
+  </BR>
+  <div class="tajweed-legend" id="tajweedLegend" style="display:none;">
+    <strong data-i18n="tajweed_legend_title">دليل ألوان التجويد</strong>
+    <div class="tw-legend-row"><span class="tw-swatch tw-ghunnah"></span><span data-i18n="tw_ghunnah">غُنّة</span></div>
+    <div class="tw-legend-row"><span class="tw-swatch tw-qalqalah"></span><span data-i18n="tw_qalqalah">قلقلة</span></div>
+    <div class="tw-legend-row"><span class="tw-swatch tw-madd_normal"></span><span data-i18n="tw_madd">مدّ</span></div>
+    <div class="tw-legend-row"><span class="tw-swatch tw-ikhfa"></span><span data-i18n="tw_ikhfa">إخفاء/إقلاب</span></div>
+    <div class="tw-legend-row"><span class="tw-swatch tw-idgham"></span><span data-i18n="tw_idgham">إدغام</span></div>
+    <div class="tw-legend-row"><span class="tw-swatch tw-ham_wasl"></span><span data-i18n="tw_hamzat">همزة وصل / حروف ساكنة</span></div>
+    <p class="tw-disclaimer" data-i18n="tajweed_disclaimer">الألوان تقريبية لمساعدة القارئ، ولا تُعتبر مرجعًا دقيقًا لأحكام التجويد — يُرجى الرجوع لمصحف تجويد معتمد أو معلم متخصص.</p>
+    <a class="tw-guide-link" href="tajweed-guide.html" data-i18n="tajweed_guide_link">عرض دليل التجويد الكامل ←</a>
+  </div>
+  
+  <div id="quran-ayat" class="mode-audio"></div>
+</section>
+<footer>
+    <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+
+  <p class="footer-tagline">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+  <nav class="footer-links">
+    <a class="footer-link" href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a class="footer-link" href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a class="footer-link" href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a class="footer-link" href="tools.html" data-i18n="nav_tools">الأدوات</a>
+    <a class="footer-link" href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="quran.js" defer></script>
+<script src="effects.js" defer></script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();
+document.addEventListener("DOMContentLoaded",function(){if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+</body>
+</html>

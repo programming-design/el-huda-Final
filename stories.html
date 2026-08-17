@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+// Instant theme + lang restore (before render)
+(function(){
+  var t=localStorage.getItem('elhuda_theme');
+  if(t&&t!=='dark') document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d1f1a">
+<title>قصص الأنبياء كاملة من آدم إلى محمد ﷺ | الهُدى</title>
+<meta name="description" content="اقرأ قصص الأنبياء والرسل الخمسة والعشرين كاملة كما وردت في القرآن الكريم، من آدم عليه السلام إلى خاتم الأنبياء محمد ﷺ، بسرد شامل ودروس مستفادة.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elhida.online/stories.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="الهُدى | El Huda">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://elhida.online/stories.html">
+<meta property="og:title" content="قصص الأنبياء كاملة من آدم إلى محمد ﷺ | الهُدى">
+<meta property="og:description" content="اقرأ قصص الأنبياء والرسل الخمسة والعشرين كاملة كما وردت في القرآن الكريم، من آدم عليه السلام إلى خاتم الأنبياء محمد ﷺ، بسرد شامل ودروس مستفادة.">
+<meta property="og:image" content="https://elhida.online/assets/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="قصص الأنبياء كاملة من آدم إلى محمد ﷺ | الهُدى">
+<meta name="twitter:description" content="اقرأ قصص الأنبياء والرسل الخمسة والعشرين كاملة كما وردت في القرآن الكريم، من آدم عليه السلام إلى خاتم الأنبياء محمد ﷺ، بسرد شامل ودروس مستفادة.">
+<meta name="twitter:image" content="https://elhida.online/assets/og-banner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://elhida.online/index.html"}, {"@type": "ListItem", "position": 2, "name": "قصص الأنبياء كاملة من آدم إلى محمد ﷺ", "item": "https://elhida.online/stories.html"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&family=Poppins:wght@300;400;600;800&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<style>
+.prophets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px;padding:0 0 60px;}
+.prophet-card{
+  background:linear-gradient(145deg,rgba(212,175,106,.07),rgba(255,255,255,.02));
+  border:1px solid var(--line);border-radius:16px;padding:26px 22px;
+  text-decoration:none;display:block;color:inherit;
+  opacity:0;transform:translateY(24px) scale(.96);
+  transition:opacity .45s ease,transform .45s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.prophet-card.vis{opacity:1;transform:translateY(0) scale(1);}
+.prophet-card:hover{transform:translateY(-8px) scale(1.02)!important;border-color:var(--gold);box-shadow:0 20px 44px -16px rgba(212,175,106,.4);}
+.prophet-card:active{transform:scale(.96)!important;transition-duration:.1s!important;}
+.prophet-card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 30%,rgba(212,175,106,.1) 50%,transparent 70%);background-size:200%;opacity:0;transition:opacity .3s;}
+.prophet-card:hover::after{opacity:1;animation:shimmer .8s linear;}
+.prop-num{position:absolute;top:14px;right:14px;color:var(--gold);font-size:.72em;letter-spacing:1px;font-family:"Poppins",sans-serif;}
+[dir="ltr"] .prop-num{right:auto;left:14px;}
+.prop-icon{width:44px;height:44px;border-radius:12px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.15);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.prop-icon i{width:20px;height:20px;stroke:var(--gold);stroke-width:1.8;}
+.prop-name{font-size:1.2em;font-weight:800;color:var(--gold-soft);margin-bottom:10px;}
+.prop-preview{color:var(--text-dim);font-size:.9em;line-height:1.7;}
+.prop-link{display:inline-block;margin-top:12px;color:var(--gold);font-size:.85em;font-weight:700;}
+</style>
+</head>
+<body data-lang="ar">
+<canvas id="bg3d"></canvas>
+<div class="pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">
+    <div class="brand-logo"><img src="assets/logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='ه'"></div>
+    <div class="brand-text"><h1 data-i18n="brand">الهُدى</h1><small data-i18n="brand_sub">EL HUDA</small></div>
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+    <a href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a href="hadiths.html" data-i18n="nav_hadiths">أحاديث</a>
+    <a href="duas-dhikr.html" data-i18n="nav_duas">أدعية</a>
+    <a href="stories.html" class="current" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a href="articles.html" data-i18n="nav_articles">مقالات</a>
+    <a href="tools.html" data-i18n="nav_tools">أدوات</a>
+    <a href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="topbar-end">
+    <div class="lang-pill" id="langPill">
+      <button class="lang-opt active" data-lang="ar" onclick="setLangBtn('ar')">AR</button>
+      <button class="lang-opt" data-lang="en" onclick="setLangBtn('en')">EN</button>
+    </div>
+    <div class="theme-wrap">
+      <button class="icon-btn" id="themeToggle" onclick="toggleThemePanel()"><i data-lucide="palette"></i></button>
+      <div class="theme-panel" id="themePanel">
+        <button class="theme-option active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch swatch-dark"></span>داكن</button>
+        <button class="theme-option" data-theme="warm" onclick="setTheme('warm')"><span class="theme-swatch swatch-warm"></span>دافئ</button>
+        <button class="theme-option" data-theme="midnight" onclick="setTheme('midnight')"><span class="theme-swatch swatch-midnight"></span>ليلي</button>
+        <button class="theme-option" data-theme="ocean" onclick="setTheme('ocean')"><span class="theme-swatch swatch-ocean"></span>محيطي</button>
+        <button class="theme-option" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch swatch-light"></span>فاتح</button>
+      </div>
+    </div>
+    <button class="menu-toggle icon-btn" id="menuToggle" onclick="toggleNav()"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+<section class="page-hero" style="min-height:28vh;">
+  <h2 id="storiesTitle">قصص الأنبياء</h2>
+  <p class="lead" id="storiesSub">عبر ودروس من قصص الأنبياء عليهم السلام</p>
+</section>
+<section style="position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 4vw;">
+  <div class="prophets-grid" id="prophetsGrid"></div>
+</section>
+<footer>
+    <div class="footer-logo">
+    <div class="footer-logo-mark"><img src="assets/icon-192.png" alt=""></div>
+    <span class="footer-brand" data-i18n="brand">الهُدى</span>
+  </div>
+
+  <p class="footer-tagline">منصة إسلامية رقمية — القرآن، الصلاة، والمعرفة.</p>
+  <nav class="footer-links">
+    <a class="footer-link" href="quran.html" data-i18n="nav_quran">القرآن</a>
+    <a class="footer-link" href="prayer.html" data-i18n="nav_prayer">الصلاة</a>
+    <a class="footer-link" href="stories.html" data-i18n="nav_stories">قصص الأنبياء</a>
+    <a class="footer-link" href="tools.html" data-i18n="nav_tools">الأدوات</a>
+    <a class="footer-link" href="about.html" data-i18n="nav_about">من نحن</a>
+  </nav>
+  <div class="footer-social">
+    <a class="social-icon" href="https://discord.gg/2R9mwzxxRe" target="_blank" rel="noopener" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a class="social-icon" href="https://www.instagram.com/el.huda0?igsh=OHFleW4wYTN6emc1&igsi=OHFleW4wYTN6emc1" target="_blank" rel="noopener" title="instagram"><i class="fa-brands fa-instagram"></i></i></a>
+    <a class="social-icon" href="https://www.tiktok.com/@alhuda.community" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+  <div class="daily-quote-wrap">
+    <div class="daily-label" data-i18n="daily_label">خاطرة اليوم</div>
+    <div id="daily-quote"></div>
+  </div>
+  <p class="footer-quote" data-i18n="footer_quote">«وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ»</p>
+  <p class="footer-copy" data-i18n="footer_rights">© 2026 الهُدى · El Huda. جميع الحقوق محفوظة.</p>
+</footer>
+<script src="lang.js"></script>
+<script src="i18n.js"></script>
+<script src="content.js"></script>
+<script>
+(function(){
+var SLUGS=["adam","idris","nuh","hud","salih","ibrahim","lut","ismail","ishaq","yaqub","yusuf","ayyub","shuayb","musa","harun","dawud","sulayman","ilyas","alyasa","yunus","dhulkifl","zakariya","yahya","isa","muhammad"];
+var ICONS=["sprout","scroll","waves","wind","mountain","flame","building-2","tent","sunrise","heart","crown","shield","scale","waves","mic","shield","gem","flame","sparkles","waves","handshake","baby","leaf","sparkles","moon-star"];
+var READ={ar:"اقرأ القصة كاملة ←",en:"Read full story →",fr:"Lire l\'histoire →"};
+var PL={ar:{title:"قصص الأنبياء",sub:"عبر ودروس من قصص الأنبياء عليهم السلام"},en:{title:"Stories of the Prophets",sub:"Lessons from the stories of the Prophets, peace be upon them"},fr:{title:"Histoires des Prophètes",sub:"Leçons des histoires des Prophètes, paix sur eux"}};
+
+function getLang(){return document.body.getAttribute("data-lang")||"ar";}
+
+function build(){
+  var lang=getLang(),grid=document.getElementById("prophetsGrid");
+  if(!grid)return;
+  if(typeof storiesList==="undefined"||!storiesList){setTimeout(build,120);return;}
+  var list=storiesList[lang]||storiesList.ar;
+  var read=READ[lang]||READ.ar;
+  grid.innerHTML=list.map(function(item,i){
+    var firstPara=item.s.split(/\n\s*\n/)[0].trim();
+    var preview=firstPara.length>130?firstPara.substring(0,130)+"...":firstPara;
+    return "<a class=\"prophet-card\" href=\"story.html?id="+SLUGS[i]+"\"><span class=\"prop-num\">"+(i+1)+"</span><div class=\"prop-icon\"><i data-lucide=\""+(ICONS[i]||"sparkles")+"\"></i></div><div class=\"prop-name\">"+item.p+"</div><div class=\"prop-preview\">"+preview+"</div><span class=\"prop-link\">"+read+"</span></a>";
+  }).join("");
+  if(typeof lucide!=="undefined") lucide.createIcons();
+  var cards=grid.querySelectorAll(".prophet-card");
+  if("IntersectionObserver" in window){
+    var obs=new IntersectionObserver(function(entries){entries.forEach(function(e,idx){if(e.isIntersecting){(function(el,d){setTimeout(function(){el.classList.add("vis");},d);})(e.target,idx*25);obs.unobserve(e.target);}});},{threshold:0.05,rootMargin:"0px 0px -10px 0px"});
+    cards.forEach(function(c){obs.observe(c);});
+  }else{cards.forEach(function(c){c.classList.add("vis");});}
+  // mobile touch
+  cards.forEach(function(c){
+    c.addEventListener("touchstart",function(){c.style.transform="scale(.96)";},{passive:true});
+    c.addEventListener("touchend",function(){setTimeout(function(){c.style.transform="";},200);});
+  });
+  var L=PL[lang]||PL.ar;
+  var t=document.getElementById("storiesTitle"),s=document.getElementById("storiesSub");
+  if(t)t.textContent=L.title;if(s)s.textContent=L.sub;
+}
+
+document.addEventListener("DOMContentLoaded",build);
+document.addEventListener("langchange",build);
+})();
+</script>
+<script src="effects.js" defer></script>
+<script>if(typeof lucide!=="undefined")lucide.createIcons();
+document.addEventListener("DOMContentLoaded",function(){if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+</body>
+</html>
