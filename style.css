@@ -923,6 +923,12 @@ a.card:has(.soon-badge), a.bento-cell:has(.soon-badge), a.feature-card:has(.soon
 }
 .tool-btn:hover{ border-color:var(--gold); color:var(--gold-2); }
 .tool-btn.active{ border-color:var(--gold); background:rgba(201,168,76,.14); color:var(--gold-2); }
+.tool-btn.disabled, .tool-btn:disabled{ opacity:.4; cursor:not-allowed; pointer-events:none; }
+.audio-timing-note{ font-size:.85rem; opacity:.75; margin:4px 0 0; }
+
+/* Language switching is disabled site-wide — hide any leftover AR/EN/FR
+   pill buttons or selects still present in page markup. */
+.lang-pill, #langPill, .lang-opt, #langSelect{ display:none !important; }
 
 /* memorization marks legend */
 /* tajweed color legend */

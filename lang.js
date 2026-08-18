@@ -1,4 +1,5 @@
-/* ---- 
+/* Site translations (kept for reference — language switching itself is
+   disabled below; the site is Arabic-only). */
 const translations = {
   ar: {
 
@@ -27,6 +28,9 @@ const translations = {
     mushaf_toggle:"عرض المصحف",
     bookmark_save:"حفظ العلامة هنا", bookmark_go:"↩ الذهاب للعلامة المحفوظة", bookmark_saved:"تم الحفظ ", bookmark_none:"لا توجد علامة محفوظة",
     reciter_label:"القارئ:",
+    riwayah_label:"الرواية:",
+    audio_no_ayah_timing:"هذا القارئ متاح بنظام السورة كاملة فقط",
+    audio_surah_unavailable:"هذه السورة غير متوفرة بصوت هذا القارئ",
     mushaf_style_label:"نوع الخط",
     style_uthmani:"الرسم العثماني", style_simple:"الرسم المبسط", style_tajweed:"تلوين التجويد",
     style_page:"مصحف (صفحة)",
@@ -81,7 +85,7 @@ const translations = {
     contact_join_btn:"الانضمام إلى السيرفر",
     audio_mode_label:"طريقة الاستماع",
     audio_ayah:"آية بآية", audio_surah:"السورة كاملة",
-    play_surah:"▶ تشغيل السورة كاملة",
+    play_surah:"تشغيل السورة كاملة",
     mark_label:"علامات الحفظ:",
     mark_memorize:"للحفظ", mark_review:"للمراجعة", mark_done:"تم حفظه", mark_clear:"إزالة",
     tafsir_source_label:"مصدر التفسير",
@@ -255,6 +259,9 @@ const translations = {
     mushaf_toggle:"Mushaf view",
     bookmark_save:"Save bookmark here", bookmark_go:"↩ Go to bookmark", bookmark_saved:"Saved ", bookmark_none:"No bookmark saved",
     reciter_label:"Reciter:",
+    riwayah_label:"Riwayah:",
+    audio_no_ayah_timing:"This reciter is only available in full-surah mode",
+    audio_surah_unavailable:"This surah isn't available for this reciter",
     mushaf_style_label:"Script style",
     style_uthmani:"Uthmani script", style_simple:"Simple script", style_tajweed:"Tajweed coloring",
     style_page:"Mushaf (page)",
@@ -309,7 +316,7 @@ const translations = {
     contact_join_btn:"Join the Server",
     audio_mode_label:"Listening mode",
     audio_ayah:"Verse by verse", audio_surah:"Full surah",
-    play_surah:"▶ Play full surah",
+    play_surah:"Play full surah",
     mark_label:"Memorization marks:",
     mark_memorize:"To memorize", mark_review:"To review", mark_done:"Memorized", mark_clear:"Clear",
     tafsir_source_label:"Tafsir source",
@@ -476,6 +483,9 @@ const translations = {
     mushaf_toggle:"Vue Mushaf",
     bookmark_save:"Enregistrer ce repère", bookmark_go:"↩ Aller au repère", bookmark_saved:"Enregistré ", bookmark_none:"Aucun repère enregistré",
     reciter_label:"Récitateur :",
+    riwayah_label:"Riwaya :",
+    audio_no_ayah_timing:"Ce récitateur est disponible uniquement en sourate complète",
+    audio_surah_unavailable:"Cette sourate n'est pas disponible pour ce récitateur",
     mushaf_style_label:"Style d'écriture",
     style_uthmani:"Écriture Uthmani", style_simple:"Écriture simplifiée", style_tajweed:"Coloration Tajweed",
     style_page:"Mushaf (page)",
@@ -530,7 +540,7 @@ const translations = {
     contact_join_btn:"Rejoindre le serveur",
     audio_mode_label:"Mode d'écoute",
     audio_ayah:"Verset par verset", audio_surah:"Sourate complète",
-    play_surah:"▶ Lire la sourate complète",
+    play_surah:"Lire la sourate complète",
     mark_label:"Repères de mémorisation :",
     mark_memorize:"À mémoriser", mark_review:"À revoir", mark_done:"Mémorisé", mark_clear:"Effacer",
     tafsir_source_label:"Source du Tafsir",
@@ -672,7 +682,11 @@ const translations = {
 };
 
 function setLang(lang){
-  if(typeof window.switchLang!=='undefined'){ window.switchLang(lang); return; }
+  /* Multi-language switching is disabled site-wide (kept Arabic-only due
+     to reported issues) — this function is intentionally locked to 'ar'
+     regardless of what is passed in, so any leftover call sites remain
+     harmless. */
+  lang = 'ar';
   const dict = translations[lang];
   if(!dict) return;
   document.querySelectorAll('[data-i18n]').forEach(el=>{
@@ -681,12 +695,12 @@ function setLang(lang){
   });
   document.body.setAttribute('data-lang',lang);
   document.documentElement.lang=lang;
-  document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.documentElement.dir='rtl';
   document.querySelectorAll('#langSelect').forEach(s=>s.value=lang);
   localStorage.setItem('elhuda_lang',lang);
   document.dispatchEvent(new CustomEvent('langchange',{detail:{lang}}));
 }
----- */
+
 /* ---- language pill buttons (AR/FR/EN) ---- */
 function setLangBtn(lang){
   setLang(lang);
@@ -716,14 +730,13 @@ function toggleNav(){
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
-  /* restore saved language */
-  const savedLang = localStorage.getItem('elhuda_lang');
-  if(savedLang && translations[savedLang]){
-    setLang(savedLang);
-    document.querySelectorAll('.lang-opt').forEach(btn=>{
-      btn.classList.toggle('active', btn.getAttribute('data-lang') === savedLang);
-    });
-  }
+  /* Language switching is disabled — force Arabic/RTL and clear any
+     stale saved language from before, so old visitors aren't stuck with
+     a broken translated layout. */
+  localStorage.setItem('elhuda_lang','ar');
+  document.body.setAttribute('data-lang','ar');
+  document.documentElement.lang='ar';
+  document.documentElement.dir='rtl';
 
   /* restore saved theme (dark is default, already set inline before paint) */
   const savedTheme = localStorage.getItem('elhuda_theme');
