@@ -974,21 +974,29 @@
   <div class="quran-toolbar">
   <div class="group">
     <label data-i18n="font_label">حجم الخط</label>
-    <button class="tool-btn" id="fontDec" data-i18n="font_dec">أ-</button>
-    <button class="tool-btn" id="fontInc" data-i18n="font_inc">أ+</button>
+    <span class="fs-btns">
+      <button class="tool-btn icon-btn-round" id="fontDec" title="تصغير الخط"><i class="fa-solid fa-minus"></i></button>
+      <button class="tool-btn icon-btn-round" id="fontInc" title="تكبير الخط"><i class="fa-solid fa-plus"></i></button>
+    </span>
   </div>
   <div class="group">
     <label data-i18n="mushaf_style_label">نوع الخط</label>
     <select id="mushafStyle">
       <option value="quran-uthmani" data-i18n="style_uthmani">الرسم العثماني</option>
       <option value="quran-simple" data-i18n="style_simple">الرسم المبسط</option>
-      <option value="quran-tajweed" data-i18n="style_tajweed">تلوين التجويد</option>
       <option value="quran-page" data-i18n="style_page">مصحف (صفحة)</option>
     </select>
   </div>
   <div class="group">
     <label data-i18n="reciter_label">القارئ:</label>
-    <select id="reciterSelect"></select>
+    <button type="button" class="reciter-picker-btn" id="reciterPickerBtn">
+      <i class="fa-solid fa-microphone"></i>
+      <span class="rp-label">
+        <span class="rp-name" id="reciterPickerName">—</span>
+        <span class="rp-riwayah" id="reciterPickerRiwayah"></span>
+      </span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </button>
   </div>
   <div class="group">
     <label data-i18n="audio_mode_label">طريقة الاستماع</label>
@@ -998,6 +1006,20 @@
 </div>
   <p class="audio-timing-note" id="audioTimingNote" style="display:none;"></p>
   </BR>
+
+  <div class="rp-modal-overlay" id="reciterModalOverlay">
+    <div class="rp-modal-panel">
+      <div class="rp-modal-header">
+        <h3 data-i18n="reciter_modal_title">اختر القارئ والرواية</h3>
+        <button class="rp-modal-close" id="reciterModalClose" title="إغلاق"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="rp-modal-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="reciterSearchInput" data-i18n-placeholder="reciter_search_placeholder" placeholder="ابحث عن قارئ...">
+      </div>
+      <div class="rp-modal-list" id="reciterModalList"></div>
+    </div>
+  </div>
   <div class="tajweed-legend" id="tajweedLegend" style="display:none;">
     <strong data-i18n="tajweed_legend_title">دليل ألوان التجويد</strong>
     <div class="tw-legend-row"><span class="tw-swatch tw-ghunnah"></span><span data-i18n="tw_ghunnah">غُنّة</span></div>

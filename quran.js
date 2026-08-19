@@ -72,6 +72,34 @@ function highlightPlayingAyah(num){
   }
 }
 
+/* ---------- Word-by-word recitation highlight ----------
+   mp3quran.net's ayah-timing API only gives a start/end timestamp for the
+   whole ayah, not per-word data. We split the ayah into words at render
+   time (see wrapWords) and, during playback, estimate which word is
+   currently being recited by dividing that ayah's duration evenly across
+   its words — a lightweight "karaoke" effect without needing per-word
+   alignment data. */
+function wrapWords(html, ayahNum){
+  const words = html.split(' ').filter(w => w.length);
+  if(!words.length) return html;
+  return words.map((w,i)=>`<span class="qword" data-ayah="${ayahNum}" data-w="${i}">${w}</span>`).join(' ');
+}
+function clearWordHighlights(){
+  document.querySelectorAll('.qword-active').forEach(s=> s.classList.remove('qword-active'));
+}
+function highlightWordAtTime(ayahNum, timeMs, segStart, segEnd){
+  const spans = document.querySelectorAll(`.qword[data-ayah="${ayahNum}"]`);
+  if(!spans.length) return;
+  const dur = (segEnd - segStart) / spans.length;
+  let idx = Math.floor((timeMs - segStart) / dur);
+  if(idx < 0) idx = 0;
+  if(idx >= spans.length) idx = spans.length - 1;
+  spans.forEach((s,i)=>{
+    if(i === idx){ if(!s.classList.contains('qword-active')) s.classList.add('qword-active'); }
+    else if(s.classList.contains('qword-active')) s.classList.remove('qword-active');
+  });
+}
+
 /* ---------- Surah list ---------- */
 async function loadSurahList(){
   const select = document.getElementById('surahSelect');
@@ -119,11 +147,15 @@ function findTimingReadForServer(server){
   return MP3Q_TIMING_READS.find(r => normalizeServerUrl(r.folder_url) === target) || null;
 }
 
-/* ---------- Reciter list (dynamic, from mp3quran.net — hundreds of
-   reciters across multiple riwayat) ---------- */
+/* ---------- Reciter picker (modal with search) ----------
+   Replaces the old plain <select> with a searchable modal — mp3quran.net
+   returns hundreds of reciters across multiple riwayat, which is far too
+   long for a native dropdown to browse comfortably. */
+let reciterModalBuilt = false;
+
 async function loadReciterList(){
-  const select = document.getElementById('reciterSelect');
-  if(!select) return;
+  const btn = document.getElementById('reciterPickerBtn');
+  if(!btn) return;
   const lang = MP3Q_LANG[qLang()] || 'ar';
 
   await loadTimingReads();
@@ -148,33 +180,89 @@ async function loadReciterList(){
     }
   }catch(e){ /* keep fallback list */ }
 
-  // group options by reciter for a tidy <optgroup> dropdown
+  if(!MP3Q_OPTIONS.find(o=>o.value===currentReciter)){
+    currentReciter = MP3Q_OPTIONS[0].value;
+  }
+  localStorage.setItem('elhuda_reciter', currentReciter);
+
+  renderReciterModalList('');
+  updateReciterPickerButton();
+  refreshAudioModeAvailability();
+  setupReciterModal();
+}
+
+function updateReciterPickerButton(){
+  const nameEl = document.getElementById('reciterPickerName');
+  const riwayahEl = document.getElementById('reciterPickerRiwayah');
+  if(!nameEl) return;
+  const moshaf = getCurrentMoshaf();
+  nameEl.textContent = moshaf.reciterName;
+  riwayahEl.textContent = moshaf.moshafName || '';
+}
+
+function renderReciterModalList(query){
+  const list = document.getElementById('reciterModalList');
+  if(!list) return;
+  const q = (query || '').trim().toLowerCase();
+
   const byReciter = new Map();
   MP3Q_OPTIONS.forEach(o=>{
+    if(q && !o.reciterName.toLowerCase().includes(q) && !o.moshafName.toLowerCase().includes(q)) return;
     if(!byReciter.has(o.reciterName)) byReciter.set(o.reciterName, []);
     byReciter.get(o.reciterName).push(o);
   });
-  select.innerHTML = [...byReciter.entries()].map(([name, opts])=>{
-    if(opts.length === 1){
-      return `<option value="${opts[0].value}">${name}</option>`;
-    }
-    return `<optgroup label="${name}">${opts.map(o=>`<option value="${o.value}">${o.moshafName}</option>`).join('')}</optgroup>`;
+
+  if(!byReciter.size){
+    const t = translations[qLang()] || translations.ar;
+    list.innerHTML = `<p class="rp-empty">${t.reciter_search_empty || '—'}</p>`;
+    return;
+  }
+
+  list.innerHTML = [...byReciter.entries()].map(([name, opts])=>{
+    const rows = opts.map(o=>`
+      <div class="rp-riwayah-row ${o.value===currentReciter?'selected':''}" data-value="${o.value}">
+        <span>${opts.length > 1 ? o.moshafName : name}</span>
+        <i class="fa-solid fa-check"></i>
+      </div>`).join('');
+    return `<div class="rp-reciter-group">${opts.length > 1 ? `<div class="rp-reciter-name">${name}</div>` : ''}${rows}</div>`;
   }).join('');
 
-  if(MP3Q_OPTIONS.find(o=>o.value===currentReciter)){
-    select.value = currentReciter;
-  } else {
-    currentReciter = MP3Q_OPTIONS[0].value;
-    select.value = currentReciter;
-  }
-  refreshAudioModeAvailability();
-
-  select.addEventListener('change', ()=>{
-    currentReciter = select.value;
-    localStorage.setItem('elhuda_reciter', currentReciter);
-    refreshAudioModeAvailability();
-    if(currentSurahData) loadSurah(currentSurahData.number);
+  list.querySelectorAll('.rp-riwayah-row').forEach(row=>{
+    row.addEventListener('click', ()=>{
+      currentReciter = row.getAttribute('data-value');
+      localStorage.setItem('elhuda_reciter', currentReciter);
+      updateReciterPickerButton();
+      refreshAudioModeAvailability();
+      closeReciterModal();
+      if(currentSurahData) loadSurah(currentSurahData.number);
+    });
   });
+}
+
+function openReciterModal(){
+  const overlay = document.getElementById('reciterModalOverlay');
+  if(!overlay) return;
+  overlay.classList.add('open');
+  renderReciterModalList('');
+  const input = document.getElementById('reciterSearchInput');
+  if(input){ input.value = ''; setTimeout(()=> input.focus(), 50); }
+}
+function closeReciterModal(){
+  const overlay = document.getElementById('reciterModalOverlay');
+  if(overlay) overlay.classList.remove('open');
+}
+function setupReciterModal(){
+  if(reciterModalBuilt) return;
+  reciterModalBuilt = true;
+  const btn = document.getElementById('reciterPickerBtn');
+  const overlay = document.getElementById('reciterModalOverlay');
+  const closeBtn = document.getElementById('reciterModalClose');
+  const input = document.getElementById('reciterSearchInput');
+  if(btn) btn.addEventListener('click', openReciterModal);
+  if(closeBtn) closeBtn.addEventListener('click', closeReciterModal);
+  if(overlay) overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeReciterModal(); });
+  if(input) input.addEventListener('input', ()=> renderReciterModalList(input.value));
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeReciterModal(); });
 }
 
 /* Disables "ayah by ayah" mode (forces "full surah") whenever the chosen
@@ -252,13 +340,28 @@ async function loadTafsirList(){
 function setupMushafStyle(){
   const select = document.getElementById('mushafStyle');
   if(!select) return;
+  // a value saved on another page (e.g. tajweed or book mode) might not
+  // exist as an <option> here — fall back to the page's default silently,
+  // without touching the other page's stored preference.
+  if(![...select.options].some(o=>o.value===currentMushafStyle)){
+    currentMushafStyle = select.options[0].value;
+  }
   select.value = currentMushafStyle;
   applyMushafStyleClass();
   select.addEventListener('change', ()=>{
+    const previous = currentMushafStyle;
     currentMushafStyle = select.value;
     localStorage.setItem('elhuda_mushaf_style', currentMushafStyle);
     applyMushafStyleClass();
-    if(currentSurahData) loadSurah(currentSurahData.number);
+    const hasBookUI = !!document.getElementById('bookToolbar');
+    if(currentMushafStyle === 'quran-book' && hasBookUI){
+      enterBookMode(currentBookPage);
+    } else if(previous === 'quran-book' && hasBookUI){
+      exitBookMode();
+      if(currentSurahData) loadSurah(currentSurahData.number);
+    } else if(currentSurahData){
+      loadSurah(currentSurahData.number);
+    }
   });
 }
 function applyMushafStyleClass(){
@@ -315,6 +418,7 @@ function stopSequential(){
   }
   document.querySelectorAll('.ayah-card.playing').forEach(c=> c.classList.remove('playing'));
   document.querySelectorAll('.page-ayah-num.playing').forEach(s=> s.classList.remove('playing'));
+  clearWordHighlights();
   setSurahBtnIcon(false);
 }
 
@@ -345,7 +449,12 @@ function playFullSurah(){
     }
     if(current && current !== lastAyah){
       lastAyah = current;
+      clearWordHighlights();
       highlightPlayingAyah(current);
+    }
+    if(current){
+      const seg = timing[current];
+      highlightWordAtTime(current, ms, seg.start, seg.end);
     }
   } : null;
 
@@ -370,9 +479,12 @@ function playAyahTimed(url, startMs, endMs, btn, ayahNum){
   if(alreadyOnThisAyah){
     audioPlayer.pause();
     audioPlayer.ontimeupdate = null;
+    clearWordHighlights();
     if(btn) setPlayIcon(btn, false);
     return;
   }
+
+  clearWordHighlights();
 
   const startPlayback = ()=>{
     audioPlayer.currentTime = startMs / 1000;
@@ -390,7 +502,10 @@ function playAyahTimed(url, startMs, endMs, btn, ayahNum){
     if(audioPlayer.currentTime*1000 >= endMs){
       audioPlayer.pause();
       audioPlayer.ontimeupdate = null;
+      clearWordHighlights();
       if(btn) setPlayIcon(btn, false);
+    } else if(ayahNum != null){
+      highlightWordAtTime(ayahNum, audioPlayer.currentTime*1000, startMs, endMs);
     }
   };
   if(btn) setPlayIcon(btn, true);
@@ -524,11 +639,15 @@ function renderMushafPage(){
 
   const ayahsHtml = arabic.ayahs.map((ayah)=>{
     let clickable = '';
-    if(audioOk && audioMode === 'ayah' && timing && timing[ayah.numberInSurah]){
-      const seg = timing[ayah.numberInSurah];
-      clickable = `onclick="playAyahTimed('${currentSurahData.audioMeta.url}', ${seg.start}, ${seg.end}, null, ${ayah.numberInSurah})"`;
+    let text = ayah.text;
+    if(audioOk && timing && timing[ayah.numberInSurah]){
+      text = wrapWords(text, ayah.numberInSurah);
+      if(audioMode === 'ayah'){
+        const seg = timing[ayah.numberInSurah];
+        clickable = `onclick="playAyahTimed('${currentSurahData.audioMeta.url}', ${seg.start}, ${seg.end}, null, ${ayah.numberInSurah})"`;
+      }
     }
-    return `${ayah.text} <span class="page-ayah-num" id="pageayah-${ayah.numberInSurah}" ${clickable}>${toArabicDigits(ayah.numberInSurah)}</span>`;
+    return `${text} <span class="page-ayah-num" id="pageayah-${ayah.numberInSurah}" ${clickable}>${toArabicDigits(ayah.numberInSurah)}</span>`;
   }).join(' ');
 
   container.innerHTML = `
@@ -553,6 +672,109 @@ function toArabicDigits(n){
   return String(n).split('').map(d=>map[d]||d).join('');
 }
 
+/* ---------- Mushaf "Book" mode ----------
+   A real, authentic page-flipping Mushaf — like mp3quran.net's own
+   "تصفح القرآن" viewer (mp3quran.net/ar/mushaf): actual Madinah-print
+   Mushaf page images (604 pages, SVG, crisp at any zoom) served from
+   mp3quran.net's CDN, not reconstructed text. Surah → page mapping also
+   comes straight from mp3quran.net's own /suwar endpoint so it always
+   matches their real Madinah pagination exactly. */
+const QURAN_TOTAL_PAGES = 604;
+const MP3Q_SVG_BASE = 'https://www.mp3quran.net/api/quran_pages_svg/';
+let currentBookPage = Math.min(QURAN_TOTAL_PAGES, Math.max(1, parseInt(localStorage.getItem('elhuda_book_page'), 10) || 1));
+let bookTheme = localStorage.getItem('elhuda_book_theme') || 'classic';
+let bookSurahPages = null; // [{id, name, start_page, end_page}, ...]
+
+async function loadBookSurahPages(){
+  if(bookSurahPages) return bookSurahPages;
+  try{
+    const res = await fetch(`${MP3Q_BASE}/suwar?language=ar`);
+    const json = await res.json();
+    bookSurahPages = json.suwar || [];
+  }catch(e){
+    bookSurahPages = [];
+  }
+  return bookSurahPages;
+}
+
+function renderBookPage(pageNum){
+  const container = document.getElementById('quran-ayat');
+  if(!container) return;
+  container.innerHTML = `
+    <div class="mushaf-book-page theme-${bookTheme}">
+      <img class="book-page-img" src="${MP3Q_SVG_BASE}${pad3(pageNum)}.svg" alt="صفحة ${pageNum} من المصحف" loading="eager">
+      <div class="book-page-num">${toArabicDigits(pageNum)} / ${toArabicDigits(QURAN_TOTAL_PAGES)}</div>
+    </div>
+  `;
+  const indicator = document.getElementById('bookPageIndicator');
+  if(indicator) indicator.textContent = `${pageNum} / ${QURAN_TOTAL_PAGES}`;
+}
+
+function goToBookPage(pageNum){
+  pageNum = Math.min(QURAN_TOTAL_PAGES, Math.max(1, pageNum));
+  currentBookPage = pageNum;
+  localStorage.setItem('elhuda_book_page', String(currentBookPage));
+  renderBookPage(currentBookPage);
+}
+
+async function jumpBookToSurah(surahNum){
+  const list = await loadBookSurahPages();
+  const surah = list.find(s => s.id === Number(surahNum) || s.id === surahNum);
+  goToBookPage(surah ? surah.start_page : 1);
+}
+
+function enterBookMode(pageNum){
+  const toolbar = document.getElementById('bookToolbar');
+  if(toolbar) toolbar.style.display = 'flex';
+  goToBookPage(pageNum || currentBookPage);
+}
+function exitBookMode(){
+  const toolbar = document.getElementById('bookToolbar');
+  if(toolbar) toolbar.style.display = 'none';
+}
+
+function setupBookMode(){
+  const toolbar = document.getElementById('bookToolbar');
+  if(!toolbar) return;
+  const prev = document.getElementById('bookPrev');
+  const next = document.getElementById('bookNext');
+  const themeSwitch = document.getElementById('bookThemeSwitch');
+  if(prev) prev.addEventListener('click', ()=> goToBookPage(currentBookPage - 1));
+  if(next) next.addEventListener('click', ()=> goToBookPage(currentBookPage + 1));
+  if(themeSwitch){
+    themeSwitch.querySelectorAll('.book-theme-dot').forEach(dot=>{
+      dot.classList.toggle('active', dot.getAttribute('data-theme') === bookTheme);
+      dot.addEventListener('click', ()=>{
+        bookTheme = dot.getAttribute('data-theme');
+        localStorage.setItem('elhuda_book_theme', bookTheme);
+        themeSwitch.querySelectorAll('.book-theme-dot').forEach(d=> d.classList.toggle('active', d===dot));
+        const page = document.querySelector('.mushaf-book-page');
+        if(page){
+          page.classList.remove('theme-classic','theme-night','theme-gold');
+          page.classList.add('theme-'+bookTheme);
+        }
+      });
+    });
+  }
+  loadBookSurahPages();
+  // simple swipe navigation for mobile ("book" page-flip feel)
+  const container = document.getElementById('quran-ayat');
+  if(container){
+    let touchStartX = null;
+    container.addEventListener('touchstart', (e)=>{ touchStartX = e.touches[0].clientX; }, {passive:true});
+    container.addEventListener('touchend', (e)=>{
+      if(touchStartX === null || currentMushafStyle !== 'quran-book') return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if(Math.abs(dx) > 60){
+        // RTL book: swipe right (dx>0) = previous page, swipe left = next page
+        if(dx > 0) goToBookPage(currentBookPage - 1);
+        else goToBookPage(currentBookPage + 1);
+      }
+      touchStartX = null;
+    }, {passive:true});
+  }
+}
+
 /* ---------- Per-ayah card render (default) ---------- */
 function renderAyahCards(){
   const container = document.getElementById('quran-ayat');
@@ -568,6 +790,9 @@ function renderAyahCards(){
     const trText = translation && translation.ayahs[i] ? translation.ayahs[i].text : '';
     const tafText = tafsir && tafsir.ayahs[i] ? tafsir.ayahs[i].text : '';
     const ayahText = currentMushafStyle === 'quran-tajweed' ? tajweedToHtml(ayah.text) : ayah.text;
+    const displayText = (mode === 'audio' && audioOk && timing && timing[ayah.numberInSurah])
+      ? wrapWords(ayahText, ayah.numberInSurah)
+      : ayahText;
 
     let playBtn = '';
     if(mode === 'audio' && audioMode === 'ayah'){
@@ -589,7 +814,7 @@ function renderAyahCards(){
         <span class="ayah-num"><span>${ayah.numberInSurah}</span></span>
         ${playBtn}
       </div>
-      <p class="ayah-arabic">${ayahText}</p>
+      <p class="ayah-arabic">${displayText}</p>
       ${translation ? `<p class="ayah-translation"><strong>${t.quran_translation_label}:</strong> ${trText}</p>` : ''}
       ${tafsirBlock}
     </div>`;
@@ -678,7 +903,14 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   setupMushafStyle();
   await setupTafsirSource();
   setupAudioMode();
-  select.addEventListener('change', ()=> loadSurah(select.value));
+  setupBookMode();
+  select.addEventListener('change', ()=>{
+    if(currentMushafStyle === 'quran-book' && document.getElementById('bookToolbar')){
+      jumpBookToSurah(select.value);
+    } else {
+      loadSurah(select.value);
+    }
+  });
   setupFontControls();
 
   const params = new URLSearchParams(window.location.search);
@@ -686,7 +918,12 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const lastRead = parseInt(localStorage.getItem('quran_last_surah'), 10);
   const startSurah = (fromUrl >= 1 && fromUrl <= 114) ? fromUrl : ((lastRead >= 1 && lastRead <= 114) ? lastRead : 1);
   if(select.value !== String(startSurah)) select.value = String(startSurah);
-  loadSurah(startSurah);
+
+  if(currentMushafStyle === 'quran-book' && document.getElementById('bookToolbar')){
+    enterBookMode(currentBookPage);
+  } else {
+    loadSurah(startSurah);
+  }
 });
 
 document.addEventListener('langchange', async ()=>{
